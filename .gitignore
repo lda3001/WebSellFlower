@@ -1,0 +1,7 @@
+.vs
+.github
+
+
+bin/
+obj/
+out/
