@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\DUCANHDEV\\source\\repos\\WebSellFlower\\WebSellFlower\\WebSellFlower.csproj": {}
+    "E:\\WebSellFlower\\WebSellFlower\\WebSellFlower.csproj": {}
   },
   "projects": {
-    "C:\\Users\\DUCANHDEV\\source\\repos\\WebSellFlower\\WebSellFlower\\WebSellFlower.csproj": {
+    "E:\\WebSellFlower\\WebSellFlower\\WebSellFlower.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\DUCANHDEV\\source\\repos\\WebSellFlower\\WebSellFlower\\WebSellFlower.csproj",
+        "projectUniqueName": "E:\\WebSellFlower\\WebSellFlower\\WebSellFlower.csproj",
         "projectName": "WebSellFlower",
-        "projectPath": "C:\\Users\\DUCANHDEV\\source\\repos\\WebSellFlower\\WebSellFlower\\WebSellFlower.csproj",
+        "projectPath": "E:\\WebSellFlower\\WebSellFlower\\WebSellFlower.csproj",
         "packagesPath": "C:\\Users\\DUCANHDEV\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\DUCANHDEV\\source\\repos\\WebSellFlower\\WebSellFlower\\obj\\",
+        "outputPath": "E:\\WebSellFlower\\WebSellFlower\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
