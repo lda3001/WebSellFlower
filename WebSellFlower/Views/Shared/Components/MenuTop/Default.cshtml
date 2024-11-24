@@ -1,0 +1,57 @@
+﻿@model IEnumerable<WebSellFlower.Models.TblCategory>
+@* @foreach (var item in Model.Where(m => m.ParentId == null)) // Lấy các mục menu chính
+{
+    <li id="nav-menu-item-@item.Categoryid" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+        <a href="@item.Alias" class><span class="item_outer"><span class="item_text">@item.Title</span></span></a>
+
+        @if (Model.Any(m => m.ParentId == item.Categoryid)) // Kiểm tra xem có sub-menu không
+        {
+            <div class="second">
+                <div class="inner">
+                    <ul>
+                        @foreach (var subItem in Model.Where(m => m.ParentId == item.Categoryid)) // Lấy các sub-menu
+                        {
+                            <li id="nav-menu-item-@subItem.ParentId" class="menu-item menu-item-type-post_type menu-item-object-page">
+                                <a href="@subItem.Alias" class><span class="item_outer"><span class="item_text">@subItem.Title</span></span></a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        }
+    </li>
+} *@
+
+@foreach (var item in Model.Where(m => m.ParentId == null))
+{
+	<li id="nav-menu-item-@item.Categoryid"
+	class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children mkdf-active-item has_sub narrow">
+		<a href="#" class=" current ">
+			<span class="item_outer">
+				<span class="item_text">@item.Title</span><i class="mkdf-menu-arrow fa fa-angle-down"></i>
+			</span>
+		</a>
+		@if (Model.Any(m => m.ParentId == item.Categoryid))
+		{
+			<div class="second">
+				<div class="inner">
+					<ul>
+						@foreach (var subItem in Model.Where(m => m.ParentId == item.Categoryid))
+						{
+							<li id="nav-menu-item-@subItem.ParentId"
+							class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-189 current_page_item ">
+								<a href="index.html" class>
+									<span class="item_outer">
+										<span class="item_text">
+											@subItem.Title
+										</span>
+									</span>
+								</a>
+							</li>
+						}
+					</ul>
+				</div>
+		</div>
+		}
+	</li>
+}
