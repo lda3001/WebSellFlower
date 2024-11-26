@@ -7,7 +7,7 @@ public partial class TblSlider
 {
     public int SliderId { get; set; }
 
-    public byte[]? SliderImg { get; set; }
+    public string? SliderImg { get; set; }
 
     public byte[]? SliderOnPage { get; set; }
 

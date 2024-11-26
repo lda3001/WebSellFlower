@@ -33,7 +33,15 @@ public partial class TblProduct
 
     public bool? IsNew { get; set; }
 
+    public string? Description { get; set; }
+
+    public int? Quantity { get; set; }
+
+    public string? ProdImg3 { get; set; }
+
     public virtual TblCategoryProduct? CategoryProd { get; set; }
 
     public virtual ICollection<TblOrderDetail> TblOrderDetails { get; set; } = new List<TblOrderDetail>();
+
+    public virtual ICollection<TblProductReview> TblProductReviews { get; set; } = new List<TblProductReview>();
 }

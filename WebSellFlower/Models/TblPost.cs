@@ -13,7 +13,7 @@ public partial class TblPost
 
     public string? PostContent { get; set; }
 
-    public byte[]? PostThumb { get; set; }
+    public string? PostThumb { get; set; }
 
     public int? PostFeatured { get; set; }
 

@@ -289,15 +289,15 @@
 	<link rel="stylesheet" id="wp-block-library-css"
 		  href="~/wp-includes/css/dist/block-library/style.minbfbf.css?ver=6.0.9" type="text/css" media="all" asp-append-version="true" />
 	<link rel="stylesheet" id="wc-blocks-vendors-style-css"
-		  href="~/wp-content/plugins/woocommerce/packages/woocommerce-blocks/build/wc-blocks-vendors-style2ff6.css?ver=8.5.1"
-		  type="text/css" media="all" asp-append-version="true" />
+		  href="https://fiorello.qodeinteractive.com/wp-content/plugins/woocommerce/packages/woocommerce-blocks/build/wc-blocks-vendors-style.css?ver=8.5.1"
+		  type="text/css" media="all"  />
 	<link rel="stylesheet" id="wc-blocks-style-css"
-		  href="~/wp-content/plugins/woocommerce/packages/woocommerce-blocks/build/wc-blocks-style2ff6.css?ver=8.5.1"
-		  type="text/css" media="all" asp-append-version="true" />
+		  href="https://fiorello.qodeinteractive.com/wp-content/plugins/woocommerce/packages/woocommerce-blocks/build/wc-blocks-style.css?ver=8.5.1"
+		  type="text/css" media="all" />
 	<link rel="stylesheet" id="titan-adminbar-styles-css"
-		  href="~/wp-content/plugins/anti-spam/assets/css/admin-barba31.css?ver=7.3.3" type="text/css" media="all" asp-append-version="true" />
+		  href="https://fiorello.qodeinteractive.com/wp-content/plugins/anti-spam/assets/css/admin-bar.css?ver=7.3.3" type="text/css" media="all" asp-append-version="true" />
 	<link rel="stylesheet" id="contact-form-7-css"
-		  href="~/wp-content/plugins/contact-form-7/includes/css/styles77e1.css?ver=5.6.4" type="text/css" media="all" asp-append-version="true" />
+		  href="https://fiorello.qodeinteractive.com/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=5.6.4" type="text/css" media="all" asp-append-version="true" />
 	<link rel="stylesheet" id="rabbit_css-css"
 		  href="../export.qodethemes.com/_toolbar/assets/css/rbt-modulesbfbf.css?ver=6.0.9" type="text/css" media="all" asp-append-version="true" />
 
@@ -489,7 +489,102 @@
 
 
 </head>
-<body class="home page-template page-template-full-width page-template-full-width-php page page-id-189 theme-fiorello fiorello-core-1.3 woocommerce-no-js fiorello-ver-1.6 mkdf-grid-1300 mkdf-content-background-full-image mkdf-sticky-header-on-scroll-down-up mkdf-dropdown-animate-height mkdf-header-standard mkdf-menu-area-shadow-disable mkdf-menu-area-in-grid-shadow-disable mkdf-menu-area-border-disable mkdf-menu-area-in-grid-border-disable mkdf-logo-area-border-disable mkdf-woocommerce-columns-3 mkdf-woo-medium-space mkdf-woo-pl-info-below-image mkdf-woo-single-thumb-on-left-side mkdf-woo-single-has-pretty-photo mkdf-default-mobile-header mkdf-sticky-up-mobile-header mkdf-slide-from-header-bottom wpb-js-composer js-comp-ver-6.10.0 vc_responsive"
+<script>
+	// Lấy URL hiện tại
+	document.addEventListener('DOMContentLoaded', () => {
+		const currentUrl = window.location.href;
+		console.log(currentUrl)
+		const bodyElement = document.body;
+		bodyElement.className = "";
+		// Kiểm tra URL
+		if (currentUrl === 'https://localhost:7112') {
+			// Trang chủ
+
+			const classesToAdd = [
+				'home',
+				'page-template',
+				'page-template-full-width',
+				'page-template-full-width-php',
+				'page',
+				'page-id-189',
+				'theme-fiorello',
+				'fiorello-core-1.3',
+				'woocommerce-no-js',
+				'fiorello-ver-1.6',
+				'mkdf-grid-1300',
+				'mkdf-content-background-full-image',
+				'mkdf-sticky-header-on-scroll-down-up',
+				'mkdf-dropdown-animate-height',
+				'mkdf-header-standard',
+				'mkdf-menu-area-shadow-disable',
+				'mkdf-menu-area-in-grid-shadow-disable',
+				'mkdf-menu-area-border-disable',
+				'mkdf-menu-area-in-grid-border-disable',
+				'mkdf-logo-area-border-disable',
+				'mkdf-woocommerce-columns-3',
+				'mkdf-woo-medium-space',
+				'mkdf-woo-pl-info-below-image',
+				'mkdf-woo-single-thumb-on-left-side',
+				'mkdf-woo-single-has-pretty-photo',
+				'mkdf-default-mobile-header',
+				'mkdf-sticky-up-mobile-header',
+				'mkdf-slide-from-header-bottom',
+				'wpb-js-composer',
+				'js-comp-ver-6.10.0',
+				'vc_responsive'
+			];
+
+			// Thêm từng class vào <body>
+			bodyElement.classList.add(...classesToAdd);
+		} else if (currentUrl.includes('/product/')) {
+			// Trang sản phẩm (URL chứa "/product/")
+			const productClasses = [
+				'product-template-default',
+				'single',
+				'single-product',
+				'postid-365',
+				'theme-fiorello',
+				'fiorello-core-1.3',
+				'woocommerce',
+				'woocommerce-page',
+				'woocommerce-no-js',
+				'fiorello-ver-1.6',
+				'mkdf-grid-1300',
+				'mkdf-content-background-full-image',
+				'mkdf-sticky-header-on-scroll-down-up',
+				'mkdf-dropdown-animate-height',
+				'mkdf-header-standard',
+				'mkdf-menu-area-shadow-disable',
+				'mkdf-menu-area-in-grid-shadow-disable',
+				'mkdf-menu-area-border-disable',
+				'mkdf-menu-area-in-grid-border-disable',
+				'mkdf-logo-area-border-disable',
+				'mkdf-woocommerce-page',
+				'mkdf-woo-single-page',
+				'mkdf-woocommerce-columns-4',
+				'mkdf-woo-medium-space',
+				'mkdf-woo-pl-info-below-image',
+				'mkdf-woo-single-thumb-on-left-side',
+				'mkdf-woo-single-has-pretty-photo',
+				'mkdf-default-mobile-header',
+				'mkdf-sticky-up-mobile-header',
+				'mkdf-slide-from-header-bottom',
+				'wpb-js-composer',
+				'js-comp-ver-6.10.0',
+				'vc_responsive'
+			];
+
+			// Thêm các class vào body
+			bodyElement.classList.add(...productClasses);
+
+		} else {
+			// Các trang khác
+			bodyElement.classList.add('other-page-class');
+		}
+	})
+
+</script>
+<body 
 	  itemscope itemtype="http://schema.org/WebPage">
 	<div class="mkdf-wrapper">
 		<div class="mkdf-wrapper-inner">

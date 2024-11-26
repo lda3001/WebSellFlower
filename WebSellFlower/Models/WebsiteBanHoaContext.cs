@@ -37,11 +37,13 @@ public partial class WebsiteBanHoaContext : DbContext
 
     public virtual DbSet<TblProduct> TblProducts { get; set; }
 
+    public virtual DbSet<TblProductReview> TblProductReviews { get; set; }
+
     public virtual DbSet<TblSlider> TblSliders { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=TUAN-ANH\\MSSQLSERVER01;Initial Catalog=WebsiteBanHoa;Integrated Security=True;TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer("data source= TUAN-ANH\\MSSQLSERVER01; initial catalog=WebsiteBanHoa; integrated security=True;\nTrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -103,6 +105,7 @@ public partial class WebsiteBanHoaContext : DbContext
             entity.ToTable("tbl_Category_product");
 
             entity.Property(e => e.CategoryProdId).HasColumnName("category_prod_id");
+            entity.Property(e => e.Alias).HasMaxLength(250);
             entity.Property(e => e.CategoryProdDesc)
                 .HasMaxLength(50)
                 .HasColumnName("category_prod_desc");
@@ -249,9 +252,7 @@ public partial class WebsiteBanHoaContext : DbContext
                 .HasColumnType("datetime")
                 .HasColumnName("post_date");
             entity.Property(e => e.PostFeatured).HasColumnName("post_featured");
-            entity.Property(e => e.PostThumb)
-                .HasColumnType("image")
-                .HasColumnName("post_thumb");
+            entity.Property(e => e.PostThumb).HasColumnName("post_thumb");
             entity.Property(e => e.PostTitle)
                 .HasMaxLength(50)
                 .HasColumnName("post_title");
@@ -270,6 +271,7 @@ public partial class WebsiteBanHoaContext : DbContext
             entity.Property(e => e.ProdId).HasColumnName("prod_id");
             entity.Property(e => e.Alias).HasMaxLength(250);
             entity.Property(e => e.CategoryProdId).HasColumnName("category_prod_id");
+            entity.Property(e => e.Description).HasMaxLength(500);
             entity.Property(e => e.ProdDiscount).HasColumnName("prod_discount");
             entity.Property(e => e.ProdImg)
                 .HasMaxLength(250)
@@ -280,6 +282,7 @@ public partial class WebsiteBanHoaContext : DbContext
             entity.Property(e => e.ProdImg2)
                 .HasMaxLength(250)
                 .HasColumnName("prod_img2");
+            entity.Property(e => e.ProdImg3).HasColumnName("prod_img3");
             entity.Property(e => e.ProdName)
                 .HasMaxLength(50)
                 .HasColumnName("prod_name");
@@ -293,6 +296,24 @@ public partial class WebsiteBanHoaContext : DbContext
                 .HasConstraintName("FK_tbl_Product_tbl_Category_product");
         });
 
+        modelBuilder.Entity<TblProductReview>(entity =>
+        {
+            entity.HasKey(e => e.ProductReviewId);
+
+            entity.ToTable("tbl_ProductReviews");
+
+            entity.Property(e => e.CreatedDate).HasColumnType("datetime");
+            entity.Property(e => e.Detail).HasMaxLength(200);
+            entity.Property(e => e.Email).HasMaxLength(50);
+            entity.Property(e => e.Name).HasMaxLength(150);
+            entity.Property(e => e.Phone).HasMaxLength(50);
+            entity.Property(e => e.ProdId).HasColumnName("prod_id");
+
+            entity.HasOne(d => d.Prod).WithMany(p => p.TblProductReviews)
+                .HasForeignKey(d => d.ProdId)
+                .HasConstraintName("FK_tbl_ProductReviews_tbl_Product");
+        });
+
         modelBuilder.Entity<TblSlider>(entity =>
         {
             entity.HasKey(e => e.SliderId);
@@ -304,9 +325,7 @@ public partial class WebsiteBanHoaContext : DbContext
             entity.Property(e => e.SliderDate)
                 .HasColumnType("datetime")
                 .HasColumnName("slider_date");
-            entity.Property(e => e.SliderImg)
-                .HasColumnType("image")
-                .HasColumnName("slider_img");
+            entity.Property(e => e.SliderImg).HasColumnName("slider_img");
             entity.Property(e => e.SliderOnPage)
                 .HasColumnType("image")
                 .HasColumnName("slider_on_page");

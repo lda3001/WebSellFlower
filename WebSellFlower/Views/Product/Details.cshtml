@@ -1,0 +1,622 @@
+﻿@model TblProduct
+
+
+@{
+
+List<TblProductReview>productReview = ViewBag.productReview;
+ List<TblProduct>productRelated = ViewBag.productRelated;
+}
+<div class="mkdf-content-inner">
+	<div class="mkdf-title-holder mkdf-standard-type mkdf-title-va-header-bottom mkdf-title-content-va-middle"
+		 style="height: 225px;background-color: #fafaf9" data-height="225">
+		<div class="mkdf-title-wrapper" style="height: 225px">
+			<div class="mkdf-title-inner">
+				<div class="mkdf-grid">
+					<h1 class="mkdf-page-title entry-title">Product List</h1>
+					<span class="mkdf-page-subtitle">Where flowers are our inspiration</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="mkdf-container">
+		<div class="mkdf-container-inner clearfix">
+			<div class="woocommerce-notices-wrapper"></div>
+			<div id="product-365"
+				 class="product type-product post-365 status-publish first instock product_cat-popular product_cat-winter product_tag-llilies product_tag-roses has-post-thumbnail shipping-taxable purchasable product-type-simple">
+				<div class="mkdf-single-product-content">
+					<div class="woocommerce-product-gallery woocommerce-product-gallery--with-images woocommerce-product-gallery--columns-4 images"
+						 data-columns="4" style="opacity: 1; transition: opacity .25s ease-in-out;">
+						<figure class="woocommerce-product-gallery__wrapper">
+							<div data-thumb="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/shop-14-img.jpg"
+								 data-thumb-alt="l" class="woocommerce-product-gallery__image">
+								<a href="~/wp-content/uploads/2018/04/shop-14-img.jpg">
+									<img width="620" height="800"
+										 src="@Model.ProdThumb"
+										 class="wp-post-image" alt="l" title="shop-14-img" data-caption
+										 data-src="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/shop-14-img.jpg"
+										 data-large_image="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/shop-14-img.jpg"
+										 data-large_image_width="620" data-large_image_height="800"
+										 loading="eager" />
+								</a>
+							</div>
+							<div data-thumb="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/shop-14-gallery-4-300x400.jpg"
+								 class="woocommerce-product-gallery__image">
+								<a href="~/wp-content/uploads/2018/04/shop-14-gallery-4.jpg">
+									<img width="300" height="400"
+										 src="@Model.ProdImg"
+										 class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
+										 alt="k" title="shop-14-gallery-4" data-caption
+										 data-src="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/shop-14-gallery-4.jpg"
+										 data-large_image="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/shop-14-gallery-4.jpg"
+										 data-large_image_width="465" data-large_image_height="600"
+										 loading="eager" />
+								</a>
+							</div>
+							<div data-thumb="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/shop-14-gallery-3-300x400.jpg"
+								 class="woocommerce-product-gallery__image">
+								<a href="../../wp-content/uploads/2018/04/shop-14-gallery-3.jpg">
+									<img width="300" height="400"
+										 src="@Model.ProdImg1"
+										 class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
+										 alt="k" title="shop-14-gallery-3" data-caption
+										 data-src="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/shop-14-gallery-3.jpg"
+										 data-large_image="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/shop-14-gallery-3.jpg"
+										 data-large_image_width="465" data-large_image_height="600"
+										 loading="eager" />
+								</a>
+							</div>
+							<div data-thumb="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/shop-14-gallery-2-300x400.jpg"
+								 class="woocommerce-product-gallery__image">
+								<a href="../../wp-content/uploads/2018/04/shop-14-gallery-2.jpg">
+									<img width="300" height="400"
+										 src="@Model.ProdImg2"
+										 class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
+										 alt="k" title="shop-14-gallery-2" data-caption
+										 data-src="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/shop-14-gallery-2.jpg"
+										 data-large_image="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/shop-14-gallery-2.jpg"
+										 data-large_image_width="465" data-large_image_height="600"
+										 loading="eager" />
+								</a>
+							</div>
+							<div data-thumb="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/shop-14-gallery-1-300x400.jpg"
+								 class="woocommerce-product-gallery__image">
+								<a href="../../wp-content/uploads/2018/04/shop-14-gallery-1.jpg">
+									<img width="300" height="400"
+										 src="@Model.ProdImg1"
+										 class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
+										 alt="k" title="shop-14-gallery-1" data-caption
+										 data-src="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/shop-14-gallery-1.jpg"
+										 data-large_image="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/shop-14-gallery-1.jpg"
+										 data-large_image_width="465" data-large_image_height="600"
+										 loading="eager" />
+								</a>
+							</div>
+							@if(Model.ProdDiscount > 0 && Model.Quantity>0)
+							{
+								<span class="mkdf-onsale">Sale</span>
+							}
+							else
+							{
+								@if (Model.ProdDiscount == 0 && Model.Quantity == 0)
+								{
+									<span class="mkdf-out-of-stock">Sold</span>
+								}
+							}
+						</figure>
+					</div>
+					<div class="mkdf-single-product-summary">
+						<div class="summary entry-summary">
+							<h2 itemprop="name" class="mkdf-single-product-title">@Model.ProdName</h2>
+						
+								@if (Model.ProdDiscount == 0)
+								{
+									<p class="price">
+										<span class="woocommerce-Price-amount amount">
+											<bdi>
+												<span class="woocommerce-Price-currencySymbol ">&#36;</span>@Model.ProdPrice
+											</bdi>
+										</span>
+									</p>
+								}
+								else
+								{
+									
+
+								<p class="price">
+									<del aria-hidden="true">
+										<span class="woocommerce-Price-amount amount">
+											<bdi>
+												<span class="woocommerce-Price-currencySymbol">&#36;</span>@Model.ProdPrice
+											</bdi>
+										</span>
+									</del>
+									<ins>
+										<span class="woocommerce-Price-amount amount">
+											<bdi>
+												<span class="woocommerce-Price-currencySymbol">&#36;</span>@Model.ProdDiscount
+											</bdi>
+										</span>
+									</ins>
+								</p>
+								}
+								<div class="woocommerce-product-details__short-description">
+									<p>
+									@Model.Description
+									</p>
+								</div>
+							
+							<form class="cart"
+								  action="https://fiorello.qodeinteractive.com/product/majesty-palm/"
+								  method="post" enctype="multipart/form-data">
+								<div class="mkdf-quantity-buttons quantity">
+									<label class="screen-reader-text"
+										   for="quantity_6709cbde27fe8">Majesty Palm quantity</label>
+									<span class="mkdf-quantity-label"
+										  for="quantity_6709cbde27fe8">Quantity</span>
+									<span class="mkdf-quantity-minus arrow_triangle-left"></span>
+									<input type="text" id="quantity_6709cbde27fe8"
+										   class="input-text qty text mkdf-quantity-input" data-step="1"
+										   data-min="1" data-max name="quantity" value="1" title="Qty"
+										   size="4" placeholder inputmode="numeric" />
+									<span class="mkdf-quantity-plus arrow_triangle-right"></span>
+								</div>
+								<button type="submit" name="add-to-cart" value="365"
+										class="single_add_to_cart_button button alt">
+									Add to cart
+								</button>
+							</form>
+							<div class="product_meta">
+								<span class="sku_wrapper">SKU: <span class="sku">7555</span></span>
+								<span class="posted_in">
+									Categories: <a href="../../product-category/popular/index.html"
+										  rel="tag">Popular</a>, <a href="../../product-category/winter/index.html"
+									  rel="tag">Winter</a>
+								</span>
+								<span class="tagged_as">
+									Tags: <a href="../../product-tag/llilies/index.html"
+									rel="tag">Llilies</a>, <a href="../../product-tag/roses/index.html"
+													 rel="tag">Roses</a>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="woocommerce-tabs wc-tabs-wrapper">
+					<ul class="tabs wc-tabs" role="tablist">
+						<li class="description_tab" id="tab-title-description" role="tab"
+							aria-controls="tab-description">
+							<a href="#tab-description">
+								Description
+							</a>
+						</li>
+						<li class="additional_information_tab" id="tab-title-additional_information"
+							role="tab" aria-controls="tab-additional_information">
+							<a href="#tab-additional_information">
+								Additional information
+							</a>
+						</li>
+						<li class="reviews_tab" id="tab-title-reviews" role="tab"
+							aria-controls="tab-reviews">
+							<a href="#tab-reviews">
+								Reviews (@productReview.Count())
+							</a>
+						</li>
+					</ul>
+					<div class="woocommerce-Tabs-panel woocommerce-Tabs-panel--description panel entry-content wc-tab"
+						 id="tab-description" role="tabpanel" aria-labelledby="tab-title-description">
+						<h2>Description</h2>
+						<section class="wpb-content-wrapper">
+							<div class="vc_row wpb_row vc_row-fluid">
+								<div class="wpb_column vc_column_container vc_col-sm-12">
+									<div class="vc_column-inner">
+										<div class="wpb_wrapper">
+											<div class="mkdf-section-title-holder   mkdf-st-subtitle-pos-under">
+												<div class="mkdf-st-inner">
+													
+													@Html.Raw(Model.Detail)
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</section>
+					</div>
+					<div class="woocommerce-Tabs-panel woocommerce-Tabs-panel--additional_information panel entry-content wc-tab"
+						 id="tab-additional_information" role="tabpanel"
+						 aria-labelledby="tab-title-additional_information">
+						<h2>Additional information</h2>
+						<table class="woocommerce-product-attributes shop_attributes">
+							<tr class="woocommerce-product-attributes-item woocommerce-product-attributes-item--weight">
+								<th class="woocommerce-product-attributes-item__label">Weight</th>
+								<td class="woocommerce-product-attributes-item__value">1 kg</td>
+							</tr>
+							<tr class="woocommerce-product-attributes-item woocommerce-product-attributes-item--dimensions">
+								<th class="woocommerce-product-attributes-item__label">Dimensions</th>
+								<td class="woocommerce-product-attributes-item__value">
+									30 &times; 30
+									&times; 50 cm
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div class="woocommerce-Tabs-panel woocommerce-Tabs-panel--reviews panel entry-content wc-tab"
+						 id="tab-reviews" role="tabpanel" aria-labelledby="tab-title-reviews">
+						<div id="reviews" class="woocommerce-Reviews">
+							<div id="comments">
+								<h2 class="woocommerce-Reviews-title">
+									Reviews
+								</h2>
+								<ol class="commentlist">
+								@foreach(var item in productReview)
+								{
+										<li class="review even thread-even depth-1" id="li-comment-22">
+											<div id="comment-22" class="comment_container">
+												<img data-del="avatar"
+												src="../../wp-content/uploads/2018/04/user-img-2-100x100.png"
+												class="avatar pp-user-avatar avatar-60 photo "
+												height="60" width="60" />
+												<div class="comment-text">
+													<p class="meta">
+														<strong class="woocommerce-review__author">
+															@item.Name
+														</strong>
+														<span class="woocommerce-review__dash">&ndash;</span>
+														<time class="woocommerce-review__published-date"
+															  datetime="2018-04-30T07:17:07+00:00">@item.CreatedDate.Value.ToString("dd/MM/yyyy")</time>
+													</p>
+													<div class="description">
+														<p>
+															@item.Detail
+														</p>
+													</div>
+												</div>
+											</div>
+										</li>
+									}
+									@*<li class="review odd alt thread-odd thread-alt depth-1"
+										id="li-comment-23">
+										<div id="comment-23" class="comment_container">
+											<img data-del="avatar"
+												 src="../../wp-content/uploads/2018/04/user-img-1-100x100.png"
+												 class="avatar pp-user-avatar avatar-60 photo "
+												 height="60" width="60" />
+											<div class="comment-text">
+												<p class="meta">
+													<strong class="woocommerce-review__author">
+														Joshua
+														Garcia
+													</strong>
+													<span class="woocommerce-review__dash">&ndash;</span>
+													<time class="woocommerce-review__published-date"
+														  datetime="2018-04-30T07:17:27+00:00">30.04.2018</time>
+												</p>
+												<div class="description">
+													<p>
+														Etiam rhoncus. Maecenas tempus, tellus eget
+														condimentum rhoncus, sem quam semper libero, sit
+														amet adipiscing sem neque sed ipsum. Nam quam
+														nunc, blandit vel, luctus pulvinar, hendrerit
+													</p>
+												</div>
+											</div>
+										</div>
+									</li>*@
+								</ol>
+							</div>
+							<div id="review_form_wrapper">
+								<div id="review_form">
+									<div id="respond" class="comment-respond">
+										<span id="reply-title" class="comment-reply-title">
+											Add a review
+											<small>
+												<a rel="nofollow" id="cancel-comment-reply-link"
+												   href="index.html#respond"
+												   style="display:none;">
+													Cancel
+													reply
+												</a>
+											</small>
+										</span>
+										<form action="https://fiorello.qodeinteractive.com/wp-comments-post.php"
+											  method="post" id="commentform" class="comment-form">
+											<p class="comment-notes">
+												<span id="email-notes">
+													Your email
+													address will not be published.
+												</span> <span class="required-field-message"
+												  aria-hidden="true">
+													Required fields are marked <span class="required"
+																					 aria-hidden="true">*</span>
+												</span>
+											</p>
+											<p class="comment-form-comment">
+												<label for="comment">
+													Your
+													review&nbsp;<span class="required">*</span>
+												</label><textarea id="comment" name="comment" cols="45" rows="8"
+																  required></textarea>
+											</p>
+											<p class="comment-form-author">
+												<label for="author">
+													Name&nbsp;<span class="required">*</span>
+												</label><input id="author" name="author" type="text" value
+															   size="30" required />
+											</p>
+											<p class="comment-form-email">
+												<label for="email">
+													Email&nbsp;<span class="required">*</span>
+												</label><input id="email" name="email" type="email" value size="30"
+															   required />
+											</p>
+											<p class="comment-form-cookies-consent">
+												<input id="wp-comment-cookies-consent"
+													   name="wp-comment-cookies-consent" type="checkbox"
+													   value="yes" /> <label for="wp-comment-cookies-consent">
+													Save my name,
+													email, and website in this browser for the next time
+													I comment.
+												</label>
+											</p>
+											<p class="form-submit">
+												<input name="submit" type="submit"
+													   id="submit" class="submit" value="Submit" /> <input type="hidden" name="comment_post_ID" value="365"
+																	id="comment_post_ID" />
+												<input type="hidden" name="comment_parent"
+													   id="comment_parent" value="0" />
+											</p>
+											<div class="wantispam-required-fields">
+												<input type="hidden"
+													   name="wantispam_t"
+													   class="wantispam-control wantispam-control-t"
+													   value="1728695262" />
+												<div class="wantispam-group wantispam-group-q"
+													 style="clear: both;">
+													<label>
+														Current ye@r <span class="required">*</span>
+													</label>
+													<input type="hidden" name="wantispam_a"
+														   class="wantispam-control wantispam-control-a"
+														   value="2024" />
+													<input type="text" name="wantispam_q"
+														   class="wantispam-control wantispam-control-q"
+														   value="7.3.3" autocomplete="off" />
+												</div>
+												<div class="wantispam-group wantispam-group-e"
+													 style="display: none;">
+													<label>Leave this field empty</label>
+													<input type="text"
+														   name="wantispam_e_email_url_website"
+														   class="wantispam-control wantispam-control-e"
+														   value autocomplete="off" />
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>
+					</div>
+				</div>
+				<section class="related products">
+					<h2>Related products</h2>
+					<ul class="products columns-4">
+						@foreach(var item in productRelated){
+							<li class="product type-product post-252 status-publish first outofstock product_cat-various product_cat-cactuses product_tag-irises product_tag-llilies has-post-thumbnail shipping-taxable purchasable product-type-simple">
+								<div class="mkdf-pl-inner">
+									<div class="mkdf-pl-image">
+										<img width="300" height="400"
+										src="@item.ProdThumb"
+										class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
+										alt="g" loading="eager" />
+										<span class="mkdf-out-of-stock">Sold</span>
+										<div class="mkdf-pl-text mkdf-pl-hover-overlay">
+											<div class="mkdf-pl-text-outer">
+												<div class="mkdf-pl-text-inner"></div>
+											</div>
+										</div>
+									</div><a href="../cactus-in-orange/index.html"
+									class="woocommerce-LoopProduct-link woocommerce-loop-product__link"></a>
+								</div>
+								<div class="mkdf-pl-text-wrapper">
+									<h6 class="mkdf-product-list-title">
+										<a href="../cactus-in-orange/index.html">@item.ProdName</a>
+									</h6>
+									<div class="mkdf-price-holder">
+										<span class="price">
+											<span class="woocommerce-Price-amount amount">
+												@if (item.ProdDiscount == 0)
+												{
+													<p class="price">
+														<span class="woocommerce-Price-amount amount">
+															<bdi>
+																<span class="woocommerce-Price-currencySymbol ">&#36;</span>@item.ProdPrice
+															</bdi>
+														</span>
+													</p>
+												}
+												else
+												{
+
+
+													<p class="price">
+														<del aria-hidden="true">
+															<span class="woocommerce-Price-amount amount">
+																<bdi>
+																	<span class="woocommerce-Price-currencySymbol">&#36;</span>@item.ProdPrice
+																</bdi>
+															</span>
+														</del>
+														<ins>
+															<span class="woocommerce-Price-amount amount">
+																<bdi>
+																	<span class="woocommerce-Price-currencySymbol">&#36;</span>@item.ProdDiscount
+																</bdi>
+															</span>
+														</ins>
+													</p>
+												}
+											</span>
+										</span>
+										<div class="mkdf-pl-add-to-cart mkdf-default-skin">
+											<a rel="nofollow"
+											href="../cactus-in-orange/index.html" data-quantity="1"
+											data-product_id="252" data-product_sku="751215"
+											class="button product_type_simple ajax_add_to_cart mkdf-pl-btn">
+												Read
+												more
+											</a>
+										</div>
+									</div">
+								</div>
+							</li>
+							@*<li class="product type-product post-331 status-publish instock product_cat-popular product_tag-irises product_tag-orchids has-post-thumbnail sale shipping-taxable purchasable product-type-simple">
+								<div class="mkdf-pl-inner">
+									<div class="mkdf-pl-image">
+										<span class="mkdf-onsale">Sale</span>
+										<img width="300" height="400"
+										src="../../wp-content/uploads/2018/04/shop-12-img-300x400.jpg"
+										class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
+										alt="k" loading="eager" />
+										<div class="mkdf-pl-text mkdf-pl-hover-overlay">
+											<div class="mkdf-pl-text-outer">
+												<div class="mkdf-pl-text-inner"></div>
+											</div>
+										</div>
+									</div><a href="../scarlet-sage/index.html"
+									class="woocommerce-LoopProduct-link woocommerce-loop-product__link"></a>
+								</div>
+								<div class="mkdf-pl-text-wrapper">
+									<h6 class="mkdf-product-list-title">
+										<a href="../scarlet-sage/index.html">Scarlet Sage</a>
+									</h6>
+									<div class="mkdf-price-holder">
+										<span class="price">
+											<del aria-hidden="true">
+												<span class="woocommerce-Price-amount amount">
+													<bdi>
+														<span class="woocommerce-Price-currencySymbol">&#36;</span>259
+													</bdi>
+												</span>
+											</del>
+											<ins>
+												<span class="woocommerce-Price-amount amount">
+													<bdi>
+														<span class="woocommerce-Price-currencySymbol">&#36;</span>159
+													</bdi>
+												</span>
+											</ins>
+										</span>
+										<div class="mkdf-pl-add-to-cart mkdf-default-skin">
+											<a rel="nofollow"
+											href="index4d00.html?add-to-cart=331" data-quantity="1"
+											data-product_id="331" data-product_sku="89547"
+											class="button product_type_simple add_to_cart_button ajax_add_to_cart mkdf-pl-btn">
+												Add
+												to cart
+											</a>
+										</div>
+									</div">
+								</div>
+							</li>
+							<li class="product type-product post-268 status-publish instock product_cat-various product_cat-cactuses product_tag-orchids product_tag-roses has-post-thumbnail sale shipping-taxable purchasable product-type-simple">
+								<div class="mkdf-pl-inner">
+									<div class="mkdf-pl-image">
+										<span class="mkdf-onsale">Sale</span>
+										<img width="300" height="400"
+										src="../../wp-content/uploads/2018/05/shop-5-img-300x400.jpg"
+										class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
+										alt="h" loading="eager" />
+										<div class="mkdf-pl-text mkdf-pl-hover-overlay">
+											<div class="mkdf-pl-text-outer">
+												<div class="mkdf-pl-text-inner"></div>
+											</div>
+										</div>
+									</div><a href="../wild-cactus/index.html"
+									class="woocommerce-LoopProduct-link woocommerce-loop-product__link"></a>
+								</div>
+								<div class="mkdf-pl-text-wrapper">
+									<h6 class="mkdf-product-list-title">
+										<a href="../wild-cactus/index.html">Wild Cactus</a>
+									</h6>
+									<div class="mkdf-price-holder">
+										<span class="price">
+											<del aria-hidden="true">
+												<span class="woocommerce-Price-amount amount">
+													<bdi>
+														<span class="woocommerce-Price-currencySymbol">&#36;</span>259
+													</bdi>
+												</span>
+											</del>
+											<ins>
+												<span class="woocommerce-Price-amount amount">
+													<bdi>
+														<span class="woocommerce-Price-currencySymbol">&#36;</span>159
+													</bdi>
+												</span>
+											</ins>
+										</span>
+										<div class="mkdf-pl-add-to-cart mkdf-default-skin">
+											<a rel="nofollow"
+											href="indexee06.html?add-to-cart=268" data-quantity="1"
+											data-product_id="268" data-product_sku="68547"
+											class="button product_type_simple add_to_cart_button ajax_add_to_cart mkdf-pl-btn">
+												Add
+												to cart
+											</a>
+										</div>
+									</div">
+								</div>
+							</li>
+							<li class="product type-product post-364 status-publish last instock product_cat-popular product_cat-winter product_tag-llilies product_tag-roses has-post-thumbnail shipping-taxable purchasable product-type-simple">
+								<div class="mkdf-pl-inner">
+									<div class="mkdf-pl-image">
+										<img width="300" height="400"
+										src="../../wp-content/uploads/2018/04/shop-13-img-300x400.jpg"
+										class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
+										alt="k" loading="eager" />
+										<div class="mkdf-pl-text mkdf-pl-hover-overlay">
+											<div class="mkdf-pl-text-outer">
+												<div class="mkdf-pl-text-inner"></div>
+											</div>
+										</div>
+									</div><a href="../foxglove-flower/index.html"
+									class="woocommerce-LoopProduct-link woocommerce-loop-product__link"></a>
+								</div>
+								<div class="mkdf-pl-text-wrapper">
+									<h6 class="mkdf-product-list-title">
+										<a href="../foxglove-flower/index.html">Foxglove Flower</a>
+									</h6>
+									<div class="mkdf-price-holder">
+										<span class="price">
+											<span class="woocommerce-Price-amount amount">
+												<bdi>
+													<span class="woocommerce-Price-currencySymbol">&#36;</span>259
+												</bdi>
+											</span>
+										</span>
+										<div class="mkdf-pl-add-to-cart mkdf-default-skin">
+											<a rel="nofollow"
+											href="indexb9d5.html?add-to-cart=364" data-quantity="1"
+											data-product_id="364" data-product_sku="74141"
+											class="button product_type_simple add_to_cart_button ajax_add_to_cart mkdf-pl-btn">
+												Add
+												to cart
+											</a>
+										</div>
+									</div">
+								</div>
+							</li>*@
+						}
+					</ul>
+				</section>
+			</div>
+		</div>
+	</div>
+	<div class="mkdf-content-bottom">
+		<div class="mkdf-content-bottom-inner mkdf-full-width">
+			<div class="widget widget_mkdf_instagram_widget"></div>
+		</div>
+	</div>
+</div>
