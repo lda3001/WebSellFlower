@@ -43,11 +43,7 @@ public partial class WebsiteBanHoaContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-<<<<<<< HEAD
         => optionsBuilder.UseSqlServer("Data Source=LAPTOP-SB14QIQ5\\MSSQLSERVER01;Initial Catalog=WebsiteBanHoa;Integrated Security=True;TrustServerCertificate=True;");
-=======
-        => optionsBuilder.UseSqlServer("data source= TUAN-ANH\\MSSQLSERVER01; initial catalog=WebsiteBanHoa; integrated security=True;\nTrustServerCertificate=True;");
->>>>>>> 5a2a92733cc9f1a77e687cf066571438fcca98bf
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
