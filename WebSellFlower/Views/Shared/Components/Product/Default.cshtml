@@ -1,0 +1,87 @@
+﻿@model IEnumerable<WebSellFlower.Models.TblProduct>
+@foreach (var item in Model.Take(8))
+{
+	string sUrl = $"/product/{item.Alias}-{item.ProdId}.html";
+	<div class="mkdf-pli mkdf-item-space ">
+		<div class="mkdf-pli-inner">
+		<div class="mkdf-pli-image">
+			
+			@if (item.ProdDiscount > 0 && item.Quantity > 0)
+			{
+				<span class="mkdf-pli-onsale">Sale</span>
+			}
+			else
+			{
+				@if (item.Quantity == 0)
+				{
+					<span class="mkdf-pli-out-of-stock">Sold</span>
+				}
+			}
+			
+			<img width="620" height="800"
+				 src="@item.ProdThumb"
+			class="attachment-woocommerce_single size-woocommerce_single wp-post-image"
+			alt="l" loading="eager" />
+		
+		</div>
+		<a class="mkdf-pli-link" itemprop="url"
+		   href="@sUrl"
+		   title="@item.ProdName"></a>
+	</div>
+		<div class="mkdf-pli-text-wrapper">
+		<h6 itemprop="name"
+		class="entry-title mkdf-pli-title">
+			<a itemprop="url"
+			   href="@sUrl">
+				@item.ProdName
+			</a>
+		</h6>
+		<div class="mkdf-pli-add-to-cart mkdf-default-skin">
+			<a rel="nofollow"
+			href="indexcd19.html?add-to-cart=365"
+			data-quantity="1"
+			data-product_id="365"
+			data-product_sku="7555"
+			class="button add_to_cart_button ajax_add_to_cart mkdf-button">
+				Add
+				to cart
+			</a>
+		</div>
+		<div class="mkdf-pli-price">
+			@if (@item.ProdDiscount == 0)
+			{
+				<p class="price">
+					<span class="woocommerce-Price-amount amount">
+						<bdi>
+							<span class="woocommerce-Price-currencySymbol ">&#36;</span>@item.ProdPrice
+						</bdi>
+					</span>
+				</p>
+			}
+			else
+			{
+
+
+				<p class="price">
+					<del aria-hidden="true">
+						<span class="woocommerce-Price-amount amount">
+							<bdi>
+								<span class="woocommerce-Price-currencySymbol">&#36;</span>@item.ProdPrice
+							</bdi>
+						</span>
+					</del>
+					<ins>
+						<span class="woocommerce-Price-amount amount">
+							<bdi>
+								<span class="woocommerce-Price-currencySymbol">&#36;</span>@item.ProdDiscount
+							</bdi>
+						</span>
+					</ins>
+				</p>
+			}
+
+			
+		</div>
+	</div>
+	</div>
+}

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<WebSellFlower.Models.TblPost>
+@foreach(var item in Model)
+{
+	<li class="mkdf-bl-item mkdf-item-space clearfix">
+	<div class="mkdf-bli-inner">
+		<div class="mkdf-bli-image-holder">
+			<div class="mkdf-post-image">
+				<a itemprop="url"
+				   href="flower-power/index.html"
+				   title="Flower Power">
+					<img width="1300"
+						 height="830"
+						 src="@item.PostThumb"
+						 class="attachment-full size-full wp-post-image"
+						 alt="a"
+						 loading="eager"
+							 srcset="@item.PostThumb 1300w,@item.PostThumb 300w, @item.PostThumb 768w, @item.PostThumb 1024w, https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/blog-feature-img-1-800x511.jpg 800w, https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/blog-feature-img-1-225x144.jpg 225w, https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/blog-feature-img-1-75x48.jpg 75w"
+						 sizes="(max-width: 1300px) 100vw, 1300px" />
+				</a>
+			</div>
+			<div itemprop="dateCreated"
+				 class="mkdf-post-info-date entry-date published updated">
+				<a itemprop="url"
+				   href="2018/04/index.html">
+					@item.PostDate.Value.ToString("dd/MM/yyyy")
+				</a>
+				<meta itemprop="interactionCount"
+					  content="UserComments: 0" />
+			</div>
+		</div>
+		<div class="mkdf-bli-content">
+			<h5 itemprop="name"
+				class="entry-title mkdf-post-title">
+				<a itemprop="url"
+				   href="flower-power/index.html"
+				   title="Flower Power">
+						@Html.Raw(item.PostTitle)
+				</a>
+			</h5>
+			<div class="mkdf-bli-excerpt">
+				<div class="mkdf-post-excerpt-holder">
+					<p itemprop="description"
+					   class="mkdf-post-excerpt">
+						@item.PostContent
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</li>
+}
