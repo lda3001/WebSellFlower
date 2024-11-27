@@ -183,7 +183,7 @@ List<TblProductReview>productReview = ViewBag.productReview;
 				</div>
 				<div class="woocommerce-tabs wc-tabs-wrapper">
 					<ul class="tabs wc-tabs" role="tablist">
-						<li class="description_tab" id="tab-title-description" role="tab"
+						<li class="description_tab active" id="tab-title-description" role="tab"
 							aria-controls="tab-description">
 							<a href="#tab-description">
 								Description
@@ -620,3 +620,38 @@ List<TblProductReview>productReview = ViewBag.productReview;
 		</div>
 	</div>
 </div>
+
+@section ScriptsUser {
+    <script type="text/javascript" src="~/wp-content/plugins/anti-spam/assets/js/anti-spamba31.js?ver=7.3.3"
+		id="anti-spam-script-js"></script>
+		<script>
+
+		$('[role="tabpanel"]').css('display', 'none');
+		$('#tab-description[role="tabpanel"]').css('display', 'block');
+		
+		
+        $(document).ready(function () {
+            // Bắt sự kiện khi nhấn vào một liên kết
+            $('ul li a').on('click', function (e) {
+                e.preventDefault(); // Ngăn chặn hành vi mặc định của thẻ <a>
+                
+                // Lấy giá trị hash từ href
+                var hash = $(this).attr('href').substring(1);
+
+                // Cập nhật class "active" cho menu
+                var el = $('[href="#' + hash + '"]');
+                el.parent().siblings('li').removeClass('active');
+                el.parent().addClass('active');
+
+				  $('[role="tabpanel"]').css('display', 'none');
+
+     
+        		$('#' + hash).css('display', 'block');
+                // Cuộn đến section tương ứng
+                
+
+                
+            });
+        });
+    </script>
+}
