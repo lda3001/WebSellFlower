@@ -23,5 +23,11 @@ public partial class TblPost
 
     public string? Alias { get; set; }
 
+    public string? PostDetail { get; set; }
+
+    public string? PostContenDetail { get; set; }
+
     public virtual TblCategoryPost? CategoryPost { get; set; }
+
+    public virtual ICollection<TblBlogComment> TblBlogComments { get; set; } = new List<TblBlogComment>();
 }
