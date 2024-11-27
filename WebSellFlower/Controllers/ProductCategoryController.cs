@@ -12,16 +12,16 @@ namespace WebSellFlower.Controllers
 		{
 			_context = context;
 		}
-		[Route("/product-category/{alias}-{id}.html")]
-		public async Task<IActionResult> Details(int? id)
+		[Route("/product-category/{alias}")]
+		public async Task<IActionResult> Details(string? alias)
 		{
-			if (id == null || _context.TblCategoryProducts == null)
+			if (alias == null || _context.TblCategoryProducts == null)
 			{
 				return NotFound();
 			}
 
 			var productcategory = await _context.TblCategoryProducts
-				.FirstOrDefaultAsync(m => m.CategoryProdId == id);
+				.FirstOrDefaultAsync(m => m.Alias == alias);
 
 			if (productcategory == null)
 			{
@@ -29,7 +29,7 @@ namespace WebSellFlower.Controllers
 			}
 
 			ViewBag.productcate = _context.TblProducts.
-				Where(i => i.CategoryProdId == id &&(bool) i.IsActive ).ToList();
+				Where(i => i.Alias == alias &&(bool) i.IsActive ).ToList();
 
 			/*ViewBag.productRelated = _context.TblProducts.
 				Where(i => i.ProdId != id && i.CategoryProdId == product.CategoryProdId).Take(4)
