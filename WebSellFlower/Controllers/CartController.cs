@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using WebSellFlower.Models;
 
-namespace WebSellFlower.Areas.Admin.Controllers
+namespace WebSellFlower.Controllers
 {
-	[Area("Admin")]
+	
 	public class CartController : Controller
 	{
 		private readonly WebsiteBanHoaContext _context;
@@ -12,30 +12,17 @@ namespace WebSellFlower.Areas.Admin.Controllers
 		{
 			_context = context;
 		}
-		[Route("admin/product/{alias}-{id}.html")]
-		public async Task<IActionResult> Details(int? id)
+        [Route("/cart")]
+        public async Task<IActionResult> CartDetail()
 		{
-			if (id == null || _context.TblProducts == null)
+			if (_context.TblProducts == null)
 			{
 				return NotFound();
 			}
 
-			var product = await _context.TblProducts.Include(i => i.CategoryProd)
-				.FirstOrDefaultAsync(m => m.ProdId == id);
+			
 
-			if (product == null)
-			{
-				return NotFound();
-			}
-
-			ViewBag.productReview = _context.TblProductReviews.
-				Where(i => i.ProdId == id && i.IsActive).ToList();
-
-			ViewBag.productRelated = _context.TblProducts.
-				Where(i => i.ProdId != id && i.CategoryProdId == product.CategoryProdId).Take(4)
-				.OrderByDescending(i => i.ProdId).ToList();
-
-			return View(product);
+			return View();
 		}
 
 		[Route("admin/product-list.html")]

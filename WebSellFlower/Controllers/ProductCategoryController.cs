@@ -29,7 +29,8 @@ namespace WebSellFlower.Controllers
 			}
 
 			ViewBag.productcate = _context.TblProducts.
-				Where(i => i.Alias == alias &&(bool) i.IsActive ).ToList();
+				Where(i => i.CategoryProdId == productcategory.CategoryProdId && (bool) i.IsActive ).ToList();
+			ViewBag.productcategory = _context.TblCategoryProducts.ToList();
 
 			/*ViewBag.productRelated = _context.TblProducts.
 				Where(i => i.ProdId != id && i.CategoryProdId == product.CategoryProdId).Take(4)

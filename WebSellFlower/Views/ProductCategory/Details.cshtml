@@ -1,5 +1,9 @@
 ﻿@model TblCategoryProduct
 
+@{
+	List<TblProduct> productcate = ViewBag.productcate;
+	List<TblCategoryProduct> productcategory = ViewBag.productcategory;
+}
 
 <div class="mkdf-content-inner">
 	<div class="mkdf-title-holder mkdf-standard-type mkdf-title-va-header-bottom mkdf-title-content-va-middle"
@@ -7,7 +11,7 @@
 		<div class="mkdf-title-wrapper" style="height: 225px">
 			<div class="mkdf-title-inner">
 				<div class="mkdf-grid">
-					<h1 class="mkdf-page-title entry-title">Cactuses</h1>
+					<h1 class="mkdf-page-title entry-title">@Model.CategoryProdName</h1>
 				</div>
 			</div>
 		</div>
@@ -18,7 +22,7 @@
 				<div class="mkdf-page-content-holder mkdf-grid-col-9 mkdf-grid-col-push-3">
 					<div class="woocommerce-notices-wrapper"></div>
 					<p class="woocommerce-result-count">
-						Showing all 3 results
+						Showing all @productcate.Count() results
 					</p>
 					<form class="woocommerce-ordering" method="get">
 						<select name="orderby" class="orderby" aria-label="Shop order">
@@ -31,12 +35,14 @@
 					</form>
 					<div class="mkdf-pl-main-holder">
 						<ul class="products columns-4">
-							<li class="product type-product post-268 status-publish first instock product_cat-cactuses product_cat-various product_tag-orchids product_tag-roses has-post-thumbnail sale shipping-taxable purchasable product-type-simple">
-								<div class="mkdf-pl-inner">
+							@foreach (var item in productcate)
+							{
+								<li class="product type-product post-268 status-publish first instock product_cat-cactuses product_cat-various product_tag-orchids product_tag-roses has-post-thumbnail sale shipping-taxable purchasable product-type-simple">
+									<div class="mkdf-pl-inner">
 									<div class="mkdf-pl-image">
 										<span class="mkdf-onsale">Sale</span>
 										<img width="300" height="400"
-											 src="../../wp-content/uploads/2018/05/shop-5-img-300x400.jpg"
+											 src="@item.ProdThumb"
 											 class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
 											 alt="h" loading="eager" />
 										<div class="mkdf-pl-text mkdf-pl-hover-overlay">
@@ -44,43 +50,51 @@
 												<div class="mkdf-pl-text-inner"></div>
 											</div>
 										</div>
-									</div><a href="../../product/wild-cactus/index.html"
+									</div><a href="/product/@item.Alias-@(item.ProdId).html"
 											 class="woocommerce-LoopProduct-link woocommerce-loop-product__link"></a>
 								</div>
 								<div class="mkdf-pl-text-wrapper">
 									<h6 class="mkdf-product-list-title">
-										<a href="../../product/wild-cactus/index.html">Wild Cactus</a>
+											<a href="/product/@item.Alias-@(item.ProdId).html">@item.ProdName</a>
 									</h6>
-									<div class="mkdf-price-holder">
-										<span class="price">
-											<del aria-hidden="true">
-												<span class="woocommerce-Price-amount amount">
-													<bdi>
-														<span class="woocommerce-Price-currencySymbol">&#36;</span>259
-													</bdi>
-												</span>
-											</del>
-											<ins>
-												<span class="woocommerce-Price-amount amount">
-													<bdi>
-														<span class="woocommerce-Price-currencySymbol">&#36;</span>159
-													</bdi>
-												</span>
-											</ins>
-										</span>
-										<div class="mkdf-pl-add-to-cart mkdf-default-skin">
-											<a rel="nofollow" href="indexee06.html?add-to-cart=268"
-											   data-quantity="1" data-product_id="268"
-											   data-product_sku="68547"
-											   class="button product_type_simple add_to_cart_button ajax_add_to_cart mkdf-pl-btn">
-												Add
-												to cart
-											</a>
+										<div class="mkdf-pli-price-holder">
+											@if (@item.ProdDiscount == 0)
+											{
+												<p class="price">
+													<span class="woocommerce-Price-amount amount">
+														<bdi>
+															<span class="woocommerce-Price-currencySymbol ">&#36;</span>@item.ProdPrice
+														</bdi>
+													</span>
+												</p>
+											}
+											else
+											{
+
+
+												<p class="price">
+													<del aria-hidden="true">
+														<span class="woocommerce-Price-amount amount">
+															<bdi>
+																<span class="woocommerce-Price-currencySymbol">&#36;</span>@item.ProdPrice
+															</bdi>
+														</span>
+													</del>
+													<ins>
+														<span class="woocommerce-Price-amount amount">
+															<bdi>
+																<span class="woocommerce-Price-currencySymbol">&#36;</span>@item.ProdDiscount
+															</bdi>
+														</span>
+													</ins>
+												</p>
+											}
+
+
 										</div>
-										</div">
-									</div>
 							</li>
-							<li class="product type-product post-252 status-publish outofstock product_cat-cactuses product_cat-various product_tag-irises product_tag-llilies has-post-thumbnail shipping-taxable purchasable product-type-simple">
+							}
+@* 							<li class="product type-product post-252 status-publish outofstock product_cat-cactuses product_cat-various product_tag-irises product_tag-llilies has-post-thumbnail shipping-taxable purchasable product-type-simple">
 								<div class="mkdf-pl-inner">
 									<div class="mkdf-pl-image">
 										<img width="300" height="400"
@@ -166,6 +180,7 @@
 										</div">
 									</div>
 							</li>
+ *@
 						</ul>
 					</div>
 				</div>
@@ -182,13 +197,17 @@
 								<h6 class="mkdf-widget-title">Categories</h6>
 							</div>
 							<ul class="product-categories">
-								<li class="cat-item cat-item-37 current-cat">
-									<a href="index.html">Cactuses</a>
-								</li>
-								<li class="cat-item cat-item-35">
-									<a href="../exotic/index.html">Exotic</a>
-								</li>
-								<li class="cat-item cat-item-36">
+								
+								@if (productcategory != null)
+								{
+									@foreach (var item in productcategory)
+									{
+										<li class="cat-item cat-item-35">
+											<a href="/product-category/@item.Alias">@item.CategoryProdName</a>
+										</li>
+									}
+								}
+								@* <li class="cat-item cat-item-36">
 									<a href="../greens/index.html">Greens</a>
 								</li>
 								<li class="cat-item cat-item-15">
@@ -199,7 +218,7 @@
 								</li>
 								<li class="cat-item cat-item-38">
 									<a href="../winter/index.html">Winter</a>
-								</li>
+								</li> *@
 							</ul>
 						</div>
 						<div class="widget woocommerce widget_recently_viewed_products">
@@ -290,3 +309,24 @@
 		</div>
 	</div>
 </div>
+@section ScriptsUser {
+
+	<script type="text/javascript" src="~/wp-includes/js/jquery/ui/mouse.min0028.js?ver=1.13.1"
+			id="jquery-ui-mouse-js"></script>
+	<script type="text/javascript" src="~/wp-includes/js/jquery/ui/slider.min0028.js?ver=1.13.1"
+			id="jquery-ui-slider-js"></script>
+	<script type="text/javascript"
+			src="~/wp-content/plugins/woocommerce/assets/js/jquery-ui-touch-punch/jquery-ui-touch-punch.min823d.js?ver=7.0.0"
+			id="wc-jquery-ui-touchpunch-js"></script>
+	<script type="text/javascript"
+			src="~/wp-content/plugins/woocommerce/assets/js/accounting/accounting.minaffb.js?ver=0.4.2"
+			id="accounting-js"></script>
+	<script type="text/javascript" id="wc-price-slider-js-extra">
+		/* <![CDATA[ */
+		var woocommerce_price_slider_params = { "currency_format_num_decimals": "0", "currency_format_symbol": "$", "currency_format_decimal_sep": ".", "currency_format_thousand_sep": ",", "currency_format": "%s%v" };
+		/* ]]> */
+	</script>
+	<script type="text/javascript"
+			src="~/wp-content/plugins/woocommerce/assets/js/frontend/price-slider.min823d.js?ver=7.0.0"
+			id="wc-price-slider-js"></script>
+}
