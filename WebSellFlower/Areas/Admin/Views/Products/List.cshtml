@@ -74,12 +74,12 @@
                                 </td>
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <span class="text-bg-success p-1 rounded-circle"></span>
-                                        <p class="mb-0 ms-2">InStock</p>
+                                        <span class="text-bg-@(@product.IsActive ? "success" : "danger") p-1 rounded-circle"></span>
+                                     <p class="mb-0 ms-2">@(@product.IsActive ? "Published" : "Inactive")</p>
                                     </div>
                                 </td>
                                 <td>
-                                    <h6 class="mb-0 fs-4">@product.ProdPrice</h6>
+                                    <h6 class="mb-0 fs-4">$ @product.ProdPrice</h6>
                                 </td>
                                 <td>
                                     <a href="@Url.Action("Edit", new { id = product.ProdId })"><iconify-icon icon="heroicons-outline:pencil-square" class="fs-7"></iconify-icon></a> |

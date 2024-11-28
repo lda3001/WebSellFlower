@@ -52,6 +52,10 @@ namespace WebSellFlower.Areas.Admin.Controllers
 			{ 
 				ProdId = p.ProdId, 
 				ProdName = p.ProdName, 
+				ProdThumb = p.ProdThumb,
+				Quantity = p.Quantity,
+				IsActive = p.IsActive,
+				ProdPrice = p.ProdPrice,
 				CategoryName = p.CategoryProd.CategoryProdName 
 			})
 			.ToListAsync();
@@ -76,14 +80,15 @@ namespace WebSellFlower.Areas.Admin.Controllers
 			if (product == null)
 				return NotFound();
 
+			ViewBag.listCategory = _context.TblCategoryProducts.ToList();
+			ViewBag.listComment = _context.TblProductReviews.Where(i=> i.ProdId == id).ToList();
+
 			return View(product);
 		}
 
 	}
-	public class ProductDto 
+	public class ProductDto : TblProduct
 	{
-		public int ProdId { get; set; }
-    	public string ProdName { get; set; }
 		public string CategoryName { get; set; }
 	}
 }

@@ -2,7 +2,8 @@
 
 
 @{
-
+  List<TblCategoryProduct> tblCategoryProducts = ViewBag.listCategory;
+    List<TblProductReview> tblProductReviews = ViewBag.listComment;
 }
 @section Styles {
     <link rel="stylesheet" href="~/assets/libs/quill/dist/quill.snow.css">
@@ -208,12 +209,13 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
+                        @foreach(var review in tblProductReviews){
+                           <tr>
                           <td>
                             <div class="d-flex align-items-center">
                               <img src="../assets/images/profile/user-11.jpg" class="rounded-circle" width="30" height="30" />
                               <div class="ms-3">
-                                <h6 class="fs-4 fw-semibold mb-0 text-nowrap">Sunil Joshi</h6>
+                                <h6 class="fs-4 fw-semibold mb-0 text-nowrap">@review.Name</h6>
                               </div>
                             </div>
                           </td>
@@ -225,184 +227,15 @@
                               <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
                               <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
                             </div>
-                            <span class="mb-0 fw-normal fs-3 mt-2">I like this design</span>
+                            <span class="mb-0 fw-normal fs-3 mt-2">@review.Detail</span>
                           </td>
                           <td>
-                            <p class="mb-0 fw-normal fs-3 text-end text-nowrap">1 day ago</p>
+                           <p class="mb-0 fw-normal fs-3 text-end text-nowrap">@review.CreatedDate</p>
                           </td>
                         </tr>
-                        <tr>
-                          <td>
-                            <div class="d-flex align-items-center">
-                              <img src="../assets/images/profile/user-8.jpg" class="rounded-circle" width="30" height="30" />
-                              <div class="ms-3">
-                                <h6 class="fs-4 fw-semibold mb-0 text-nowrap">Mark Richard</h6>
-                              </div>
-                            </div>
-                          </td>
-                          <td>
-                            <div class="d-flex align-items-center gap-1 mb-1">
-                              <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
-                              <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
-                              <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
-                              <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
-                              <iconify-icon icon="solar:star-linear" class="text-warning fs-3"></iconify-icon>
-                            </div>
-                            <span class="mb-0 fw-normal fs-3 mt-2">
-                              Awesome quality with great materials used, but could be
-                              more comfortable
-                            </span>
-                          </td>
-                          <td>
-                            <p class="mb-0 fw-normal fs-3 text-end text-nowrap">11:20 PM</p>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="d-flex align-items-center">
-                              <img src="../assets/images/profile/user-3.jpg" class="rounded-circle" width="30" height="30" />
-                              <div class="ms-3">
-                                <h6 class="fs-4 fw-semibold mb-0 text-nowrap">Hanry Lord</h6>
-                              </div>
-                            </div>
-                          </td>
-                          <td>
-                            <div class="d-flex align-items-center gap-1 mb-1">
-                              <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
-                              <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
-                              <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
-                              <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
-                              <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
-                            </div>
-                            <span class="mb-0 fw-normal fs-3 mt-2">This is the best product I have ever used.</span>
-                          </td>
-                          <td>
-                            <p class="mb-0 fw-normal fs-3 text-end text-nowrap">Today</p>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="d-flex align-items-center">
-                              <img src="../assets/images/profile/user-4.jpg" class="rounded-circle" width="30" height="30" />
-                              <div class="ms-3">
-                                <h6 class="fs-4 fw-semibold mb-0 text-nowrap">Britny Cox</h6>
-                              </div>
-                            </div>
-                          </td>
-                          <td>
-                            <div class="d-flex align-items-center gap-1 mb-1">
-                              <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
-                              <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
-                              <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
-                              <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
-                              <iconify-icon icon="solar:star-linear" class="text-warning fs-3"></iconify-icon>
-                            </div>
-                            <span class="mb-0 fw-normal fs-3 mt-2">Beautifully crafted. Worth every penny.</span>
-                          </td>
-                          <td>
-                            <p class="mb-0 fw-normal fs-3 text-end text-nowrap">Today</p>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="d-flex align-items-center">
-                              <img src="../assets/images/profile/user-5.jpg" class="rounded-circle" width="30" height="30" />
-                              <div class="ms-3">
-                                <h6 class="fs-4 fw-semibold mb-0 text-nowrap">Olvin wild</h6>
-                              </div>
-                            </div>
-                          </td>
-                          <td>
-                            <div class="d-flex align-items-center gap-1 mb-1">
-                              <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
-                              <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
-                              <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
-                              <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
-                              <iconify-icon icon="solar:star-linear" class="text-warning fs-3"></iconify-icon>
-                            </div>
-                            <span class="mb-0 fw-normal fs-3 mt-2">
-                              Awesome value for money. Shipping could be faster tho.
-                            </span>
-                          </td>
-                          <td>
-                            <p class="mb-0 fw-normal fs-3 text-end text-nowrap">12:00 PM</p>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="d-flex align-items-center">
-                              <img src="../assets/images/profile/user-6.jpg" class="rounded-circle" width="30" height="30" />
-                              <div class="ms-3">
-                                <h6 class="fs-4 fw-semibold mb-0 text-nowrap">Dan wilsed</h6>
-                              </div>
-                            </div>
-                          </td>
-                          <td>
-                            <div class="d-flex align-items-center gap-1 mb-1">
-                              <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
-                              <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
-                              <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
-                              <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
-                              <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
-                            </div>
-                            <span class="mb-0 fw-normal fs-3 mt-2">
-                              Excellent quality, I got it for my sons birthday and he
-                              loved it.
-                            </span>
-                          </td>
-                          <td>
-                            <p class="mb-0 fw-normal fs-3 text-end text-nowrap">1 May 2024</p>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="d-flex align-items-center">
-                              <img src="../assets/images/profile/user-7.jpg" class="rounded-circle" width="30" height="30" />
-                              <div class="ms-3">
-                                <h6 class="fs-4 fw-semibold mb-0 text-nowrap">Jon Miller</h6>
-                              </div>
-                            </div>
-                          </td>
-                          <td>
-                            <div class="d-flex align-items-center gap-1 mb-1">
-                              <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
-                              <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
-                              <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
-                              <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
-                              <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
-                            </div>
-                            <span class="mb-0 fw-normal fs-3 mt-2">Firesale is on! Buy now! Totally worth it!</span>
-                          </td>
-                          <td>
-                            <p class="mb-0 fw-normal fs-3 text-end text-nowrap">25 April 2024</p>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="d-flex align-items-center">
-                              <img src="../assets/images/profile/user-10.jpg" class="rounded-circle" width="30" height="30" />
-                              <div class="ms-3">
-                                <h6 class="fs-4 fw-semibold mb-0 text-nowrap">Anaa Crown</h6>
-                              </div>
-                            </div>
-                          </td>
-                          <td>
-                            <div class="d-flex align-items-center gap-1 mb-1">
-                              <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
-                              <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
-                              <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
-                              <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
-                              <iconify-icon icon="solar:star-linear" class="text-warning fs-3"></iconify-icon>
-                            </div>
-                            <span class="mb-0 fw-normal fs-3 mt-2">
-                              Excellent quality, I got it for my sons birthday and he
-                              loved it
-                            </span>
-                          </td>
-                          <td>
-                            <p class="mb-0 fw-normal fs-3 text-end text-nowrap">25 April 2024</p>
-                          </td>
-                        </tr>
+                        }
+                       
+                       
                       </tbody>
                     </table>
                   </div>
@@ -460,12 +293,11 @@
                     <div class="mb-3">
                       <label class="form-label">Categories</label>
                       <select class="select2 form-control" multiple="multiple">
-                        <option value="" selected>Computer</option>
-                        <option value="" selected>Watches</option>
-                        <option value="" selected>Headphones</option>
-                        <option value="">Beauty</option>
-                        <option value="">Fashion</option>
-                        <option value="">Footwear</option>
+                        @foreach(var category in tblCategoryProducts){
+                          <option value="@category.CategoryProdId">@category.CategoryProdName</option>
+                        }
+                      
+                        
                       </select>
                       <p class="fs-2 mb-0">
                         Add product to a category.

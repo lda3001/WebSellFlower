@@ -26,6 +26,9 @@ if ((at = "vertical")) {
           if (anchors[i].href === currentUrl) {
             return anchors[i];
           }
+          else if ((anchors[i].href).includes('admin/product/edit')){
+            return anchors[i];
+          }
         }
 
         return null; // Return null if no matching element is found

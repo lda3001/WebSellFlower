@@ -162,7 +162,7 @@
                                 </li>
 
                                 <li class="sidebar-item">
-                                    <a class="sidebar-link" href="" aria-expanded="false">
+                                    <a class="sidebar-link" href="~/admin" aria-expanded="false">
                                         <iconify-icon icon="solar:screencast-2-line-duotone"></iconify-icon>
                                         <span class="hide-menu">Dashboard 3</span>
                                     </a>
@@ -193,7 +193,7 @@
                                             </a>
                                         </li>
                                         <li class="sidebar-item">
-                                            <a class="sidebar-link" href="../admin/product-list.html">
+                                            <a class="sidebar-link" href="~/admin/product-list.html">
                                                 <span class="icon-small"></span>List
                                             </a>
                                         </li>
@@ -208,7 +208,14 @@
                                             </a>
                                         </li>
                                         <li class="sidebar-item">
-                                            <a class="sidebar-link" href="eco-edit-product.html">
+                                            <style>
+                                                a[disabled]{
+                                                    pointer-events: none;
+                                                    text-decoration: none;
+                                                    cursor: not-allowed;
+                                                }
+                                            </style>
+                                            <a class="sidebar-link" href="~/admin/product/edit" disabled>
                                                 <span class="icon-small"></span>Edit Product
                                             </a>
                                         </li>
