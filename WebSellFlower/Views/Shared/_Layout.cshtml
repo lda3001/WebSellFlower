@@ -497,7 +497,7 @@
 		const bodyElement = document.body;
 		bodyElement.className = "";
 		// Kiểm tra URL
-		if (currentUrl === 'https://localhost:7112') {
+		if (currentUrl === 'https://localhost:7112/') {
 			// Trang chủ
 
 			const classesToAdd = [
@@ -577,7 +577,132 @@
 			// Thêm các class vào body
 			bodyElement.classList.add(...productClasses);
 
-		} else {
+		} 
+		else if (currentUrl.includes('/blog/')) {
+			// Trang sản phẩm (URL chứa "/blog/")
+			const blogClasses = [
+				
+					"post-template-default",
+					"single",
+					"single-post",
+					"postid-288",
+					"single-format-standard",
+					"theme-fiorello",
+					"fiorello-core-1.3",
+					"woocommerce-no-js",
+					"fiorello-ver-1.6",
+					"mkdf-grid-1300",
+					"mkdf-content-background-full-image",
+					"mkdf-sticky-header-on-scroll-down-up",
+					"mkdf-dropdown-animate-height",
+					"mkdf-header-standard",
+					"mkdf-menu-area-shadow-disable",
+					"mkdf-menu-area-in-grid-shadow-disable",
+					"mkdf-menu-area-border-disable",
+					"mkdf-menu-area-in-grid-border-disable",
+					"mkdf-logo-area-border-disable",
+					"mkdf-woocommerce-columns-3",
+					"mkdf-woo-medium-space",
+					"mkdf-woo-pl-info-below-image",
+					"mkdf-woo-single-thumb-on-left-side",
+					"mkdf-woo-single-has-pretty-photo",
+					"mkdf-default-mobile-header",
+					"mkdf-sticky-up-mobile-header",
+					"mkdf-slide-from-header-bottom",
+					"wpb-js-composer",
+					"js-comp-ver-6.10.0",
+					"vc_responsive"
+				
+			];
+
+			// Thêm các class vào body
+			bodyElement.classList.add(...blogClasses);
+
+		} else if (currentUrl.includes('/product-category/')) {
+			// Trang sản phẩm (URL chứa "/blog/")
+			const productClasses = [
+
+				"archive",
+				"tax-product_cat",
+				"term-cactuses",
+				"term-37",
+				"theme-fiorello",
+				"fiorello-core-1.3",
+				"woocommerce",
+				"woocommerce-page",
+				"woocommerce-no-js",
+				"fiorello-ver-1.6",
+				"mkdf-grid-1300",
+				"mkdf-content-background-full-image",
+				"mkdf-sticky-header-on-scroll-down-up",
+				"mkdf-dropdown-animate-height",
+				"mkdf-header-standard",
+				"mkdf-menu-area-shadow-disable",
+				"mkdf-menu-area-in-grid-shadow-disable",
+				"mkdf-menu-area-border-disable",
+				"mkdf-menu-area-in-grid-border-disable",
+				"mkdf-logo-area-border-disable",
+				"mkdf-woocommerce-page",
+				"mkdf-woocommerce-columns-3",
+				"mkdf-woo-medium-space",
+				"mkdf-woo-pl-info-below-image",
+				"mkdf-woo-single-thumb-on-left-side",
+				"mkdf-woo-single-has-pretty-photo",
+				"mkdf-default-mobile-header",
+				"mkdf-sticky-up-mobile-header",
+				"mkdf-slide-from-header-bottom",
+				"wpb-js-composer",
+				"js-comp-ver-6.10.0",
+				"vc_responsive"
+
+			];
+
+			// Thêm các class vào body
+			bodyElement.classList.add(...productcategoryClasses);
+
+		}
+		else if (currentUrl.includes('/cart')) {
+			// Trang sản phẩm (URL chứa "/blog/")
+			const cart = [
+				"page-template-default",
+				"page",
+				"page-id-214",
+				"theme-fiorello",
+				"fiorello-core-1.3",
+				"woocommerce-cart",
+				"woocommerce-page",
+				"woocommerce-no-js",
+				"fiorello-ver-1.6",
+				"mkdf-grid-1300",
+				"mkdf-content-background-full-image",
+				"mkdf-sticky-header-on-scroll-down-up",
+				"mkdf-dropdown-animate-height",
+				"mkdf-header-standard",
+				"mkdf-menu-area-shadow-disable",
+				"mkdf-menu-area-in-grid-shadow-disable",
+				"mkdf-menu-area-border-disable",
+				"mkdf-menu-area-in-grid-border-disable",
+				"mkdf-logo-area-border-disable",
+				"mkdf-woocommerce-page",
+				"mkdf-woocommerce-columns-3",
+				"mkdf-woo-medium-space",
+				"mkdf-woo-pl-info-below-image",
+				"mkdf-woo-single-thumb-on-left-side",
+				"mkdf-woo-single-has-pretty-photo",
+				"mkdf-default-mobile-header",
+				"mkdf-sticky-up-mobile-header",
+				"mkdf-slide-from-header-bottom",
+				"wpb-js-composer",
+				"js-comp-ver-6.10.0",
+				"vc_responsive"
+
+			];
+
+			// Thêm các class vào body
+			bodyElement.classList.add(...cart);
+
+		}
+		else {
 			// Các trang khác
 			bodyElement.classList.add('other-page-class');
 		}

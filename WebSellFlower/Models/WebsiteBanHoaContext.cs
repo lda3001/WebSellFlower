@@ -17,6 +17,8 @@ public partial class WebsiteBanHoaContext : DbContext
 
     public virtual DbSet<TblAdmin> TblAdmins { get; set; }
 
+    public virtual DbSet<TblBlogComment> TblBlogComments { get; set; }
+
     public virtual DbSet<TblCategory> TblCategories { get; set; }
 
     public virtual DbSet<TblCategoryPost> TblCategoryPosts { get; set; }
@@ -43,7 +45,7 @@ public partial class WebsiteBanHoaContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=LAPTOP-SB14QIQ5\\MSSQLSERVER01;Initial Catalog=WebsiteBanHoa;Integrated Security=True;TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer("Data Source=TUAN-ANH\\MSSQLSERVER01;Initial Catalog=WebsiteBanHoa;Integrated Security=True;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -68,6 +70,27 @@ public partial class WebsiteBanHoaContext : DbContext
                 .HasMaxLength(10)
                 .IsFixedLength()
                 .HasColumnName("ad_status");
+        });
+
+        modelBuilder.Entity<TblBlogComment>(entity =>
+        {
+            entity.HasKey(e => e.CommentId);
+
+            entity.ToTable("tbl_BlogComment");
+
+            entity.Property(e => e.ContentComment)
+                .HasMaxLength(250)
+                .HasColumnName("Content_comment");
+            entity.Property(e => e.CreatedDate).HasColumnType("datetime");
+            entity.Property(e => e.Email).HasMaxLength(50);
+            entity.Property(e => e.Name).HasMaxLength(250);
+            entity.Property(e => e.ParentId).HasColumnName("ParentID");
+            entity.Property(e => e.Phone).HasMaxLength(50);
+            entity.Property(e => e.PostId).HasColumnName("post_id");
+
+            entity.HasOne(d => d.Post).WithMany(p => p.TblBlogComments)
+                .HasForeignKey(d => d.PostId)
+                .HasConstraintName("FK_tbl_BlogComment_tbl_Post");
         });
 
         modelBuilder.Entity<TblCategory>(entity =>
@@ -247,10 +270,12 @@ public partial class WebsiteBanHoaContext : DbContext
             entity.Property(e => e.PostId).HasColumnName("post_id");
             entity.Property(e => e.Alias).HasMaxLength(250);
             entity.Property(e => e.CategoryPostId).HasColumnName("category_post_id");
+            entity.Property(e => e.PostContenDetail).HasColumnName("post_conten_detail");
             entity.Property(e => e.PostContent).HasColumnName("post_content");
             entity.Property(e => e.PostDate)
                 .HasColumnType("datetime")
                 .HasColumnName("post_date");
+            entity.Property(e => e.PostDetail).HasColumnName("post_detail");
             entity.Property(e => e.PostFeatured).HasColumnName("post_featured");
             entity.Property(e => e.PostThumb).HasColumnName("post_thumb");
             entity.Property(e => e.PostTitle)

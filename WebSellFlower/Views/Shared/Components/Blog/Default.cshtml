@@ -1,12 +1,13 @@
 ﻿@model IEnumerable<WebSellFlower.Models.TblPost>
-@foreach(var item in Model)
+@foreach(var item in Model.Take(3))
 {
+	string sUrl = $"/blog/{item.Alias}-{item.PostId}.html";
 	<li class="mkdf-bl-item mkdf-item-space clearfix">
 	<div class="mkdf-bli-inner">
 		<div class="mkdf-bli-image-holder">
 			<div class="mkdf-post-image">
 				<a itemprop="url"
-				   href="flower-power/index.html"
+				   href="@sUrl"
 				   title="Flower Power">
 					<img width="1300"
 						 height="830"
@@ -32,7 +33,7 @@
 			<h5 itemprop="name"
 				class="entry-title mkdf-post-title">
 				<a itemprop="url"
-				   href="flower-power/index.html"
+				   href="@sUrl"
 				   title="Flower Power">
 						@Html.Raw(item.PostTitle)
 				</a>
