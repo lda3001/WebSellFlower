@@ -3961,22 +3961,20 @@
 			</footer>
 		</div>
 	</div>
-	 
+	 <script src="~/lib/jquery/dist/jquery.min.js"></script>
+	 <script>
+    var jQueryNew = jQuery.noConflict(true);
+	</script>
 	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="~/js/site.js" asp-append-version="true"></script>
-	<script src="~/js/addToCart.js" asp-append-version="true"></script>
+	 <script src="~/js/addToCart.js" asp-append-version="true"></script>
 	@await RenderSectionAsync("Scripts", required: false)
-
 	<script>
     // Sử dụng jQuery mới
-    $(document).ready(function () {
+    jQueryNew(document).ready(function () {
         console.log("jQuery 3.6.0 is working");
     });
 
-    // Sử dụng jQuery cũ
-    jQueryOld(document).ready(function () {
-        console.log("jQuery 1.12.4 is working");
-    });
 	</script>
 
 	<script>
@@ -4430,11 +4428,9 @@
 
 		if (window.RS_MODULES.checkMinimal !== undefined) { window.RS_MODULES.checkMinimal(); };
 	</script>
-
-	 <script src="~/lib/jquery/dist/jquery.min.js"></script>
-	 <script>
-    var jQueryOld = jQuery.noConflict(true);
-</script>
+	
+	 
+	
 
 	
 </body>

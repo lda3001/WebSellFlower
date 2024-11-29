@@ -13,7 +13,7 @@ public partial class TblProduct
 
     public double? ProdPrice { get; set; }
 
-    public int? ProdDiscount { get; set; }
+    public double? ProdDiscount { get; set; }
 
     public string? Detail { get; set; }
 

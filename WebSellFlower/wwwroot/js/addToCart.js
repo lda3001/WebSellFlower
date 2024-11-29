@@ -1,12 +1,12 @@
-$(document).on('click', '.add_to_cart_button', function (e) {
+jQueryNew(document).on('click', '.add_to_cart_button', function (e) {
     e.preventDefault();
 
    
-    const $button = $(this);
+    const $button = jQueryNew(this);
     const productId = $button.data('product_id');
     const quantity = $button.data('quantity');
 
-    $.ajax({
+    jQueryNew.ajax({
         url: '/api/cart/add',
         type: 'POST',
         data: JSON.stringify({
