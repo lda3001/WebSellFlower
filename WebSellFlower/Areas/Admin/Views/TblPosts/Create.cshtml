@@ -1,0 +1,78 @@
+﻿@model WebSellFlower.Models.TblPost
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>TblPost</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CategoryPostId" class="control-label"></label>
+                <select asp-for="CategoryPostId" class ="form-control" asp-items="ViewBag.CategoryPostId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="PostTitle" class="control-label"></label>
+                <input asp-for="PostTitle" class="form-control" />
+                <span asp-validation-for="PostTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PostContent" class="control-label"></label>
+                <input asp-for="PostContent" class="form-control" />
+                <span asp-validation-for="PostContent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PostThumb" class="control-label"></label>
+                <input asp-for="PostThumb" class="form-control" />
+                <span asp-validation-for="PostThumb" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PostFeatured" class="control-label"></label>
+                <input asp-for="PostFeatured" class="form-control" />
+                <span asp-validation-for="PostFeatured" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PostDate" class="control-label"></label>
+                <input asp-for="PostDate" class="form-control" />
+                <span asp-validation-for="PostDate" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Alias" class="control-label"></label>
+                <input asp-for="Alias" class="form-control" />
+                <span asp-validation-for="Alias" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PostDetail" class="control-label"></label>
+                <input asp-for="PostDetail" class="form-control" />
+                <span asp-validation-for="PostDetail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PostContenDetail" class="control-label"></label>
+                <input asp-for="PostContenDetail" class="form-control" />
+                <span asp-validation-for="PostContenDetail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -50,12 +50,56 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[E:/WebSellFlower/WebSellFlower/Areas/Admin/Views/TblCategories/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVGJsQ2F0ZWdvcmllc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/WebSellFlower/WebSellFlower/Areas/Admin/Views/TblCategories/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVGJsQ2F0ZWdvcmllc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/WebSellFlower/WebSellFlower/Areas/Admin/Views/TblCategories/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVGJsQ2F0ZWdvcmllc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/WebSellFlower/WebSellFlower/Areas/Admin/Views/TblCategories/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVGJsQ2F0ZWdvcmllc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/WebSellFlower/WebSellFlower/Areas/Admin/Views/TblCategories/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVGJsQ2F0ZWdvcmllc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/WebSellFlower/WebSellFlower/Areas/Admin/Views/TblPosts/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVGJsUG9zdHNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/WebSellFlower/WebSellFlower/Areas/Admin/Views/TblPosts/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVGJsUG9zdHNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/WebSellFlower/WebSellFlower/Areas/Admin/Views/TblPosts/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVGJsUG9zdHNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/WebSellFlower/WebSellFlower/Areas/Admin/Views/TblPosts/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVGJsUG9zdHNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/WebSellFlower/WebSellFlower/Areas/Admin/Views/TblPosts/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVGJsUG9zdHNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/WebSellFlower/WebSellFlower/Areas/Admin/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/WebSellFlower/WebSellFlower/Areas/Admin/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/WebSellFlower/WebSellFlower/Views/BlogList/Listblog.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ0xpc3RcTGlzdGJsb2cuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/WebSellFlower/WebSellFlower/Views/Blog/Details.cshtml]

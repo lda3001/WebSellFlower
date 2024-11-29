@@ -1,0 +1,97 @@
+﻿@model WebSellFlower.Models.TblCategory
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Thêm menu</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">General Form</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-8">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Them Moi</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form  asp-action ="Create">
+                <div class="card-body ">
+                    <div asp-validation-summary="ModelOnly"></div>
+                  <div class="form-group ">
+                    <label asp-for="Title" class="control-lable m-2 ">Tieu de</label>
+                    <input asp-for="Title" class="form-control">
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                  </div>
+                  <div class="form-group">
+                    <label asp-for="Alias" class="control-lable">Alias</label>
+                    <input asp-for="Alias" class="form-control">
+                    <span asp-validation-for="Alias" class="text-danger"></span>
+                  </div>
+                  
+                   <div class="form-group">
+                    <label asp-for="Levels" class="control-lable">Muc</label>
+                    <input asp-for="Levels" class="form-control">
+                    <span asp-validation-for="Levels" class="text-danger"></span>
+                  </div>
+                    <div class="form-group">
+                    <label asp-for="ParentId" class="control-lable">Menu Cha</label>
+                    <input asp-for="ParentId" class="form-control">
+                    <span asp-validation-for="ParentId" class="text-danger"></span>
+                  </div>
+                   <div class="form-group">
+                    <label asp-for="Position" class="control-lable">Vi tri</label>
+                    <input asp-for="Position" class="form-control">
+                    <span asp-validation-for="Alias" class="text-danger"></span>
+                  </div>
+                  <div class=" form-group form-check">
+                    
+                    <label class="form-check-label" for="exampleCheck1">
+                        <input  class="form-check-input" asp-for="IsActive">Hienthi
+                    </label>
+                  </div>
+                   <div class="form-group">
+                  <button type="submit" value="Thêm mới"  class="btn btn-primary">Them moi</button>
+                </div>
+                </div>
+                <!-- /.card-body -->
+
+               
+              </form>
+            </div>
+            <!-- /.card -->
+
+            
+
+          </div>
+          <!--/.col (left) -->
+          <!-- right column -->
+        
+          <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div
