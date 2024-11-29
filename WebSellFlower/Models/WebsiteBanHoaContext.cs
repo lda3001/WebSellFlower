@@ -45,7 +45,7 @@ public partial class WebsiteBanHoaContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 
-        => optionsBuilder.UseSqlServer("Data Source=LAPTOP-SB14QIQ5\\MSSQLSERVER01;Initial Catalog=WebsiteBanHoa;Integrated Security=True;TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer("Data Source=TUAN-ANH\\MSSQLSERVER01;Initial Catalog=WebsiteBanHoa;Integrated Security=True;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

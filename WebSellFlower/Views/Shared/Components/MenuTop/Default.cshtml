@@ -28,7 +28,7 @@
 	class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children mkdf-active-item has_sub narrow">
 		<a href="#" class=" current ">
 			<span class="item_outer">
-				<span class="item_text">@item.Title</span><i class="mkdf-menu-arrow fa fa-angle-down"></i>
+				<span class="">@item.Title</span><i class="mkdf-menu-arrow fa fa-angle-down"></i>
 			</span>
 		</a>
 		@if (Model.Any(m => m.ParentId == item.Categoryid))
@@ -42,7 +42,7 @@
 							class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-189 current_page_item ">
 								<a href="@subItem.Alias" class>
 									<span class="item_outer">
-										<span class="item_text">
+										<span class="">
 											@subItem.Title
 										</span>
 									</span>
