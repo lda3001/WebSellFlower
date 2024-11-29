@@ -1,94 +1,180 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using WebSellFlower.Controllers;
 using WebSellFlower.Models;
 
 namespace WebSellFlower.Areas.Admin.Controllers
 {
-	[Area("Admin")]
-	public class CartController : Controller
-	{
-		private readonly WebsiteBanHoaContext _context;
-		public CartController(WebsiteBanHoaContext context)
-		{
-			_context = context;
-		}
-		[Route("admin/product/{alias}-{id}.html")]
-		public async Task<IActionResult> Details(int? id)
-		{
-			if (id == null || _context.TblProducts == null)
-			{
-				return NotFound();
-			}
+    [Area("Admin")]
+    public class ProductsController : Controller
+    {
+        private readonly WebsiteBanHoaContext _context;
 
-			var product = await _context.TblProducts.Include(i => i.CategoryProd)
-				.FirstOrDefaultAsync(m => m.ProdId == id);
+        public ProductsController(WebsiteBanHoaContext context)
+        {
+            _context = context;
+        }
 
-			if (product == null)
-			{
-				return NotFound();
-			}
+        // GET: Admin/Products
+        [Route("admin/product-list.html")]
+        public async Task<IActionResult> Index()
+        {
+            var websiteBanHoaContext = await _context.TblProducts.Include(t => t.CategoryProd).Select(p => new ProductDto
+            {
+                ProdId = p.ProdId,
+                ProdName = p.ProdName,
+                ProdThumb = p.ProdThumb,
+                Quantity = p.Quantity,
+                IsActive = p.IsActive,
+                ProdPrice = p.ProdPrice,
+                CategoryName = p.CategoryProd.CategoryProdName
+            }).ToListAsync();
+            ViewBag.products = websiteBanHoaContext;
+          
+            return View(websiteBanHoaContext);
+        }
 
-			ViewBag.productReview = _context.TblProductReviews.
-				Where(i => i.ProdId == id && i.IsActive).ToList();
+        // GET: Admin/Products/Details/5
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-			ViewBag.productRelated = _context.TblProducts.
-				Where(i => i.ProdId != id && i.CategoryProdId == product.CategoryProdId).Take(4)
-				.OrderByDescending(i => i.ProdId).ToList();
+            var tblProduct = await _context.TblProducts
+                .Include(t => t.CategoryProd)
+                .FirstOrDefaultAsync(m => m.ProdId == id);
+            if (tblProduct == null)
+            {
+                return NotFound();
+            }
 
-			return View(product);
-		}
+            return View(tblProduct);
+        }
 
-		[Route("admin/product-list.html")]
-		public async Task<IActionResult> List()
-		{
-			if (_context.TblProducts == null)
-			{
-				return NotFound();
-			}
+        // GET: Admin/Products/Create
+        public IActionResult Create()
+        {
+            ViewData["CategoryProdId"] = new SelectList(_context.TblCategoryProducts, "CategoryProdId", "CategoryProdId");
+            return View();
+        }
 
-			var product = await _context.TblProducts
-			.Include(p => p.CategoryProd)
-			.Select(p => new ProductDto 
-			{ 
-				ProdId = p.ProdId, 
-				ProdName = p.ProdName, 
-				ProdThumb = p.ProdThumb,
-				Quantity = p.Quantity,
-				IsActive = p.IsActive,
-				ProdPrice = p.ProdPrice,
-				CategoryName = p.CategoryProd.CategoryProdName 
-			})
-			.ToListAsync();
+        // POST: Admin/Products/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("ProdId,CategoryProdId,ProdName,ProdPrice,ProdDiscount,Detail,Alias,IsBestSeller,IsActive,ProdThumb,ProdImg,ProdImg1,ProdImg2,IsNew,Description,Quantity,ProdImg3")] TblProduct tblProduct)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(tblProduct);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["CategoryProdId"] = new SelectList(_context.TblCategoryProducts, "CategoryProdId", "CategoryProdId", tblProduct.CategoryProdId);
+            return View(tblProduct);
+        }
 
+        // GET: Admin/Products/Edit/5
+        [Route("admin/product/edit/{id}")]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var product = await _context.TblProducts.Include(i => i.CategoryProd)
+                .FirstOrDefaultAsync(m => m.ProdId == id);
 
-			if (product == null)
-			{
-				return NotFound();
-			}
+            if (product == null)
+                return NotFound();
 
-			ViewBag.products = product;
+            ViewBag.listCategory = _context.TblCategoryProducts.ToList();
+            ViewBag.listComment = _context.TblProductReviews.Where(i => i.ProdId == id).ToList();
 
+            return View(product);
+        }
 
-			return View();
-		}
-		[Route("admin/product/edit/{id}")]
-		public async Task<IActionResult> Edit(int id)
-		{
-			var product = await _context.TblProducts.Include(i => i.CategoryProd)
-				.FirstOrDefaultAsync(m => m.ProdId == id);
+        // POST: Admin/Products/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("ProdId,CategoryProdId,ProdName,ProdPrice,ProdDiscount,Detail,Alias,IsBestSeller,IsActive,ProdThumb,ProdImg,ProdImg1,ProdImg2,IsNew,Description,Quantity,ProdImg3")] TblProduct tblProduct)
+        {
+            if (id != tblProduct.ProdId)
+            {
+                return NotFound();
+            }
 
-			if (product == null)
-				return NotFound();
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(tblProduct);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!TblProductExists(tblProduct.ProdId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["CategoryProdId"] = new SelectList(_context.TblCategoryProducts, "CategoryProdId", "CategoryProdId", tblProduct.CategoryProdId);
+            return View(tblProduct);
+        }
 
-			ViewBag.listCategory = _context.TblCategoryProducts.ToList();
-			ViewBag.listComment = _context.TblProductReviews.Where(i=> i.ProdId == id).ToList();
+        // GET: Admin/Products/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-			return View(product);
-		}
+            var tblProduct = await _context.TblProducts
+                .Include(t => t.CategoryProd)
+                .FirstOrDefaultAsync(m => m.ProdId == id);
+            if (tblProduct == null)
+            {
+                return NotFound();
+            }
 
-	}
-	public class ProductDto : TblProduct
-	{
-		public string CategoryName { get; set; }
-	}
+            return View(tblProduct);
+        }
+
+        // POST: Admin/Products/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var tblProduct = await _context.TblProducts.FindAsync(id);
+            if (tblProduct != null)
+            {
+                _context.TblProducts.Remove(tblProduct);
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool TblProductExists(int id)
+        {
+            return _context.TblProducts.Any(e => e.ProdId == id);
+        }
+    }
+    public class ProductDto : TblProduct
+    {
+        public string CategoryName { get; set; }
+    }
 }

@@ -2,6 +2,18 @@ using Microsoft.EntityFrameworkCore;
 using WebSellFlower.Models;
 
 var builder = WebApplication.CreateBuilder(args);
+var sessionConfig = builder.Configuration.GetSection("SessionConfig");
+
+
+builder.Services.AddDistributedMemoryCache(); 
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(sessionConfig.GetValue<int>("IdleTimeoutMinutes"));
+    options.Cookie.HttpOnly = sessionConfig.GetValue<bool>("CookieHttpOnly");
+    options.Cookie.IsEssential = sessionConfig.GetValue<bool>("CookieIsEssential");
+});
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -24,7 +36,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.UseSession();
 app.UseRouting();
 
 app.UseAuthorization();

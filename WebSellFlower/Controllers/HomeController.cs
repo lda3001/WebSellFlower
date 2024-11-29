@@ -5,7 +5,7 @@ using WebSellFlower.Models;
 
 namespace WebSellFlower.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly WebsiteBanHoaContext _context;
         private readonly ILogger<HomeController> _logger;

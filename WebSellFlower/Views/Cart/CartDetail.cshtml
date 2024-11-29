@@ -1,11 +1,13 @@
-﻿@*
+﻿@model List<WebSellFlower.Controllers.CartItem>
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    int? total = 0;
 }
 <div class="mkdf-content-inner">
     <div class="mkdf-title-holder mkdf-standard-type mkdf-title-va-header-bottom mkdf-title-content-va-middle"
-         style="height: 225px;background-color: #fafaf9" data-height="225">
+        style="height: 225px;background-color: #fafaf9" data-height="225">
         <div class="mkdf-title-wrapper" style="height: 225px">
             <div class="mkdf-title-inner">
                 <div class="mkdf-grid">
@@ -29,11 +31,11 @@
                     </div>
                     <div class="woocommerce">
                         <div class="woocommerce-notices-wrapper"></div>
-                        <form class="woocommerce-cart-form"
-                              action="https://fiorello.qodeinteractive.com/cart/" method="post">
+                        <form class="woocommerce-cart-form" action="https://fiorello.qodeinteractive.com/cart/"
+                            method="post">
 
                             <table class="shop_table shop_table_responsive cart woocommerce-cart-form__contents"
-                                   cellspacing="0">
+                                cellspacing="0">
                                 <thead>
                                     <tr>
                                         <th class="product-remove">
@@ -49,93 +51,93 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                  
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr class="woocommerce-cart-form__cart-item cart_item">
 
-                                    <tr class="woocommerce-cart-form__cart-item cart_item">
+                                            <td class="product-remove">
+                                                <a href="https://fiorello.qodeinteractive.com/cart/?remove_item=bac9162b47c56fc8a4d2a519803d51b3&#038;_wpnonce=2089f1f4fb"
+                                                    class="remove" aria-label="Remove this item" data-product_id="364"
+                                                    data-product_sku="74141">&times;</a>
+                                            </td>
 
-                                        <td class="product-remove">
-                                            <a href="https://fiorello.qodeinteractive.com/cart/?remove_item=bac9162b47c56fc8a4d2a519803d51b3&#038;_wpnonce=2089f1f4fb"
-                                               class="remove" aria-label="Remove this item"
-                                               data-product_id="364"
-                                               data-product_sku="74141">&times;</a>
-                                        </td>
+                                            <td class="product-thumbnail">
+                                                <a href="https://fiorello.qodeinteractive.com/product/foxglove-flower/">
+                                                    <img width="300" height="400"
+                                                        src="@item.ProdThumb"
+                                                        class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
+                                                        alt="k" loading="eager" />
+                                                </a>
+                                            </td>
 
-                                        <td class="product-thumbnail">
-                                            <a href="https://fiorello.qodeinteractive.com/product/foxglove-flower/">
-                                                <img width="300" height="400"
-                                                     src="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/shop-13-img-300x400.jpg"
-                                                     class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
-                                                     alt="k" loading="eager" />
-                                            </a>
-                                        </td>
+                                            <td class="product-name" data-title="Product">
+                                                <a href="https://fiorello.qodeinteractive.com/product/foxglove-flower/">
+                                                    @item.ProdName
+                                                </a>
+                                            </td>
 
-                                        <td class="product-name" data-title="Product">
-                                            <a href="https://fiorello.qodeinteractive.com/product/foxglove-flower/">
-                                                Foxglove
-                                                Flower
-                                            </a>
-                                        </td>
+                                            <td class="product-price" data-title="Price">
+                                                <span class="woocommerce-Price-amount amount">
+                                                    <bdi>
+                                                        <span class="woocommerce-Price-currencySymbol">&#36;</span>@item.ProdPrice
+                                                    </bdi>
+                                                </span>
+                                            </td>
 
-                                        <td class="product-price" data-title="Price">
-                                            <span class="woocommerce-Price-amount amount">
-                                                <bdi>
-                                                    <span class="woocommerce-Price-currencySymbol">&#36;</span>259
-                                                </bdi>
-                                            </span>
-                                        </td>
+                                            <td class="product-quantity" data-title="Quantity">
+                                                <div class="mkdf-quantity-buttons quantity">
+                                                    <label class="screen-reader-text" for="quantity_67473725bf039">
+                                                        Foxglove Flower
+                                                        quantity
+                                                    </label>
+                                                    <span class="mkdf-quantity-label"
+                                                        for="quantity_67473725bf039">Quantity</span>
+                                                    <span class="mkdf-quantity-minus arrow_triangle-left"></span>
+                                                    <input type="text" id="quantity_67473725bf039"
+                                                        class="input-text qty text mkdf-quantity-input" data-step="1"
+                                                        data-min="0" data-max=""
+                                                        name="cart[bac9162b47c56fc8a4d2a519803d51b3][qty]" value="@item.Quantity"
+                                                        title="Qty" size="4" placeholder="" inputmode="numeric" />
+                                                    <span class="mkdf-quantity-plus arrow_triangle-right"></span>
+                                                </div>
+                                            </td>
 
-                                        <td class="product-quantity" data-title="Quantity">
-                                            <div class="mkdf-quantity-buttons quantity">
-                                                <label class="screen-reader-text"
-                                                       for="quantity_67473725bf039">
-                                                    Foxglove Flower
-                                                    quantity
-                                                </label>
-                                                <span class="mkdf-quantity-label"
-                                                      for="quantity_67473725bf039">Quantity</span>
-                                                <span class="mkdf-quantity-minus arrow_triangle-left"></span>
-                                                <input type="text" id="quantity_67473725bf039"
-                                                       class="input-text qty text mkdf-quantity-input"
-                                                       data-step="1" data-min="0" data-max=""
-                                                       name="cart[bac9162b47c56fc8a4d2a519803d51b3][qty]"
-                                                       value="17" title="Qty" size="4" placeholder=""
-                                                       inputmode="numeric" />
-                                                <span class="mkdf-quantity-plus arrow_triangle-right"></span>
-                                            </div>
-                                        </td>
+                                            <td class="product-subtotal" data-title="Subtotal">
+                                                <span class="woocommerce-Price-amount amount">
+                                                    <bdi>
+                                                        <span class="woocommerce-Price-currencySymbol">&#36;</span>@item.TotalPrice
+                                                    </bdi>
+                                                </span>
+                                            </td>
 
-                                        <td class="product-subtotal" data-title="Subtotal">
-                                            <span class="woocommerce-Price-amount amount">
-                                                <bdi>
-                                                    <span class="woocommerce-Price-currencySymbol">&#36;</span>4,403
-                                                </bdi>
-                                            </span>
-                                        </td>
-                                    </tr>
+                                            
+                                        </tr>
+                                       total = total + @item.TotalPrice;
+                                    }
+
 
 
                                     <tr>
                                         <td colspan="6" class="actions">
 
                                             <div class="coupon">
-                                                <label for="coupon_code">Coupon:</label> <input type="text" name="coupon_code" class="input-text"
-                                                                                                id="coupon_code" value=""
-                                                                                                placeholder="Coupon code" /> <button type="submit"
-                                                                                                                                     class="button" name="apply_coupon"
-                                                                                                                                     value="Apply coupon">
+                                                <label for="coupon_code">Coupon:</label> <input type="text"
+                                                    name="coupon_code" class="input-text" id="coupon_code" value=""
+                                                    placeholder="Coupon code" /> <button type="submit" class="button"
+                                                    name="apply_coupon" value="Apply coupon">
                                                     Apply coupon
                                                 </button>
                                             </div>
 
-                                            <button type="submit" class="button" name="update_cart"
-                                                    value="Update cart">
+                                            <button type="submit" class="button" name="update_cart" value="Update cart">
                                                 Update cart
                                             </button>
 
 
                                             <input type="hidden" id="woocommerce-cart-nonce"
-                                                   name="woocommerce-cart-nonce"
-                                                   value="2089f1f4fb" /><input type="hidden"
-                                                                               name="_wp_http_referer" value="/cart/" />
+                                                name="woocommerce-cart-nonce" value="2089f1f4fb" /><input type="hidden"
+                                                name="_wp_http_referer" value="/cart/" />
                                         </td>
                                     </tr>
 
@@ -157,7 +159,7 @@
                                         <td data-title="Subtotal">
                                             <span class="woocommerce-Price-amount amount">
                                                 <bdi>
-                                                    <span class="woocommerce-Price-currencySymbol">&#36;</span>4,403
+                                                    <span class="woocommerce-Price-currencySymbol">&#36;</span>@total
                                                 </bdi>
                                             </span>
                                         </td>
@@ -173,27 +175,22 @@
 
 
                                             <form class="woocommerce-shipping-calculator"
-                                                  action="https://fiorello.qodeinteractive.com/cart/"
-                                                  method="post">
+                                                action="https://fiorello.qodeinteractive.com/cart/" method="post">
 
                                                 <a href="#" class="shipping-calculator-button">
                                                     Calculate
                                                     shipping
                                                 </a>
-                                                <section class="shipping-calculator-form"
-                                                         style="display:none;">
+                                                <section class="shipping-calculator-form" style="display:none;">
 
-                                                    <p class="form-row form-row-wide"
-                                                       id="calc_shipping_country_field">
-                                                        <label for="calc_shipping_country"
-                                                               class="screen-reader-text">
+                                                    <p class="form-row form-row-wide" id="calc_shipping_country_field">
+                                                        <label for="calc_shipping_country" class="screen-reader-text">
                                                             Country /
                                                             region:
                                                         </label>
-                                                        <select name="calc_shipping_country"
-                                                                id="calc_shipping_country"
-                                                                class="country_to_state country_select"
-                                                                rel="calc_shipping_state">
+                                                        <select name="calc_shipping_country" id="calc_shipping_country"
+                                                            class="country_to_state country_select"
+                                                            rel="calc_shipping_state">
                                                             <option value="default">
                                                                 Select a country /
                                                                 region&hellip;
@@ -523,46 +520,39 @@
                                                         </select>
                                                     </p>
 
-                                                    <p class="form-row form-row-wide"
-                                                       id="calc_shipping_state_field">
+                                                    <p class="form-row form-row-wide" id="calc_shipping_state_field">
                                                         <input type="hidden" name="calc_shipping_state"
-                                                               id="calc_shipping_state"
-                                                               placeholder="State / County" />
+                                                            id="calc_shipping_state" placeholder="State / County" />
                                                     </p>
 
-                                                    <p class="form-row form-row-wide"
-                                                       id="calc_shipping_city_field">
+                                                    <p class="form-row form-row-wide" id="calc_shipping_city_field">
                                                         <label for="calc_shipping_city"
-                                                               class="screen-reader-text">City:</label>
+                                                            class="screen-reader-text">City:</label>
                                                         <input type="text" class="input-text" value=""
-                                                               placeholder="City" name="calc_shipping_city"
-                                                               id="calc_shipping_city" />
+                                                            placeholder="City" name="calc_shipping_city"
+                                                            id="calc_shipping_city" />
                                                     </p>
 
-                                                    <p class="form-row form-row-wide"
-                                                       id="calc_shipping_postcode_field">
-                                                        <label for="calc_shipping_postcode"
-                                                               class="screen-reader-text">
+                                                    <p class="form-row form-row-wide" id="calc_shipping_postcode_field">
+                                                        <label for="calc_shipping_postcode" class="screen-reader-text">
                                                             Postcode /
                                                             ZIP:
                                                         </label>
                                                         <input type="text" class="input-text" value=""
-                                                               placeholder="Postcode / ZIP"
-                                                               name="calc_shipping_postcode"
-                                                               id="calc_shipping_postcode" />
+                                                            placeholder="Postcode / ZIP" name="calc_shipping_postcode"
+                                                            id="calc_shipping_postcode" />
                                                     </p>
 
                                                     <p>
-                                                        <button type="submit" name="calc_shipping"
-                                                                value="1" class="button">
+                                                        <button type="submit" name="calc_shipping" value="1"
+                                                            class="button">
                                                             Update
                                                         </button>
                                                     </p>
-                                                    <input type="hidden"
-                                                           id="woocommerce-shipping-calculator-nonce"
-                                                           name="woocommerce-shipping-calculator-nonce"
-                                                           value="0070b10dec" /><input type="hidden"
-                                                                                       name="_wp_http_referer" value="/cart/" />
+                                                    <input type="hidden" id="woocommerce-shipping-calculator-nonce"
+                                                        name="woocommerce-shipping-calculator-nonce"
+                                                        value="0070b10dec" /><input type="hidden"
+                                                        name="_wp_http_referer" value="/cart/" />
                                                 </section>
                                             </form>
 
@@ -580,7 +570,7 @@
                                             <strong>
                                                 <span class="woocommerce-Price-amount amount">
                                                     <bdi>
-                                                        <span class="woocommerce-Price-currencySymbol">&#36;</span>4,403
+                                                        <span class="woocommerce-Price-currencySymbol">&#36;</span>@total
                                                     </bdi>
                                                 </span>
                                             </strong>
@@ -593,7 +583,7 @@
                                 <div class="wc-proceed-to-checkout">
 
                                     <a href="https://fiorello.qodeinteractive.com/checkout/"
-                                       class="checkout-button button alt wc-forward">
+                                        class="checkout-button button alt wc-forward">
                                         Proceed to checkout
                                     </a>
                                 </div>

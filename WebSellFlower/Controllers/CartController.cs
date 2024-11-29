@@ -1,76 +1,113 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using WebSellFlower.Models;
+using WebSellFlower.Request;
 
 namespace WebSellFlower.Controllers
 {
-	
-	public class CartController : Controller
+
+	public class CartController : BaseController
 	{
 		private readonly WebsiteBanHoaContext _context;
+		private const string CartSessionKey = "Cart";
+
+
 		public CartController(WebsiteBanHoaContext context)
 		{
 			_context = context;
 		}
+
+        private List<CartItem> GetCart()
+        {
+            var cartJson = HttpContext.Session.GetString(CartSessionKey);
+            if (string.IsNullOrEmpty(cartJson))
+            {
+                return new List<CartItem>();
+            }
+            return JsonConvert.DeserializeObject<List<CartItem>>(cartJson);
+        }
+
+        private void SaveCart(List<CartItem> cart)
+        {
+            var cartJson = JsonConvert.SerializeObject(cart);
+            HttpContext.Session.SetString(CartSessionKey, cartJson);
+        }
+
+
         [Route("/cart")]
-        public async Task<IActionResult> CartDetail()
+		public async Task<IActionResult> CartDetail()
 		{
-			if (_context.TblProducts == null)
-			{
-				return NotFound();
-			}
 
-			
+            var cart = GetCart(); 
 
-			return View();
+            // Nếu cần thêm thông tin sản phẩm từ database
+            var productIds = cart.Select(c => c.ProdId).ToList();
+            var products = await _context.TblProducts
+                .Where(p => productIds.Contains(p.ProdId))
+                .ToListAsync();
+
+           
+            // foreach (var item in cart)
+            // {
+            //     var product = products.FirstOrDefault(p => p.ProdId == item.ProductId);
+            //     if (product != null)
+            //     {
+            //         item.ProductName = product.ProdName;
+            //         item.Price = product.ProdPrice;
+            //     }
+            // }
+            ViewBag.Cart = cart;
+
+
+
+            return View(cart);
 		}
 
-		[Route("admin/product-list.html")]
-		public async Task<IActionResult> List()
-		{
-			if (_context.TblProducts == null)
-			{
-				return NotFound();
-			}
+        
 
-			var product = await _context.TblProducts
-			.Include(p => p.CategoryProd)
-			.Select(p => new ProductDto 
-			{ 
-				ProdId = p.ProdId, 
-				ProdName = p.ProdName, 
-				CategoryName = p.CategoryProd.CategoryProdName 
-			})
-			.ToListAsync();
+        [HttpPost]
+        [Route("api/cart/add")]
+        public IActionResult AddToCart([FromBody] AddToCartRequest request)
+        {
+            var cart = GetCart();
+
+            var item = cart.FirstOrDefault(c => c.ProdId == request.ProductId);
+            if (item == null)
+            {
+                
+                var product = _context.TblProducts.FirstOrDefault(p => p.ProdId == request.ProductId);
+                if (product == null) return NotFound();
+
+                cart.Add(new CartItem
+                {
+                    ProdId = product.ProdId,
+                    ProdName = product.ProdName,
+                    ProdThumb = product.ProdThumb,
+                    Quantity = request.Quantity,
+                    ProdPrice = product.ProdPrice
+                });
+            }
+            else
+            {
+                item.Quantity += request.Quantity;
+            }
+
+            SaveCart(cart);
+             return Ok(new { message = "Product added to cart.",data = cart });
+        }
 
 
-			if (product == null)
-			{
-				return NotFound();
-			}
-
-			ViewBag.products = product;
 
 
-			return View();
-		}
-		[Route("admin/product/edit/{id}")]
-		public async Task<IActionResult> Edit(int id)
-		{
-			var product = await _context.TblProducts.Include(i => i.CategoryProd)
-				.FirstOrDefaultAsync(m => m.ProdId == id);
-
-			if (product == null)
-				return NotFound();
-
-			return View(product);
-		}
-
-	}
-	public class ProductDto 
+    }
+	public class ProductDto : TblProduct
 	{
-		public int ProdId { get; set; }
-    	public string ProdName { get; set; }
 		public string CategoryName { get; set; }
+	}
+
+	public class CartItem : TblProduct
+	{		
+		public int? TotalPrice => Quantity * ProdPrice;
 	}
 }

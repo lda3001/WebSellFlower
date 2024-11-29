@@ -58,18 +58,8 @@
 											<a href="/product/@item.Alias-@(item.ProdId).html">@item.ProdName</a>
 									</h6>
 										<div class="mkdf-pli-price-holder">
-											@if (@item.ProdDiscount == 0)
-											{
-												<p class="price">
-													<span class="woocommerce-Price-amount amount">
-														<bdi>
-															<span class="woocommerce-Price-currencySymbol ">&#36;</span>@item.ProdPrice
-														</bdi>
-													</span>
-												</p>
-											}
-											else
-											{
+											
+											
 
 
 												<p class="price">
@@ -80,15 +70,29 @@
 															</bdi>
 														</span>
 													</del>
-													<ins>
+													@if (@item.ProdDiscount != 0)
+													{
+														<ins>
 														<span class="woocommerce-Price-amount amount">
 															<bdi>
 																<span class="woocommerce-Price-currencySymbol">&#36;</span>@item.ProdDiscount
 															</bdi>
 														</span>
 													</ins>
+													}
+													
 												</p>
-											}
+											
+											<div class="mkdf-pl-add-to-cart mkdf-default-skin">
+											<a rel="nofollow"
+											   href="../../product/cactus-in-orange/index.html"
+											   data-quantity="1" data-product_id="252"
+											   data-product_sku="751215"
+											   class="button product_type_simple ajax_add_to_cart mkdf-pl-btn">
+												Read
+												more
+											</a>
+										</div>
 
 
 										</div>
@@ -309,7 +313,7 @@
 		</div>
 	</div>
 </div>
-@section ScriptsUser {
+@section Scripts {
 
 	<script type="text/javascript" src="~/wp-includes/js/jquery/ui/mouse.min0028.js?ver=1.13.1"
 			id="jquery-ui-mouse-js"></script>
