@@ -107,8 +107,20 @@ List<TblProductReview>productReview = ViewBag.productReview;
 					<div class="mkdf-single-product-summary">
 						<div class="summary entry-summary">
 							<h2 itemprop="name" class="mkdf-single-product-title">@Model.ProdName</h2>
-						
 
+
+							@if (Model.ProdDiscount == 0)
+							{
+								<p class="price">
+									<span class="woocommerce-Price-amount amount">
+										<bdi>
+											<span class="woocommerce-Price-currencySymbol ">&#36;</span>@Model.ProdPrice
+										</bdi>
+									</span>
+								</p>
+							}
+							else
+							{
 								<p class="price">
 									<del aria-hidden="true">
 										<span class="woocommerce-Price-amount amount">
@@ -117,7 +129,6 @@ List<TblProductReview>productReview = ViewBag.productReview;
 											</bdi>
 										</span>
 									</del>
-									@if (Model.ProdDiscount != 0){
 									<ins>
 										<span class="woocommerce-Price-amount amount">
 											<bdi>
@@ -125,8 +136,8 @@ List<TblProductReview>productReview = ViewBag.productReview;
 											</bdi>
 										</span>
 									</ins>
-									}
 								</p>
+							}
 								
 								<div class="woocommerce-product-details__short-description">
 									<p>

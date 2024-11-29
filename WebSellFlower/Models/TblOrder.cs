@@ -21,6 +21,8 @@ public partial class TblOrder
 
     public DateTime? OrderDate { get; set; }
 
+    public double? OrderTotal { get; set; }
+
     public virtual TblCustomer? OrderCust { get; set; }
 
     public virtual ICollection<TblOrderDetail> TblOrderDetails { get; set; } = new List<TblOrderDetail>();
