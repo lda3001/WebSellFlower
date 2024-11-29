@@ -13,7 +13,7 @@ public partial class TblOrderDetail
 
     public int? Quantity { get; set; }
 
-    public int? Price { get; set; }
+    public double? Price { get; set; }
 
     public string? PaymentName { get; set; }
 
