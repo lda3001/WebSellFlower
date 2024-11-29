@@ -626,27 +626,27 @@ List<TblProductReview>productReview = ViewBag.productReview;
 		id="anti-spam-script-js"></script>
 		<script>
 
-		$('[role="tabpanel"]').css('display', 'none');
-		$('#tab-description[role="tabpanel"]').css('display', 'block');
+		jQueryNew('[role="tabpanel"]').css('display', 'none');
+		jQueryNew('#tab-description[role="tabpanel"]').css('display', 'block');
 		
 		
-        $(document).ready(function () {
+        jQueryNew(document).ready(function () {
             // Bắt sự kiện khi nhấn vào một liên kết
-            $('ul li a').on('click', function (e) {
+            jQueryNew('ul li a').on('click', function (e) {
                 e.preventDefault(); // Ngăn chặn hành vi mặc định của thẻ <a>
                 
                 // Lấy giá trị hash từ href
-                var hash = $(this).attr('href').substring(1);
+                var hash = jQueryNew(this).attr('href').substring(1);
 
                 // Cập nhật class "active" cho menu
-                var el = $('[href="#' + hash + '"]');
+                var el = jQueryNew('[href="#' + hash + '"]');
                 el.parent().siblings('li').removeClass('active');
                 el.parent().addClass('active');
 
-				  $('[role="tabpanel"]').css('display', 'none');
+				  jQueryNew('[role="tabpanel"]').css('display', 'none');
 
      
-        		$('#' + hash).css('display', 'block');
+        		jQueryNew('#' + hash).css('display', 'block');
                 // Cuộn đến section tương ứng
                 
 
