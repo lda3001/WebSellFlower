@@ -1,6 +1,6 @@
 ﻿@{
 	List<WebSellFlower.Controllers.CartItem> cartItems = ViewBag.CartItem;
-	int total = cartItems != null ? cartItems.Sum(item => item.TotalPrice) ?? 0 : 0;
+	double total = cartItems != null ? cartItems.Sum(item => item.TotalPrice) ?? 0 : 0;
 }
 <!DOCTYPE html>
 <html lang="en">

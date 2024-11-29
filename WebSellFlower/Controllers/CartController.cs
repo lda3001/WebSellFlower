@@ -108,6 +108,6 @@ namespace WebSellFlower.Controllers
 
 	public class CartItem : TblProduct
 	{		
-		public int? TotalPrice => Quantity * ProdPrice;
+		public double? TotalPrice => Quantity * ProdPrice;
 	}
 }
