@@ -18,9 +18,11 @@ namespace WebSellFlower.Areas.Admin.Controllers
         {
             _context = context;
         }
+        [Route("admin/blog-list.html")]
+		
 
-        // GET: Admin/TblPosts
-        public async Task<IActionResult> Index()
+		// GET: Admin/TblPosts
+		public async Task<IActionResult> Index()
         {
             var websiteBanHoaContext = _context.TblPosts.Include(t => t.CategoryPost);
             return View(await websiteBanHoaContext.ToListAsync());

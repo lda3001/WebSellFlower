@@ -99,16 +99,26 @@
 							<h2 itemprop="name" class="mkdf-single-product-title">@Model.ProdName</h2>
 
 
-							<p class="price">
-								<del aria-hidden="true">
+							@if (Model.ProdDiscount == 0)
+							{
+								<p class="price">
 									<span class="woocommerce-Price-amount amount">
 										<bdi>
-											<span class="woocommerce-Price-currencySymbol">&#36;</span>@Model.ProdPrice
+											<span class="woocommerce-Price-currencySymbol ">&#36;</span>@Model.ProdPrice
 										</bdi>
 									</span>
-								</del>
-								@if (Model.ProdDiscount != 0)
-								{
+								</p>
+							}
+							else
+							{
+								<p class="price">
+									<del aria-hidden="true">
+										<span class="woocommerce-Price-amount amount">
+											<bdi>
+												<span class="woocommerce-Price-currencySymbol">&#36;</span>@Model.ProdPrice
+											</bdi>
+										</span>
+									</del>
 									<ins>
 										<span class="woocommerce-Price-amount amount">
 											<bdi>
@@ -117,11 +127,11 @@
 											</bdi>
 										</span>
 									</ins>
-								}
-							</p>
-
-							<div class="woocommerce-product-details__short-description">
-								<p>
+								</p>
+							}
+								
+								<div class="woocommerce-product-details__short-description">
+									<p>
 									@Model.Description
 								</p>
 							</div>

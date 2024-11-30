@@ -20,7 +20,7 @@ namespace WebSellFlower.Controllers
         {
 			ViewBag.productCategories = _context.TblCategoryProducts.ToList();
 			ViewBag.productNew = _context.TblProducts.Where(m => (bool)m.IsNew).ToList();
-			ViewBag.Slider = _context.TblSliders.ToList();
+			ViewBag.Slider = _context.TblSliders.OrderBy(i=>i.SliderId).ToList();
 			return View();
         }
 
