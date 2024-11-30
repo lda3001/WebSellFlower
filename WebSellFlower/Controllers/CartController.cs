@@ -63,6 +63,11 @@ namespace WebSellFlower.Controllers
 
             return View(cart);
 		}
+        [HttpGet]
+        public IActionResult Refresh()
+        {
+            return ViewComponent("Cart");
+        }
 
         
 
@@ -94,7 +99,7 @@ namespace WebSellFlower.Controllers
             }
 
             SaveCart(cart);
-             return Ok(new { message = "Product added to cart.",data = cart });
+             return Ok(new { message = "Product added to cart."});
         }
 
 

@@ -1853,64 +1853,11 @@
 											<span aria-hidden="true" class="mkdf-icon-font-elegant icon_search "></span>
 										</span>
 									</a>
-									<div class="mkdf-shopping-cart-holder mkdf-cart-info-is-disabled">
-										<div class="mkdf-shopping-cart-inner">
-											<a itemprop="url" class="mkdf-header-cart" href="~/cart">
-												<span class="mkdf-cart-icon-number-holder">
-													<span class="mkdf-cart-icon">
-														<i class="mkdf-icon-dripicons dripicon dripicons-shopping-bag "></i>
-													</span>
-													<span class="mkdf-cart-number">@(@cartItems?.Count() ?? 0)</span>
-												</span>
-												<span class="mkdf-cart-icon-text">CART</span>
-												<span class="mkdf-cart-info">
-													<span class="mkdf-cart-info-total">
-														(<span class="woocommerce-Price-amount amount">
-															<span class="woocommerce-Price-currencySymbol">&#036;</span>@total
-														</span>)
-													</span>
-												</span>
-											</a>
-											<div class="mkdf-shopping-cart-dropdown">
-												@if(cartItems != null && cartItems.Any()){
-													<ul>
-														@foreach(var item in cartItems){
-															<li>
-																	<div class="mkdf-item-image-holder">
-																		<a itemprop="url" href="https://fiorello.qodeinteractive.com/product/foxglove-flower/">
-																			<img width="300" height="400" src="@item.ProdThumb" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="k">                                    </a>
-																	</div>
-																	<div class="mkdf-item-info-holder">
-																		<h6 itemprop="name" class="mkdf-product-title"><a itemprop="url" href="https://fiorello.qodeinteractive.com/product/foxglove-flower/">@item.ProdName</a>
-																		</h6>
-																		<span class="mkdf-quantity">@item.Quantity</span>
-																		<span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>@item.ProdPrice</bdi></span>									<a href="https://fiorello.qodeinteractive.com/cart/?remove_item=bac9162b47c56fc8a4d2a519803d51b3&amp;_wpnonce=c4330ce01f" class="remove" title="Remove this item"><span class="icon-arrows-remove"></span></a>                                </div>
-																</li>
-														}
-						                            	
-																					<div class="mkdf-cart-bottom">
-																<div class="mkdf-subtotal-holder clearfix">
-																	<span class="mkdf-total">TOTAL:</span>
-																	<span class="mkdf-total-amount">
-																	<span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>@total</span>                            </span>
-																</div>
-																							<div class="mkdf-btn-holder clearfix">
-																	<a itemprop="url" href="https://fiorello.qodeinteractive.com/cart/" class="mkdf-view-cart" data-title="VIEW CART"><span>VIEW CART</span></a>
-																</div>
-																<div class="mkdf-btn-holder clearfix">
-																	<a itemprop="url" href="https://fiorello.qodeinteractive.com/checkout/" class="mkdf-view-cart" data-title="CHECKOUT"><span>CHECKOUT</span></a>
-																</div>
-															</div>
-														</ul>
-												}else{
-													<ul>
-													<li class="mkdf-empty-cart">No products in the cart.</li>
-													</ul>
-												}
-												
-											</div>
-										</div>
+									<div class="mkdf-shopping-cart-holder mkdf-cart-info-is-disabled" id="cart-container">
+										@await Component.InvokeAsync("Cart")
 									</div>
+									
+									
 								</div>
 							</div>
 						</div>

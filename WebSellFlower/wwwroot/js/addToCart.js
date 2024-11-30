@@ -15,11 +15,21 @@ jQueryNew(document).on('click', '.add_to_cart_button', function (e) {
         }),
         contentType: 'application/json',
         success: function (response) {
-            // Cập nhật UI sau khi thêm thành công
+           
+            jQueryNew.ajax({
+                url: '/Cart/Refresh', 
+                type: 'GET',
+                success: function (partialHtml) {
+                    
+                    jQueryNew('#cart-container').html(partialHtml);
+                },
+                error: function () {
+                    alert('Failed to refresh the cart.');
+                },
+            });
             alert('Product added to cart successfully!');
         },
         error: function (xhr) {
-            // Hiển thị lỗi nếu có
             alert('Failed to add product to cart.');
         },
     });
