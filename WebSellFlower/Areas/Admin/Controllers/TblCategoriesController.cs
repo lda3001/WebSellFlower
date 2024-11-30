@@ -18,7 +18,7 @@ namespace WebSellFlower.Areas.Admin.Controllers
         {
             _context = context;
         }
-
+        [Route("admin/Menu-list.html")]
         // GET: Admin/TblCategories
         public async Task<IActionResult> Index()
         {

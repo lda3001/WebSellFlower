@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WebSellFlower")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c1fab533a3b13435a8fca09d8b8b6324fc68dcba")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+994ec9480ad4ca8853b46a07e4698576e140ec7b")]
 [assembly: System.Reflection.AssemblyProductAttribute("WebSellFlower")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WebSellFlower")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
