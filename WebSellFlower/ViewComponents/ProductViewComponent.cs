@@ -13,13 +13,21 @@ namespace WebSellFlower.ViewComponents
 			_context = context;
 		}
 
-		public async Task<IViewComponentResult> InvokeAsync()
+       /* public IViewComponentResult Invoke(IEnumerable<TblProduct> products)
+        {
+            return View(products); 
+        }*/
+        public async Task<IViewComponentResult> InvokeAsync(IEnumerable<TblProduct> products)
 		{
-			var items = _context.TblProducts.Include(m => m.CategoryProd)
-				.Where(m => (bool)m.IsActive).Where(m => (bool)m.IsNew);
+			if(products == null)
+			{
+                 products = _context.TblProducts.Include(m => m.CategoryProd)
+                .Where(m => (bool)m.IsActive).Where(m => (bool)m.IsNew).OrderBy(m => m.ProdName).ToList();
+            }
+			
 
 			return await Task.FromResult<IViewComponentResult>(
-				View(items.OrderByDescending(m => m.ProdId).ToList()));
+				View(products));
 		}
 	}
 }

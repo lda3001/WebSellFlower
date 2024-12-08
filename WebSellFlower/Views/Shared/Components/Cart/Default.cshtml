@@ -29,21 +29,21 @@
                 <ul>
                     @foreach (var item in Model)
                     {
+                    string sUrl = $"/product/{item.Alias}-{item.ProdId}.html";
                         <li> 
                             <div class="mkdf-item-image-holder">
-                                <a itemprop="url" href="https://fiorello.qodeinteractive.com/product/foxglove-flower/">
+                            <a itemprop="url" href="@sUrl">
                                     <img width="300" height="400" src="@item.ProdThumb"
                                         class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="k"> </a>
                             </div>
                             <div class="mkdf-item-info-holder">
                                 <h6 itemprop="name" class="mkdf-product-title"><a itemprop="url"
-                                        href="https://fiorello.qodeinteractive.com/product/foxglove-flower/">@item.ProdName</a>
+                                   href="@sUrl">@item.ProdName</a>
                                 </h6>
                                 <span class="mkdf-quantity">@item.Quantity</span>
                                 <span class="woocommerce-Price-amount amount"><bdi><span
-                                            class="woocommerce-Price-currencySymbol">$</span>@item.ProdPrice</bdi></span> <a
-                                    href="https://fiorello.qodeinteractive.com/cart/?remove_item=bac9162b47c56fc8a4d2a519803d51b3&amp;_wpnonce=c4330ce01f"
-                                    class="remove" title="Remove this item"><span class="icon-arrows-remove"></span></a>
+                                            class="woocommerce-Price-currencySymbol">$</span>@item.ProdPrice</bdi></span> <a role="button"
+                                    class="remove remove_item_ajax" title="Remove this item" data-product_id="@item.ProdId"><span class="icon-arrows-remove"></span></a>
                             </div>
                         </li>
                     }

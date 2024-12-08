@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Components.QuickGrid;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using WebSellFlower.Models;
 using WebSellFlower.Request;
+using WebSellFlower.Requests;
 
 namespace WebSellFlower.Controllers
 {
@@ -69,7 +71,12 @@ namespace WebSellFlower.Controllers
             return ViewComponent("Cart");
         }
 
-        
+        [HttpPost, ActionName("Cart")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdateCart(int id)
+        {
+            return null;
+        }
 
         [HttpPost]
         [Route("api/cart/add")]
@@ -90,7 +97,9 @@ namespace WebSellFlower.Controllers
                     ProdName = product.ProdName,
                     ProdThumb = product.ProdThumb,
                     Quantity = request.Quantity,
-                    ProdPrice = product.ProdPrice
+                    ProdPrice = product.ProdPrice,
+                    Alias = product.Alias,
+
                 });
             }
             else
@@ -101,6 +110,23 @@ namespace WebSellFlower.Controllers
             SaveCart(cart);
              return Ok(new { message = "Product added to cart."});
         }
+        
+
+        [HttpPost]
+        [Route("api/cart/remove")]
+        public IActionResult RemoveFromCart([FromBody] RemoveProductRequest request)
+        {
+            var cart = GetCart();
+            var item = cart.FirstOrDefault(c => c.ProdId == request.productId);
+            if (item != null)
+            {
+                cart.Remove(item);
+            }
+            SaveCart(cart);
+
+            return Ok(new { message = "Product remove to cart." });
+        }
+
 
 
 
