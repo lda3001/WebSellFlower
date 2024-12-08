@@ -147,10 +147,17 @@
 										title="Qty" size="4" inputmode="numeric" />
 									<span class="mkdf-quantity-plus arrow_triangle-right"></span>
 								</div>
-								<button type="button" id="submitCart" class="single_add_to_cart_button button alt">
+								<button type="button" id="submitCart" class="single_add_to_cart_button button alt" style="color : #fff">
 									Add to cart
 								</button>
 							</form>
+							<style>
+						.mkdf-woo-single-page .mkdf-single-product-summary .button[type=button].single_add_to_cart_button {
+					background-color: #080808;
+					padding: 14px 42px;
+				}
+				
+							</style>
 							<div class="product_meta">
 								<span class="sku_wrapper">SKU: <span class="sku">7555</span></span>
 								<span class="posted_in">
@@ -610,7 +617,7 @@
 
 
 		jQueryNew(document).ready(function () {
-			jQueryNew('ul li a').on('click', function (e) {
+			jQueryNew('.woocommerce-tabs ul li a').on('click', function (e) {
 				e.preventDefault(); 
 
 				var hash = jQueryNew(this).attr('href').substring(1);
