@@ -24,6 +24,7 @@ namespace WebSellFlower.Controllers
             if (string.IsNullOrEmpty(cartJson))
             {
                 return new List<CartItem>();
+
             }
             return JsonConvert.DeserializeObject<List<CartItem>>(cartJson);
         }
