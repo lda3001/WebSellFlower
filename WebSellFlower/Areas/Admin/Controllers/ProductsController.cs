@@ -76,6 +76,7 @@ namespace WebSellFlower.Areas.Admin.Controllers
         [Route("admin/add-product.html")]
         public IActionResult Create()
         {
+            ViewBag.listCategory = _context.TblCategoryProducts.ToList();
             ViewData["CategoryProdId"] = new SelectList(_context.TblCategoryProducts, "CategoryProdId", "CategoryProdId");
             return View();
         }
@@ -84,17 +85,45 @@ namespace WebSellFlower.Areas.Admin.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProdId,CategoryProdId,ProdName,ProdPrice,ProdDiscount,Detail,Alias,IsBestSeller,IsActive,ProdThumb,ProdImg,ProdImg1,ProdImg2,IsNew,Description,Quantity,ProdImg3")] TblProduct tblProduct)
+        public async Task<IActionResult> Create([Bind("CategoryProdId,ProdName,ProdPrice,ProdDiscount,Detail,IsActive,ProdThumb,ProdImg,ProdImg1,ProdImg2,Description,ProdImg3")] TblProduct tblProduct)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(tblProduct);
+            
+                TblProduct product = new TblProduct();
+                product.ProdName = tblProduct.ProdName;
+                product.ProdPrice = tblProduct.ProdPrice;
+                product.CategoryProdId = tblProduct.CategoryProdId;
+                product.IsActive = tblProduct.IsActive;
+                product.Quantity = tblProduct.Quantity;
+                product.Description = tblProduct.Description;
+                product.Detail = tblProduct.Detail;
+                if (tblProduct.ProdThumb != null)
+                {
+                    product.ProdThumb = tblProduct.ProdThumb;
+                }
+                if (tblProduct.ProdImg != null)
+                {
+                    product.ProdImg = tblProduct.ProdImg;
+                }
+                if (tblProduct.ProdImg1 != null)
+                {
+                    product.ProdImg1 = tblProduct.ProdImg1;
+                }
+                if (tblProduct.ProdImg2 != null)
+                {
+                    product.ProdImg2 = tblProduct.ProdImg2;
+                }
+                if (tblProduct.ProdImg3 != null)
+                {
+                    product.ProdImg3 = tblProduct.ProdImg3;
+
+                }
+                product.Alias = Function.TitleslugGenerationAlias(tblProduct.ProdName);
+                _context.Add(product);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
+               
+            
             ViewData["CategoryProdId"] = new SelectList(_context.TblCategoryProducts, "CategoryProdId", "CategoryProdId", tblProduct.CategoryProdId);
-            return View(tblProduct);
+            return StatusCode(200, new { msg = "Tạo Sản Phẩm Thành Công", success = 200 });
         }
 
         // GET: Admin/Products/Edit/5
@@ -133,6 +162,8 @@ namespace WebSellFlower.Areas.Admin.Controllers
                 product.Detail = tblProduct.Detail;
                 product.Description = tblProduct.Description;
                 product.CategoryProdId = tblProduct.CategoryProdId;
+                product.ProdDiscount = tblProduct.ProdDiscount;
+                product.IsActive = tblProduct.IsActive;
                 if(tblProduct.ProdThumb != null)
                 {
                     product.ProdThumb = tblProduct.ProdThumb;
@@ -140,6 +171,18 @@ namespace WebSellFlower.Areas.Admin.Controllers
                 if(tblProduct.ProdImg != null)
                 {
                     product.ProdImg = tblProduct.ProdImg;
+                }
+                if (tblProduct.ProdImg1 != null)
+                {
+                    product.ProdImg1 = tblProduct.ProdImg1;
+                }
+                if (tblProduct.ProdImg2 != null)
+                {
+                    product.ProdImg2 = tblProduct.ProdImg2;
+                }
+                if (tblProduct.ProdImg3 != null)
+                {
+                    product.ProdImg3 = tblProduct.ProdImg3;
                 }
                 product.Alias = Function.TitleslugGenerationAlias(tblProduct.ProdName);
                     _context.Update(product);

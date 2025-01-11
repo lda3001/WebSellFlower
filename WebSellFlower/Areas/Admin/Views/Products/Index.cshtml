@@ -86,8 +86,8 @@
                                 </td>
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <span class="text-bg-@(@product.IsActive ? "success" : "danger") p-1 rounded-circle"></span>
-                                        <p class="mb-0 ms-2">@(@product.IsActive ? "Published" : "Inactive")</p>
+                                        <span class="text-bg-@(@product.IsActive ? "success" : "light") p-1 rounded-circle"></span>
+                                        <p class="mb-0 ms-2">@(@product.IsActive ? "Published" : "Draft")</p>
                                     </div>
                                 </td>
                                 <td>
@@ -113,7 +113,7 @@
                         <option value="1">10</option>
                         <option value="2">25</option>
                     </select>
-                    <p class="mb-0 fs-2">1–5 of 12</p>
+                    <p class="mb-0 fs-2">1–5 of @ViewBag.products.Count</p>
                     <nav aria-label="...">
                         <ul class="pagination justify-content-center mb-0 ms-8 ms-sm-9">
                             <li class="page-item p-1">

@@ -2,7 +2,7 @@
 
 
 @{
-  List<TblCategoryProduct> tblCategoryProducts = ViewBag.listCategory;
+    List<TblCategoryProduct> tblCategoryProducts = ViewBag.listCategory;
     List<TblProductReview> tblProductReviews = ViewBag.listComment;
 }
 @section Styles {
@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css" />
 
     @* <link rel="stylesheet" href="~/assets/libs/quill/dist/quill.snow.css"> *@
- @*  <link rel="stylesheet" href="~/assets/libs/dropzone/dist/min/dropzone.min.css"> *@
-  <link rel="stylesheet" href="~/assets/libs/select2/dist/css/select2.min.css">
-  <style>
+    @*  <link rel="stylesheet" href="~/assets/libs/dropzone/dist/min/dropzone.min.css"> *@
+    <link rel="stylesheet" href="~/assets/libs/select2/dist/css/select2.min.css">
+    <style>
         .dropzone .dz-remove {
             color: #ff4d4d;
             font-weight: bold;
@@ -22,87 +22,90 @@
         .dropzone .dz-remove:hover {
             text-decoration: underline;
         }
-  </style>
+    </style>
 }
 
 <div class="card card-body py-3">
-            <div class="row align-items-center">
-              <div class="col-12">
-                <div class="d-sm-flex align-items-center justify-space-between">
-                  <h4 class="mb-4 mb-sm-0 card-title">Edit Product</h4>
-                  <nav aria-label="breadcrumb" class="ms-auto">
+    <div class="row align-items-center">
+        <div class="col-12">
+            <div class="d-sm-flex align-items-center justify-space-between">
+                <h4 class="mb-4 mb-sm-0 card-title">Edit Product</h4>
+                <nav aria-label="breadcrumb" class="ms-auto">
                     <ol class="breadcrumb">
-                      <li class="breadcrumb-item d-flex align-items-center">
-                        <a class="text-muted text-decoration-none d-flex" href="index.html">
-                          <iconify-icon icon="solar:home-2-line-duotone" class="fs-6"></iconify-icon>
-                        </a>
-                      </li>
-                      <li class="breadcrumb-item" aria-current="page">
-                        <span class="badge fw-medium fs-2 bg-primary-subtle text-primary">
-                          Edit Product
-                        </span>
-                      </li>
+                        <li class="breadcrumb-item d-flex align-items-center">
+                            <a class="text-muted text-decoration-none d-flex" href="index.html">
+                                <iconify-icon icon="solar:home-2-line-duotone" class="fs-6"></iconify-icon>
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item" aria-current="page">
+                            <span class="badge fw-medium fs-2 bg-primary-subtle text-primary">
+                                Edit Product
+                            </span>
+                        </li>
                     </ol>
-                  </nav>
-                </div>
-              </div>
+                </nav>
             </div>
-          </div>
+        </div>
+    </div>
+</div>
 
-          <!-- start Basic Area Chart -->
-         
-    <div class="row">
-        <div class="col-lg-8 ">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center mb-7">
-                        <h4 class="card-title">General</h4>
+<!-- start Basic Area Chart -->
 
-                        <button class="navbar-toggler border-0 shadow-none d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-                            <i class="ti ti-menu fs-5 d-flex"></i>
+<div class="row">
+    <div class="col-lg-8 ">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-7">
+                    <h4 class="card-title">General</h4>
+
+                    <button class="navbar-toggler border-0 shadow-none d-lg-none" type="button"
+                        data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                        <i class="ti ti-menu fs-5 d-flex"></i>
+                    </button>
+                </div>
+                <form action="#" class="form-horizontal">
+                    <div class="mb-4">
+                        <label class="form-label">
+                            Product Name <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" class="form-control" placeholder="Product Name" id="ProdName"
+                            value="@Model.ProdName" name="ProdName">
+                        <p class="fs-2">A product name is required and recommended to be unique.</p>
+                    </div>
+                    <div>
+                        <label class="form-label">Mô Tả</label>
+                        <textarea class="form-control" name="Description" rows="5"
+                            id="Description">@Model.Description</textarea>
+
+                        <p class="fs-2 mb-0">Set a Description to the product for better visibility.</p>
+                    </div>
+                    <div>
+                        <label class="form-label">Detail</label>
+                        <div id="editor" name="Detail">
+                            @Html.Raw(@Model.Detail)
+                        </div>
+
+                        <p class="fs-2 mb-0">Set a Detail to the product for better visibility.</p>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-7">Media</h4>
+
+                <form action="#" class="dropzone dz-clickable mb-2" id="myDropzone">
+                    <div class="dz-default dz-message">
+                        <button class="dz-button" type="button">
+                            Drop files here
+                            to upload
                         </button>
                     </div>
-                    <form action="#" class="form-horizontal">
-                        <div class="mb-4">
-                            <label class="form-label">
-                                Product Name <span class="text-danger">*</span>
-                            </label>
-                            <input type="text" class="form-control" placeholder="Product Name" id="ProdName" value="@Model.ProdName" name="ProdName">
-                            <p class="fs-2">A product name is required and recommended to be unique.</p>
-                        </div>
-                        <div>
-                            <label class="form-label">Mô Tả</label>
-                        <textarea class="form-control" name="Detail" rows="5" id="Detail">@Model.Description</textarea>
-
-                            <p class="fs-2 mb-0">Set a detail to the product for better visibility.</p>
-                        </div>
-                        <div>
-                        <label class="form-label">Detail</label>
-                            <div id="editor" name="Description">
-                            @Html.Raw(@Model.Detail)
-                            </div>
-
-                            <p class="fs-2 mb-0">Set a description to the product for better visibility.</p>
-                        </div>
-
-                    </form>
-                </div>
+                </form>
             </div>
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title mb-7">Media</h4>
-
-                    <form action="#" class="dropzone dz-clickable mb-2" id="myDropzone">
-                        <div class="dz-default dz-message">
-                            <button class="dz-button" type="button">
-                                Drop files here
-                                to upload
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            @* <div class="card">
+        </div>
+        @* <div class="card">
             <div class="card-body">
             <h4 class="card-title mb-7">Variation</h4>
 
@@ -137,62 +140,76 @@
             </form>
             </div>
             </div> *@
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title mb-7">Pricing</h4>
-                    <form>
-                        <div class="mb-7">
-                            <label class="form-label">
-                                Base Price <span class="text-danger">*</span>
-                            </label>
-                            <input type="text" class="form-control" placeholder="Product Price" id="ProdPrice" value="@Model.ProdPrice">
-                            <p class="fs-2">Set the product price.</p>
-                        </div>
-                        <div class="mb-7">
-                            <label class="form-label">Discount Type</label>
-                            <nav>
-                                <div class="nav nav-tabs justify-content-between align-items-center gap-9" id="nav-tab" role="tablist">
-                                    <label for="radio1" class="form-check-label form-check p-3  border gap-2 rounded-2 d-flex flex-fill justify-content-center cursor-pointer" id="customControlValidation2" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" aria-controls="nav-home">
-                                        <input type="radio" class="form-check-input" name="new-products" id="radio1" checked>
-                                        <span class="fs-4 text-dark">No Discount</span>
-                                    </label>
-                                    @* <label for="radio2" class="form-check-label p-3 form-check border gap-2 rounded-2 d-flex flex-fill justify-content-center cursor-pointer" id="customControlValidation2" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" aria-controls="nav-profile">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-7">Pricing</h4>
+                <form>
+                    <div class="mb-7">
+                        <label class="form-label">
+                            Base Price <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" class="form-control" placeholder="Product Price" id="ProdPrice"
+                            value="@Model.ProdPrice">
+                        <p class="fs-2">Set the product price.</p>
+                    </div>
+                    <div class="mb-7">
+                        <label class="form-label">Discount Type</label>
+                        <nav>
+                            <div class="nav nav-tabs justify-content-between align-items-center gap-9" id="nav-tab"
+                                role="tablist">
+                                <label for="radio1"
+                                    class="form-check-label form-check p-3  border gap-2 rounded-2 d-flex flex-fill justify-content-center cursor-pointer"
+                                    id="customControlValidation2" id="nav-home-tab" data-bs-toggle="tab"
+                                    data-bs-target="#nav-home" aria-controls="nav-home">
+                                    <input type="radio" class="form-check-input" name="new-products" id="radio1"
+                                        checked="@(Model.ProdDiscount == 0)">
+                                    <span class="fs-4 text-dark">No Discount</span>
+                                </label>
+                                @* <label for="radio2" class="form-check-label p-3 form-check border gap-2 rounded-2 d-flex flex-fill justify-content-center cursor-pointer" id="customControlValidation2" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" aria-controls="nav-profile">
                                     <input type="radio" class="form-check-input" name="new-products" id="radio2">
                                     <span class="fs-4 text-dark">Percentage %</span>
                                     </label> *@
-                                    <label for="radio3" class="form-check-label form-check p-3 border gap-2 rounded-2 d-flex flex-fill justify-content-center cursor-pointer" id="customControlValidation2" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" aria-controls="nav-contact">
-                                        <input type="radio" class="form-check-input" name="new-products" id="radio3">
-                                        <span class="fs-4 text-dark">Fixed Price</span>
-                                    </label>
-                                </div>
-                            </nav>
-                            <div class="tab-content" id="nav-tabContent">
-                                <div class="tab-pane fade mt-7" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
-                                    <form class="mt-3">
-                                        <div class="form-group">
-                                            <label class="form-label">
-                                                Set Discount Percentage <span class="text-danger">*</span>
-                                            </label>
-                                            <input type="range" class="form-range" id="customRange1" min="0" max="100" step="10">
-                                            <p class="fs-2">Set a percentage discount to be applied on this product.</p>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="tab-pane fade mt-7" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
-                                    <div class="mb-7">
+                                <label for="radio3"
+                                    class="form-check-label form-check p-3 border gap-2 rounded-2 d-flex flex-fill justify-content-center cursor-pointer"
+                                    id="customControlValidation2" id="nav-contact-tab" data-bs-toggle="tab"
+                                    data-bs-target="#nav-contact" aria-controls="nav-contact">
+                                    <input type="radio" class="form-check-input" name="new-products" id="radio3"
+                                        checked="@(Model.ProdDiscount != 0)">
+                                    <span class="fs-4 text-dark">Fixed Price</span>
+                                </label>
+                            </div>
+                        </nav>
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade mt-7" id="nav-profile" role="tabpanel"
+                                aria-labelledby="nav-profile-tab" tabindex="0">
+                                <form class="mt-3">
+                                    <div class="form-group">
                                         <label class="form-label">
-                                            Fixed Discounted Price <span class="text-danger">*</span>
+                                            Set Discount Percentage <span class="text-danger">*</span>
                                         </label>
-                                        <input type="text" class="form-control" placeholder="Discounted Price">
-                                        <p class="fs-2">
-                                            Set the discounted product price. The product will be reduced at the
-                                            determined fixed price.
-                                        </p>
+                                        <input type="range" class="form-range" id="customRange1" min="0" max="100"
+                                            step="10">
+                                        <p class="fs-2">Set a percentage discount to be applied on this product.</p>
                                     </div>
+                                </form>
+                            </div>
+                            <div class="tab-pane fade mt-7 @(Model.ProdDiscount != null && Model.ProdDiscount != 0 ? "active show" : "") "
+                                id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
+                                <div class="mb-7">
+                                    <label class="form-label">
+                                        Fixed Discounted Price <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="text" class="form-control" placeholder="Discounted Price"
+                                        id="ProdDiscount" value="@Model.ProdDiscount">
+                                    <p class="fs-2">
+                                        Set the discounted product price. The product will be reduced at the
+                                        determined fixed price.
+                                    </p>
                                 </div>
                             </div>
                         </div>
-                        @* <div class="row">
+                    </div>
+                    @* <div class="row">
                         <div class="col-md-6">
                         <div class="mb-4">
                         <label class="form-label">
@@ -216,133 +233,138 @@
                         </div>
                         </div>
                         </div> *@
+                </form>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-7">
+                    Customer Reviews
+                </h4>
+                <div cass="table-responsive mb-4 rounded-1">
+                    <table class="table mb-0 align-middle">
+                        <thead class="text-dark fs-4">
+                            <tr>
+                                <th>
+                                    <h6 class="fs-3 fw-semibold mb-0">Customer</h6>
+                                </th>
+                                <th>
+                                    <h6 class="fs-3 fw-semibold mb-0">Comment</h6>
+                                </th>
+                                <th>
+                                    <h6 class="fs-3 fw-semibold mb-0 text-end">Date</h6>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var review in tblProductReviews)
+                            {
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <img src="../assets/images/profile/user-11.jpg" class="rounded-circle"
+                                                width="30" height="30" />
+                                            <div class="ms-3">
+                                                <h6 class="fs-4 fw-semibold mb-0 text-nowrap">@review.Name</h6>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center gap-1 mb-1">
+                                            <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
+                                            <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
+                                            <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
+                                            <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
+                                            <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
+                                        </div>
+                                        <span class="mb-0 fw-normal fs-3 mt-2">@review.Detail</span>
+                                    </td>
+                                    <td>
+                                        <p class="mb-0 fw-normal fs-3 text-end text-nowrap">@review.CreatedDate</p>
+                                    </td>
+                                </tr>
+                            }
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button class="btn btn-primary" id="saveButton" onclick="UpdateProduct()">
+                Save changes
+            </button>
+            <button type="button" class="btn bg-danger-subtle text-danger ms-6">
+                Cancel
+            </button>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="offcanvas-lg offcanvas-end overflow-auto" tabindex="-1" id="offcanvasRight"
+            aria-labelledby="offcanvasRightLabel">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-7">Thumbnail</h4>
+                    <form action="#" class="dropzone dz-clickable mb-2" id="thumbDropZone">
+                        <div class="dz-default dz-message">
+                            <button class="dz-button" type="button">
+                                Drop Thumbnail here
+                                to upload
+                            </button>
+                        </div>
+                    </form>
+                    <p class="fs-2 text-center mb-0">
+                        Set the product thumbnail image. Only *.png, *.jpg and *.jpeg image files are accepted.
+                    </p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex align-items-center justify-content-between mb-7">
+                        <h4 class="card-title">Status</h4>
+                        <div class="p-2 h-100 bg-@(Model.IsActive == true ? "success" : "light") rounded-circle"></div>
+                    </div>
+                    <form action="#" class="form-horizontal">
+                        <div>
+
+                            <select class="form-select mr-sm-2  mb-2" id="IsActive">
+                                <option value="True" selected="@(Model.IsActive == true)">Published</option>
+                                <option value="False" selected="@(Model.IsActive == false)">Draft</option>
+
+                            </select>
+                            <p class="fs-2 mb-0">
+                                Set the product status.
+                            </p>
+                        </div>
                     </form>
                 </div>
             </div>
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title mb-7">
-                        Customer Reviews
-                    </h4>
-                    <div cass="table-responsive mb-4 rounded-1">
-                        <table class="table mb-0 align-middle">
-                            <thead class="text-dark fs-4">
-                                <tr>
-                                    <th>
-                                        <h6 class="fs-3 fw-semibold mb-0">Customer</h6>
-                                    </th>
-                                    <th>
-                                        <h6 class="fs-3 fw-semibold mb-0">Comment</h6>
-                                    </th>
-                                    <th>
-                                        <h6 class="fs-3 fw-semibold mb-0 text-end">Date</h6>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var review in tblProductReviews)
-                                {
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <img src="../assets/images/profile/user-11.jpg" class="rounded-circle" width="30" height="30" />
-                                                <div class="ms-3">
-                                                    <h6 class="fs-4 fw-semibold mb-0 text-nowrap">@review.Name</h6>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center gap-1 mb-1">
-                                                <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
-                                                <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
-                                                <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
-                                                <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
-                                                <iconify-icon icon="solar:star-bold" class="text-warning fs-3"></iconify-icon>
-                                            </div>
-                                            <span class="mb-0 fw-normal fs-3 mt-2">@review.Detail</span>
-                                        </td>
-                                        <td>
-                                            <p class="mb-0 fw-normal fs-3 text-end text-nowrap">@review.CreatedDate</p>
-                                        </td>
-                                    </tr>
-                                }
+                    <h4 class="card-title mb-7">Product Details</h4>
+                    <div class="mb-3">
+                        <label class="form-label">Categories</label>
+                        <select class="select2 form-control" id="CategoryProdId">
+                            @foreach (var category in tblCategoryProducts)
+                            {
+                                <option value="@category.CategoryProdId"
+                                    selected="@(category.CategoryProdId == @Model.CategoryProdId ? "selected" : null)">
+                                    @category.CategoryProdName</option>
+                            }
 
 
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        
-            <div class="form-actions">
-                <button class="btn btn-primary" id="saveButton" onclick="UpdateProduct()">
-                    Save changes
-                </button>
-                <button type="button" class="btn bg-danger-subtle text-danger ms-6">
-                    Cancel
-                </button>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="offcanvas-lg offcanvas-end overflow-auto" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title mb-7">Thumbnail</h4>
-                        <form action="upload" class="dropzone dz-clickable mb-2" id="thumbDropZone">
-                            <div class="dz-default dz-message">
-                                <button class="dz-button" type="button">
-                                    Drop Thumbnail here
-                                    to upload
-                                </button>
-                            </div>
-                        </form>
-                        <p class="fs-2 text-center mb-0">
-                            Set the product thumbnail image. Only *.png, *.jpg and *.jpeg image files are accepted.
+                        </select>
+                        <p class="fs-2 mb-0">
+                            Add product to a category.
                         </p>
                     </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center justify-content-between mb-7">
-                            <h4 class="card-title">Status</h4>
-                            <div class="p-2 h-100 bg-success rounded-circle"></div>
-                        </div>
-                        <form action="#" class="form-horizontal">
-                            <div>
-                            <select class="form-select mr-sm-2  mb-2" id="IsActive">
-                                    <option value="1">Published</option>
-                                    <option value="0">Draft</option>
-
-                                </select>
-                                <p class="fs-2 mb-0">
-                                    Set the product status.
-                                </p>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title mb-7">Product Details</h4>
-                        <div class="mb-3">
-                            <label class="form-label">Categories</label>
-                        <select class="select2 form-control" id="CategoryProdId">
-                                @foreach (var category in tblCategoryProducts)
-                                {
-                                    <option value="@category.CategoryProdId">@category.CategoryProdName</option>
-                                }
-
-
-                            </select>
-                            <p class="fs-2 mb-0">
-                                Add product to a category.
-                            </p>
-                        </div>
-                        <button type="button" class="btn bg-primary-subtle text-primary ">
-                            <span class="fs-4 me-1">+</span>
-                            Create New Category
-                        </button>
-                        @*  <div class="mt-7">
+                    <button type="button" class="btn bg-primary-subtle text-primary ">
+                        <span class="fs-4 me-1">+</span>
+                        Create New Category
+                    </button>
+                    @*  <div class="mt-7">
                         <label class="form-label">Tags</label>
                         <select class="select2 form-control" multiple="multiple">
                         <option value="">New</option>
@@ -356,9 +378,9 @@
                         Add product to a category.
                         </p>
                         </div> *@
-                    </div>
                 </div>
-                @* <div class="card">
+            </div>
+            @* <div class="card">
                 <div class="card-body">
                 <h4 class="card-title mb-2">$2,420</h4>
                 <div class="d-flex align-items-center">
@@ -374,7 +396,7 @@
                 </div>
                 </div>
                 </div> *@
-                @*  <div class="card">
+            @*  <div class="card">
                 <div class="card-body">
                 <h4 class="card-title mb-7">Product Template</h4>
                 <form action="#" class="form-horizontal">
@@ -393,31 +415,31 @@
                 </form>
                 </div>
                 </div> *@
-            </div>
         </div>
     </div>
+</div>
 
-         
+
 @section Scripts {
 
-    
+
     <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
 
 
 
- @*    <script src="~/assets/libs/quill/dist/quill.min.js"></script> *@
-  <script src="~/assets/js/forms/quill-init.js"></script>
-  @* <script src="~/assets/libs/dropzone/dist/min/dropzone.min.js"></script> *@
-  <script src="~/assets/libs/select2/dist/js/select2.full.min.js"></script>
-  <script src="~/assets/libs/select2/dist/js/select2.min.js"></script>
-  <script src="~/assets/js/forms/select2.init.js"></script>
-  <script src="~/assets/libs/jquery.repeater/jquery.repeater.min.js"></script>
-  <script src="~/assets/libs/jquery-validation/dist/jquery.validate.min.js"></script>
-  <script src="~/assets/js/forms/repeater-init.js"></script>
-  <script src="~/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
-  <script src="~/assets/js/apps/edit-product.js"></script>
-  <script>
+    @*    <script src="~/assets/libs/quill/dist/quill.min.js"></script> *@
+    <script src="~/assets/js/forms/quill-init.js"></script>
+    @* <script src="~/assets/libs/dropzone/dist/min/dropzone.min.js"></script> *@
+    <script src="~/assets/libs/select2/dist/js/select2.full.min.js"></script>
+    <script src="~/assets/libs/select2/dist/js/select2.min.js"></script>
+    <script src="~/assets/js/forms/select2.init.js"></script>
+    <script src="~/assets/libs/jquery.repeater/jquery.repeater.min.js"></script>
+    <script src="~/assets/libs/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/assets/js/forms/repeater-init.js"></script>
+    <script src="~/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+    <script src="~/assets/js/apps/edit-product.js"></script>
+    <script>
         Dropzone.autoDiscover = false;
         var myDropzone = new Dropzone("#myDropzone", {
             paramName: "file", // Tên tham số gửi đến server
@@ -441,7 +463,7 @@
             },
         });
 
-       
+
 
         // Tạo instance của Dropzone và lưu vào biến
         const dropzoneInstance = new Dropzone("#thumbDropZone", {
@@ -466,12 +488,12 @@
             },
         });
 
-        
 
 
-       
-  </script>
-  <script>
+
+
+    </script>
+    <script>
         const Toast = Swal.mixin({
             toast: true,
             position: "top-end",
@@ -489,25 +511,29 @@
             // Append form data values to the FormData object
             formData.append('ProdName', $("#ProdName").val());
             formData.append('ProdPrice', $("#ProdPrice").val());
-            formData.append('Detail', $("#Detail").val());
+            formData.append('Description', $("#Description").val());
             formData.append('CategoryProdId', $("#CategoryProdId").val());
             formData.append('IsActive', $("#IsActive").val());
+            const selectedRadio = document.querySelector('input[name="new-products"]:checked');
+
+            const ProdDiscount = selectedRadio.id == "radio1" ? 0 : $("#ProdDiscount").val();
+            formData.append('ProdDiscount', ProdDiscount);
 
 
-            // Append the editor content
+
+
             var editorContent = quill.root.innerHTML;
-            formData.append('Description', editorContent); // Assuming you want to send the HTML content of the editor
+            formData.append('Detail', editorContent);
 
-            // Append thumbnail (assuming it's a file from Dropzone)
+
             if (dropzoneInstance.files.length > 0) {
                 formData.append('ProdThumb', dropzoneInstance.files[0].dataURL);
             }
 
-            // Append other images (if any, assuming they are files from Dropzone)
-            let counter = 0; // Initialize a counter
+            let counter = 0;
             myDropzone.files.forEach(function (file) {
                 let key = counter === 0 ? 'ProdImg' : `ProdImg${counter}`;
-                formData.append(key, file);
+                formData.append(key, file.dataURL);
                 counter++;
             });
 
@@ -522,13 +548,15 @@
                 success: function (response) {
                     console.log(response)
                     if (response.success) {
-                        
+
                         Toast.fire({
                             icon: "success",
                             title: response.msg
                         });
                         // Optionally, you can redirect or update the UI here
-                       // window.location.href = '@Url.Action("Index", "Product")';
+                        setTimeout(function () {
+                            window.location.href = '/admin/product-list.html';
+                        }, 2000);
                     } else {
                         alert('Error: ' + response.message);
                     }
@@ -542,8 +570,8 @@
             });
         };
 
-           
 
-            
-  </script>
+
+
+    </script>
 }

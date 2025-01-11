@@ -1,6 +1,7 @@
 ﻿@model WebSellFlower.Models.TblProduct
 
 @{
+    List<TblCategoryProduct> tblCategoryProducts = ViewBag.listCategory;
     ViewData["Title"] = "Create";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
@@ -19,9 +20,9 @@
             cursor: pointer;
         }
 
-            .dropzone .dz-remove:hover {
-                text-decoration: underline;
-            }
+        .dropzone .dz-remove:hover {
+            text-decoration: underline;
+        }
     </style>
 }
 
@@ -58,7 +59,8 @@
                 <div class="d-flex justify-content-between align-items-center mb-7">
                     <h4 class="card-title">General</h4>
 
-                    <button class="navbar-toggler border-0 shadow-none d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                    <button class="navbar-toggler border-0 shadow-none d-lg-none" type="button"
+                        data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                         <i class="ti ti-menu fs-5 d-flex"></i>
                     </button>
                 </div>
@@ -67,19 +69,20 @@
                         <label class="form-label">
                             Product Name <span class="text-danger">*</span>
                         </label>
-                        <input type="text" class="form-control" placeholder="Product Name" id="ProdName" name="ProdName">
+                        <input type="text" class="form-control" placeholder="Product Name" id="ProdName"
+                            name="ProdName">
                         <p class="fs-2">A product name is required and recommended to be unique.</p>
                     </div>
                     <div>
                         <label class="form-label">Mô Tả</label>
-                        <textarea class="form-control" name="Detail" rows="5" id="Detail"></textarea>
+                        <textarea class="form-control" name="Description" rows="5" id="Description"></textarea>
 
                         <p class="fs-2 mb-0">Set a detail to the product for better visibility.</p>
                     </div>
                     <div>
                         <label class="form-label">Detail</label>
-                        <div id="editor" name="Description">
-                            
+                        <div id="editor" name="Detail">
+
                         </div>
 
                         <p class="fs-2 mb-0">Set a description to the product for better visibility.</p>
@@ -151,39 +154,51 @@
                     <div class="mb-7">
                         <label class="form-label">Discount Type</label>
                         <nav>
-                            <div class="nav nav-tabs justify-content-between align-items-center gap-9" id="nav-tab" role="tablist">
-                                <label for="radio1" class="form-check-label form-check p-3  border gap-2 rounded-2 d-flex flex-fill justify-content-center cursor-pointer" id="customControlValidation2" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" aria-controls="nav-home">
-                                    <input type="radio" class="form-check-input" name="new-products" id="radio1" checked>
+                            <div class="nav nav-tabs justify-content-between align-items-center gap-9" id="nav-tab"
+                                role="tablist">
+                                <label for="radio1"
+                                    class="form-check-label form-check p-3  border gap-2 rounded-2 d-flex flex-fill justify-content-center cursor-pointer"
+                                    id="customControlValidation2" id="nav-home-tab" data-bs-toggle="tab"
+                                    data-bs-target="#nav-home" aria-controls="nav-home">
+                                    <input type="radio" class="form-check-input" name="new-products" id="radio1"
+                                        checked>
                                     <span class="fs-4 text-dark">No Discount</span>
                                 </label>
                                 @* <label for="radio2" class="form-check-label p-3 form-check border gap-2 rounded-2 d-flex flex-fill justify-content-center cursor-pointer" id="customControlValidation2" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" aria-controls="nav-profile">
                                 <input type="radio" class="form-check-input" name="new-products" id="radio2">
                                 <span class="fs-4 text-dark">Percentage %</span>
                                 </label> *@
-                                <label for="radio3" class="form-check-label form-check p-3 border gap-2 rounded-2 d-flex flex-fill justify-content-center cursor-pointer" id="customControlValidation2" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" aria-controls="nav-contact">
+                                <label for="radio3"
+                                    class="form-check-label form-check p-3 border gap-2 rounded-2 d-flex flex-fill justify-content-center cursor-pointer"
+                                    id="customControlValidation2" id="nav-contact-tab" data-bs-toggle="tab"
+                                    data-bs-target="#nav-contact" aria-controls="nav-contact">
                                     <input type="radio" class="form-check-input" name="new-products" id="radio3">
                                     <span class="fs-4 text-dark">Fixed Price</span>
                                 </label>
                             </div>
                         </nav>
                         <div class="tab-content" id="nav-tabContent">
-                            <div class="tab-pane fade mt-7" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+                            <div class="tab-pane fade mt-7" id="nav-profile" role="tabpanel"
+                                aria-labelledby="nav-profile-tab" tabindex="0">
                                 <form class="mt-3">
                                     <div class="form-group">
                                         <label class="form-label">
                                             Set Discount Percentage <span class="text-danger">*</span>
                                         </label>
-                                        <input type="range" class="form-range" id="customRange1" min="0" max="100" step="10">
+                                        <input type="range" class="form-range" id="customRange1" min="0" max="100"
+                                            step="10">
                                         <p class="fs-2">Set a percentage discount to be applied on this product.</p>
                                     </div>
                                 </form>
                             </div>
-                            <div class="tab-pane fade mt-7" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
+                            <div class="tab-pane fade mt-7" id="nav-contact" role="tabpanel"
+                                aria-labelledby="nav-contact-tab" tabindex="0">
                                 <div class="mb-7">
                                     <label class="form-label">
                                         Fixed Discounted Price <span class="text-danger">*</span>
                                     </label>
-                                    <input type="text" class="form-control" placeholder="Discounted Price">
+                                    <input type="text" class="form-control" placeholder="Discounted Price"
+                                        id="ProdDiscount">
                                     <p class="fs-2">
                                         Set the discounted product price. The product will be reduced at the
                                         determined fixed price.
@@ -230,7 +245,8 @@
         </div>
     </div>
     <div class="col-lg-4">
-        <div class="offcanvas-lg offcanvas-end overflow-auto" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-lg offcanvas-end overflow-auto" tabindex="-1" id="offcanvasRight"
+            aria-labelledby="offcanvasRightLabel">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title mb-7">Thumbnail</h4>
@@ -256,8 +272,8 @@
                     <form action="#" class="form-horizontal">
                         <div>
                             <select class="form-select mr-sm-2  mb-2" id="IsActive">
-                                <option value="1">Published</option>
-                                <option value="0">Draft</option>
+                                <option value="True">Published</option>
+                                <option value="False">Draft</option>
 
                             </select>
                             <p class="fs-2 mb-0">
@@ -273,10 +289,10 @@
                     <div class="mb-3">
                         <label class="form-label">Categories</label>
                         <select class="select2 form-control" id="CategoryProdId">
-                           @*  @foreach (var category in tblCategoryProducts)
+                            @foreach (var category in tblCategoryProducts)
                             {
                                 <option value="@category.CategoryProdId">@category.CategoryProdName</option>
-                            } *@
+                            }
 
 
                         </select>
@@ -430,34 +446,35 @@
             }
         });
         function UpdateProduct() {
-            var formData = new FormData(); // Create a new FormData object
+            var formData = new FormData();
 
-            // Append form data values to the FormData object
             formData.append('ProdName', $("#ProdName").val());
             formData.append('ProdPrice', $("#ProdPrice").val());
-            formData.append('Detail', $("#Detail").val());
+            formData.append('Description', $("#Description").val());
             formData.append('CategoryProdId', $("#CategoryProdId").val());
             formData.append('IsActive', $("#IsActive").val());
+            const selectedRadio = document.querySelector('input[name="new-products"]:checked');
+            const ProdDiscount = selectedRadio.id == "radio1" ? 0 : $("#ProdDiscount").val();
+            formData.append('ProdDiscount', ProdDiscount);
 
-
-            // Append the editor content
+            
             var editorContent = quill.root.innerHTML;
-            formData.append('Description', editorContent); // Assuming you want to send the HTML content of the editor
+            formData.append('Detail', editorContent); 
 
-            // Append thumbnail (assuming it's a file from Dropzone)
+          
             if (dropzoneInstance.files.length > 0) {
                 formData.append('ProdThumb', dropzoneInstance.files[0].dataURL);
             }
 
-            // Append other images (if any, assuming they are files from Dropzone)
-            let counter = 0; // Initialize a counter
+            
+            let counter = 0; 
             myDropzone.files.forEach(function (file) {
                 let key = counter === 0 ? 'ProdImg' : `ProdImg${counter}`;
-                formData.append(key, file);
+                formData.append(key, file.dataURL)
                 counter++;
             });
 
-            // Send the AJAX request
+          
             $.ajax({
                 url: `/Admin/Products/Create`,
                 type: 'POST',
@@ -472,8 +489,10 @@
                             icon: "success",
                             title: response.msg
                         });
-                        // Optionally, you can redirect or update the UI here
-                        // window.location.href = '@Url.Action("Index", "Product")';
+                    
+                        setTimeout(function () {
+                            window.location.href = '/admin/product-list.html';
+                        }, 3000);
                     } else {
                         alert('Error: ' + response.message);
                     }
