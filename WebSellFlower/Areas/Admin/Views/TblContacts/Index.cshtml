@@ -1,0 +1,199 @@
+﻿@model IEnumerable<WebSellFlower.Models.TblContact>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="body-wrapper">
+    <div class="container-fluid">
+        <div class="card card-body py-3">
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <div class="d-sm-flex align-items-center justify-space-between">
+                        <h4 class="mb-4 mb-sm-0 card-title">Contact</h4>
+                        <nav aria-label="breadcrumb" class="ms-auto">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item d-flex align-items-center">
+                                    <a class="text-muted text-decoration-none d-flex" href="index.html">
+                                        <iconify-icon icon="solar:home-2-line-duotone" class="fs-6"></iconify-icon>
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item" aria-current="page">
+                                    <span class="badge fw-medium fs-2 bg-primary-subtle text-primary">
+                                        Contact
+                                    </span>
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="widget-content searchable-container list">
+            <div class="card card-body">
+                <div class="row">
+                    <div class="col-md-4 col-xl-3">
+                        <form class="position-relative">
+                            <input type="text" class="form-control product-search ps-5" id="input-search" placeholder="Search Contacts..." />
+                            <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
+                        </form>
+                    </div>
+                    <div class="col-md-8 col-xl-9 text-end d-flex justify-content-md-end justify-content-center mt-3 mt-md-0">
+                        <div class="action-btn show-btn">
+                            <a href="javascript:void(0)" class="delete-multiple bg-danger-subtle btn me-2 text-danger d-flex align-items-center ">
+                                <i class="ti ti-trash me-1 fs-5"></i> Delete All Row
+                            </a>
+                        </div>
+                        <a href="javascript:void(0)" id="btn-add-contact" class="btn btn-primary d-flex align-items-center">
+                            <i class="ti ti-users text-white me-1 fs-5"></i> Add Contact
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="addContactModal" tabindex="-1" role="dialog" aria-labelledby="addContactModalTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header d-flex align-items-center">
+                            <h5 class="modal-title">Contact</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="add-contact-box">
+                                <div class="add-contact-content">
+                                    <form id="addContactModalTitle">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="mb-3 contact-name">
+                                                    <input type="text" id="c-name" class="form-control" placeholder="Name" />
+                                                    <span class="validation-text text-danger"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-3 contact-email">
+                                                    <input type="text" id="c-email" class="form-control" placeholder="Email" />
+                                                    <span class="validation-text text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="mb-3 contact-occupation">
+                                                    <input type="text" id="c-occupation" class="form-control" placeholder="Occupation" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-3 contact-phone">
+                                                    <input type="text" id="c-phone" class="form-control" placeholder="Phone" />
+                                                    <span class="validation-text text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="mb-3 contact-location">
+                                                    <input type="text" id="c-location" class="form-control" placeholder="Location" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="d-flex gap-6 m-0">
+                                <button id="btn-add" class="btn btn-success">Add</button>
+                                <button id="btn-edit" class="btn btn-success">Save</button>
+                                <button class="btn bg-danger-subtle text-danger" data-bs-dismiss="modal">
+                                    Discard
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-body">
+                <div class="table-responsive">
+                    <table class="table search-table align-middle text-nowrap">
+                        <thead class="header-item">
+                        <th>
+                            <div class="n-chk align-self-center text-center">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input primary" id="contact-check-all" />
+                                    <label class="form-check-label" for="contact-check-all"></label>
+                                    <span class="new-control-indicator"></span>
+                                </div>
+                            </div>
+                        </th>
+                        <th>Name</th>
+                        <th>Email</th>
+       
+                        <th>Phone</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                        </thead>
+                        <tbody>
+                            @foreach (var contact in Model)
+                            {
+                                <tr class="search-items">
+                                    <td>
+                                    <div class="n-chk align-self-center text-center">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input contact-chkbox primary" id="checkbox1" />
+                                            <label class="form-check-label" for="checkbox1"></label>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                       @*  <img src="../assets/images/profile/user-10.jpg" alt="avatar" class="rounded-circle" width="35" /> *@
+                                        <div class="ms-3">
+                                            <div class="user-meta-info">
+                                                <h6 class="user-name mb-0" data-name="Name">@contact.Name</h6>
+                                                @* <span class="user-work fs-3" data-occupation="Web Developer">Web Developer</span> *@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="usr-email-addr" data-email="Email">@contact.Email</span>
+                                </td>
+                                <td>
+                                    <span class="usr-date" data-date="date">@contact.CreatedDate.Value.ToString();</span>
+                                </td>
+                                <td>
+                                    <span class="usr-ph-no" data-phone="phone">@contact.Phone</span>
+                                </td>
+                                <td>
+                                    <div class="action-btn">
+                                            <a href="@Url.Action("Edit", new { id = contact.ContactId })"><iconify-icon icon="heroicons-outline:pencil-square" class="fs-7"></iconify-icon></a> |
+
+                                            <a href="@Url.Action("Delete", new { id =  contact.ContactId  })">
+                                                <iconify-icon icon="heroicons-outline:trash" class="fs-7"></iconify-icon>
+                                            </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            }
+                            
+                           
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* <script>
+    document.getElementById('btn-add-contact').addEventListener('click', function () {
+        var addContactModal = new bootstrap.Modal(document.getElementById('addContactModal'));
+        addContactModal.show();
+    });
+</script>
+ *@
