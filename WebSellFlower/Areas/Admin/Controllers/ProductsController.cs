@@ -25,19 +25,32 @@ namespace WebSellFlower.Areas.Admin.Controllers
         [Route("admin/product-list.html")]
         public async Task<IActionResult> Index()
         {
-            var websiteBanHoaContext = await _context.TblProducts.Include(t => t.CategoryProd).Select(p => new ProductDto
+            string paramValue = HttpContext.Request.Query["search"];
+
+
+            var websiteBanHoaContext = _context.TblProducts
+                .Include(t => t.CategoryProd)
+                .Select(p => new ProductDto
+                {
+                    ProdId = p.ProdId,
+                    ProdName = p.ProdName,
+                    ProdThumb = p.ProdThumb,
+                    Quantity = p.Quantity,
+                    IsActive = p.IsActive,
+                    ProdPrice = p.ProdPrice,
+                    CategoryName = p.CategoryProd.CategoryProdName
+                })
+                .AsQueryable(); // Giữ lại IQueryable để có thể áp dụng bộ lọc
+
+            if (!string.IsNullOrEmpty(paramValue))
             {
-                ProdId = p.ProdId,
-                ProdName = p.ProdName,
-                ProdThumb = p.ProdThumb,
-                Quantity = p.Quantity,
-                IsActive = p.IsActive,
-                ProdPrice = p.ProdPrice,
-                CategoryName = p.CategoryProd.CategoryProdName
-            }).ToListAsync();
-            ViewBag.products = websiteBanHoaContext;
-          
-            return View(websiteBanHoaContext);
+                websiteBanHoaContext = websiteBanHoaContext.Where(p => EF.Functions.Like(p.ProdName, $"%{paramValue}%"));
+            }
+
+            // Chuyển thành List sau khi đã áp dụng bộ lọc
+            var result = await websiteBanHoaContext.ToListAsync();
+            ViewBag.products = result;
+            return View(result);
         }
 
         // GET: Admin/Products/Details/5
@@ -188,6 +201,22 @@ namespace WebSellFlower.Areas.Admin.Controllers
         {
             return _context.TblProducts.Any(e => e.ProdId == id);
         }
+        //timkiem
+        public IActionResult Search(string search)
+        {
+            var products = _context.TblProducts.AsQueryable();
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                products = products.Where(p => EF.Functions.Like(p.ProdName, $"%{search}%"));
+            }
+
+            ViewBag.SearchTerm = search; // Truyền giá trị tìm kiếm về View
+            ViewBag.products = products.ToList();
+
+            return View();
+        }
+
     }
     public class ProductDto : TblProduct
     {

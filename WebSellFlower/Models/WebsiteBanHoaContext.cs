@@ -323,25 +323,16 @@ public partial class WebsiteBanHoaContext : DbContext
             entity.Property(e => e.ProdId).HasColumnName("prod_id");
             entity.Property(e => e.Alias).HasMaxLength(250);
             entity.Property(e => e.CategoryProdId).HasColumnName("category_prod_id");
-            entity.Property(e => e.Description).HasMaxLength(500);
             entity.Property(e => e.ProdDiscount).HasColumnName("prod_discount");
-            entity.Property(e => e.ProdImg)
-                .HasMaxLength(250)
-                .HasColumnName("prod_img");
-            entity.Property(e => e.ProdImg1)
-                .HasMaxLength(250)
-                .HasColumnName("prod_img1");
-            entity.Property(e => e.ProdImg2)
-                .HasMaxLength(250)
-                .HasColumnName("prod_img2");
+            entity.Property(e => e.ProdImg).HasColumnName("prod_img");
+            entity.Property(e => e.ProdImg1).HasColumnName("prod_img1");
+            entity.Property(e => e.ProdImg2).HasColumnName("prod_img2");
             entity.Property(e => e.ProdImg3).HasColumnName("prod_img3");
             entity.Property(e => e.ProdName)
                 .HasMaxLength(50)
                 .HasColumnName("prod_name");
             entity.Property(e => e.ProdPrice).HasColumnName("prod_price");
-            entity.Property(e => e.ProdThumb)
-                .HasMaxLength(250)
-                .HasColumnName("prod_thumb");
+            entity.Property(e => e.ProdThumb).HasColumnName("prod_thumb");
 
             entity.HasOne(d => d.CategoryProd).WithMany(p => p.TblProducts)
                 .HasForeignKey(d => d.CategoryProdId)
