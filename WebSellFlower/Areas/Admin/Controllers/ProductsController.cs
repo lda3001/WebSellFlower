@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebSellFlower.Controllers;
 using WebSellFlower.Models;
+using WebSellFlower.Utilities;
 
 namespace WebSellFlower.Areas.Admin.Controllers
 {
@@ -59,6 +60,7 @@ namespace WebSellFlower.Areas.Admin.Controllers
         }
 
         // GET: Admin/Products/Create
+        [Route("admin/add-product.html")]
         public IActionResult Create()
         {
             ViewData["CategoryProdId"] = new SelectList(_context.TblCategoryProducts, "CategoryProdId", "CategoryProdId");
@@ -102,19 +104,32 @@ namespace WebSellFlower.Areas.Admin.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProdId,CategoryProdId,ProdName,ProdPrice,ProdDiscount,Detail,Alias,IsBestSeller,IsActive,ProdThumb,ProdImg,ProdImg1,ProdImg2,IsNew,Description,Quantity,ProdImg3")] TblProduct tblProduct)
+        public async Task<IActionResult> Edit(int id, [Bind("CategoryProdId,ProdName,ProdPrice,ProdDiscount,Detail,IsActive,ProdThumb,ProdImg,ProdImg1,ProdImg2,Description,ProdImg3")] TblProduct tblProduct)
         {
-            if (id != tblProduct.ProdId)
-            {
-                return NotFound();
-            }
+            var product = await _context.TblProducts.Include(i => i.CategoryProd)
+               .FirstOrDefaultAsync(m => m.ProdId == id);
 
-            if (ModelState.IsValid)
-            {
+            if (product == null)
+                return NotFound();
+
+           
                 try
                 {
-                    _context.Update(tblProduct);
+                product.ProdName = tblProduct.ProdName;
+                product.ProdPrice = tblProduct.ProdPrice;
+                product.Detail = tblProduct.Detail;
+                product.Description = tblProduct.Description;
+                product.CategoryProdId = tblProduct.CategoryProdId;
+                if(tblProduct.ProdThumb != null)
+                {
+                    product.ProdThumb = tblProduct.ProdThumb;
+                }
+                if(tblProduct.ProdImg != null)
+                {
+                    product.ProdImg = tblProduct.ProdImg;
+                }
+                product.Alias = Function.TitleslugGenerationAlias(tblProduct.ProdName);
+                    _context.Update(product);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -128,10 +143,11 @@ namespace WebSellFlower.Areas.Admin.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
-            }
+                
+            
             ViewData["CategoryProdId"] = new SelectList(_context.TblCategoryProducts, "CategoryProdId", "CategoryProdId", tblProduct.CategoryProdId);
-            return View(tblProduct);
+ 
+            return StatusCode(200,new { msg = "Cập Nhật Sản Phẩm Thành Công" , success = 200});
         }
 
         // GET: Admin/Products/Delete/5

@@ -32,7 +32,7 @@
                         </div>
                         <div class="woocommerce">
                             <div class="woocommerce-notices-wrapper"></div>
-                            <form class="woocommerce-cart-form" action="cart"
+                            <form class="woocommerce-cart-form" asp-action="cartUpdate"
                                   method="post">
 
                                 <table class="shop_table shop_table_responsive cart woocommerce-cart-form__contents"
@@ -59,7 +59,7 @@
                                             <tr class="woocommerce-cart-form__cart-item cart_item">
 
                                                 <td class="product-remove">
-                                                    <a href="https://fiorello.qodeinteractive.com/cart/?remove_item=bac9162b47c56fc8a4d2a519803d51b3&#038;_wpnonce=2089f1f4fb"
+                                                    <a href="?remove_item=@item.ProdId"
                                                        class="remove" aria-label="Remove this item" data-product_id="@item.ProdId"
                                                        data-product_sku="74141">&times;</a>
                                                 </td>

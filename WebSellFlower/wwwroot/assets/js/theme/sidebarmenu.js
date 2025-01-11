@@ -26,8 +26,8 @@ if ((at = "vertical")) {
           if (anchors[i].href === currentUrl) {
             return anchors[i];
           }
-          else if ((anchors[i].href).includes('admin/product/edit')){
-            return anchors[i];
+          else if (currentUrl.includes('admin/product/edit')){
+            return anchors[9];
           }
         }
 

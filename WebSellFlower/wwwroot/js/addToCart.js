@@ -1,3 +1,15 @@
+const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+    }
+});
+
 jQueryNew(document).on('click', '.add_to_cart_button', function (e) {
     e.preventDefault();
 
@@ -27,7 +39,11 @@ jQueryNew(document).on('click', '.add_to_cart_button', function (e) {
                     alert('Failed to refresh the cart.');
                 },
             });
-            alert('Product added to cart successfully!');
+            Toast.fire({
+                icon: "success",
+                title: response.message
+            });
+            
         },
         error: function (xhr) {
             alert('Failed to add product to cart.');

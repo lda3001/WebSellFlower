@@ -54,7 +54,9 @@ namespace WebSellFlower.Controllers
                     {
                         double minPrice = string.IsNullOrEmpty(request.MinPrice) ? 0 : double.Parse(request.MinPrice);
                         double maxPrice = string.IsNullOrEmpty(request.MaxPrice) ? 999 : double.Parse(request.MaxPrice);
-                     var items = await _context.TblProducts
+
+                        
+                        var items = await _context.TblProducts
                         .Where(m => m.IsActive == true
                                     && m.CategoryProd.Alias == request.Category
                                     && m.ProdPrice >= minPrice

@@ -5,104 +5,490 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
+@section Styles {
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css" />
 
-<h4>TblProduct</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="CategoryProdId" class="control-label"></label>
-                <select asp-for="CategoryProdId" class ="form-control" asp-items="ViewBag.CategoryProdId"></select>
+    @* <link rel="stylesheet" href="~/assets/libs/quill/dist/quill.snow.css"> *@
+    @*  <link rel="stylesheet" href="~/assets/libs/dropzone/dist/min/dropzone.min.css"> *@
+    <link rel="stylesheet" href="~/assets/libs/select2/dist/css/select2.min.css">
+    <style>
+        .dropzone .dz-remove {
+            color: #ff4d4d;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+            .dropzone .dz-remove:hover {
+                text-decoration: underline;
+            }
+    </style>
+}
+
+<div class="card card-body py-3">
+    <div class="row align-items-center">
+        <div class="col-12">
+            <div class="d-sm-flex align-items-center justify-space-between">
+                <h4 class="mb-4 mb-sm-0 card-title">Edit Product</h4>
+                <nav aria-label="breadcrumb" class="ms-auto">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item d-flex align-items-center">
+                            <a class="text-muted text-decoration-none d-flex" href="index.html">
+                                <iconify-icon icon="solar:home-2-line-duotone" class="fs-6"></iconify-icon>
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item" aria-current="page">
+                            <span class="badge fw-medium fs-2 bg-primary-subtle text-primary">
+                                Edit Product
+                            </span>
+                        </li>
+                    </ol>
+                </nav>
             </div>
-            <div class="form-group">
-                <label asp-for="ProdName" class="control-label"></label>
-                <input asp-for="ProdName" class="form-control" />
-                <span asp-validation-for="ProdName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ProdPrice" class="control-label"></label>
-                <input asp-for="ProdPrice" class="form-control" />
-                <span asp-validation-for="ProdPrice" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ProdDiscount" class="control-label"></label>
-                <input asp-for="ProdDiscount" class="form-control" />
-                <span asp-validation-for="ProdDiscount" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Detail" class="control-label"></label>
-                <input asp-for="Detail" class="form-control" />
-                <span asp-validation-for="Detail" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Alias" class="control-label"></label>
-                <input asp-for="Alias" class="form-control" />
-                <span asp-validation-for="Alias" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IsBestSeller" class="control-label"></label>
-                <input asp-for="IsBestSeller" class="form-control" />
-                <span asp-validation-for="IsBestSeller" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IsActive" class="control-label"></label>
-                <input asp-for="IsActive" class="form-control" />
-                <span asp-validation-for="IsActive" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ProdThumb" class="control-label"></label>
-                <input asp-for="ProdThumb" class="form-control" />
-                <span asp-validation-for="ProdThumb" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ProdImg" class="control-label"></label>
-                <input asp-for="ProdImg" class="form-control" />
-                <span asp-validation-for="ProdImg" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ProdImg1" class="control-label"></label>
-                <input asp-for="ProdImg1" class="form-control" />
-                <span asp-validation-for="ProdImg1" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ProdImg2" class="control-label"></label>
-                <input asp-for="ProdImg2" class="form-control" />
-                <span asp-validation-for="ProdImg2" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IsNew" class="control-label"></label>
-                <input asp-for="IsNew" class="form-control" />
-                <span asp-validation-for="IsNew" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Quantity" class="control-label"></label>
-                <input asp-for="Quantity" class="form-control" />
-                <span asp-validation-for="Quantity" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ProdImg3" class="control-label"></label>
-                <input asp-for="ProdImg3" class="form-control" />
-                <span asp-validation-for="ProdImg3" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+<!-- start Basic Area Chart -->
+
+<div class="row">
+    <div class="col-lg-8 ">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-7">
+                    <h4 class="card-title">General</h4>
+
+                    <button class="navbar-toggler border-0 shadow-none d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                        <i class="ti ti-menu fs-5 d-flex"></i>
+                    </button>
+                </div>
+                <form action="#" class="form-horizontal">
+                    <div class="mb-4">
+                        <label class="form-label">
+                            Product Name <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" class="form-control" placeholder="Product Name" id="ProdName" name="ProdName">
+                        <p class="fs-2">A product name is required and recommended to be unique.</p>
+                    </div>
+                    <div>
+                        <label class="form-label">Mô Tả</label>
+                        <textarea class="form-control" name="Detail" rows="5" id="Detail"></textarea>
+
+                        <p class="fs-2 mb-0">Set a detail to the product for better visibility.</p>
+                    </div>
+                    <div>
+                        <label class="form-label">Detail</label>
+                        <div id="editor" name="Description">
+                            
+                        </div>
+
+                        <p class="fs-2 mb-0">Set a description to the product for better visibility.</p>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-7">Media</h4>
+
+                <form action="#" class="dropzone dz-clickable mb-2" id="myDropzone">
+                    <div class="dz-default dz-message">
+                        <button class="dz-button" type="button">
+                            Drop files here
+                            to upload
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        @* <div class="card">
+        <div class="card-body">
+        <h4 class="card-title mb-7">Variation</h4>
+
+        <form action="#">
+        <label class="form-label">Add Product Variations</label>
+        <div class="email-repeater mb-3">
+        <div data-repeater-list="repeater-group">
+        <div data-repeater-item class="row mb-3">
+        <div class="col-md-4">
+        <select class="select2 form-control">
+        <option>Color</option>
+        <option selected>Size</option>
+        <option>Material</option>
+        <option>Style</option>
+        </select>
+        </div>
+        <div class="col-md-4 mt-3 mt-md-0">
+        <input type="text" class="form-control" placeholder="Variation" />
+        </div>
+        <div class="col-md-2 mt-3 mt-md-0">
+        <button data-repeater-delete="" class="btn bg-danger-subtle text-danger" type="button">
+        <i class="ti ti-x fs-5 d-flex"></i>
+        </button>
+        </div>
+        </div>
+        </div>
+        <button type="button" data-repeater-create="" class="btn bg-primary-subtle text-primary ">
+        <span class="fs-4 me-1">+</span>
+        Add another variation
+        </button>
+        </div>
+        </form>
+        </div>
+        </div> *@
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-7">Pricing</h4>
+                <form>
+                    <div class="mb-7">
+                        <label class="form-label">
+                            Base Price <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" class="form-control" placeholder="Product Price" id="ProdPrice" value="">
+                        <p class="fs-2">Set the product price.</p>
+                    </div>
+                    <div class="mb-7">
+                        <label class="form-label">Discount Type</label>
+                        <nav>
+                            <div class="nav nav-tabs justify-content-between align-items-center gap-9" id="nav-tab" role="tablist">
+                                <label for="radio1" class="form-check-label form-check p-3  border gap-2 rounded-2 d-flex flex-fill justify-content-center cursor-pointer" id="customControlValidation2" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" aria-controls="nav-home">
+                                    <input type="radio" class="form-check-input" name="new-products" id="radio1" checked>
+                                    <span class="fs-4 text-dark">No Discount</span>
+                                </label>
+                                @* <label for="radio2" class="form-check-label p-3 form-check border gap-2 rounded-2 d-flex flex-fill justify-content-center cursor-pointer" id="customControlValidation2" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" aria-controls="nav-profile">
+                                <input type="radio" class="form-check-input" name="new-products" id="radio2">
+                                <span class="fs-4 text-dark">Percentage %</span>
+                                </label> *@
+                                <label for="radio3" class="form-check-label form-check p-3 border gap-2 rounded-2 d-flex flex-fill justify-content-center cursor-pointer" id="customControlValidation2" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" aria-controls="nav-contact">
+                                    <input type="radio" class="form-check-input" name="new-products" id="radio3">
+                                    <span class="fs-4 text-dark">Fixed Price</span>
+                                </label>
+                            </div>
+                        </nav>
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade mt-7" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+                                <form class="mt-3">
+                                    <div class="form-group">
+                                        <label class="form-label">
+                                            Set Discount Percentage <span class="text-danger">*</span>
+                                        </label>
+                                        <input type="range" class="form-range" id="customRange1" min="0" max="100" step="10">
+                                        <p class="fs-2">Set a percentage discount to be applied on this product.</p>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="tab-pane fade mt-7" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
+                                <div class="mb-7">
+                                    <label class="form-label">
+                                        Fixed Discounted Price <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="text" class="form-control" placeholder="Discounted Price">
+                                    <p class="fs-2">
+                                        Set the discounted product price. The product will be reduced at the
+                                        determined fixed price.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @* <div class="row">
+                    <div class="col-md-6">
+                    <div class="mb-4">
+                    <label class="form-label">
+                    Tax Class <span class="text-danger">*</span>
+                    </label>
+                    <select class="form-select mr-sm-2" id="inlineFormCustomSelect">
+                    <option>Select an option</option>
+                    <option value="1">Tax Free</option>
+                    <option value="2" selected>Taxable Goods</option>
+                    <option value="3">Downloadable Products</option>
+                    </select>
+                    <p class="fs-2">Set the product tax class.</p>
+                    </div>
+                    </div>
+                    <div class="col-md-6">
+                    <div class="mb-4">
+                    <label class="form-label">VAT Amount (%) <span class="text-danger">*</span>
+                    </label>
+                    <input type="text" class="form-control" value="35">
+                    <p class="fs-2">Set the product VAT about.</p>
+                    </div>
+                    </div>
+                    </div> *@
+                </form>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button class="btn btn-primary" id="saveButton" onclick="UpdateProduct()">
+                Save changes
+            </button>
+            <button type="button" class="btn bg-danger-subtle text-danger ms-6">
+                Cancel
+            </button>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="offcanvas-lg offcanvas-end overflow-auto" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-7">Thumbnail</h4>
+                    <form action="upload" class="dropzone dz-clickable mb-2" id="thumbDropZone">
+                        <div class="dz-default dz-message">
+                            <button class="dz-button" type="button">
+                                Drop Thumbnail here
+                                to upload
+                            </button>
+                        </div>
+                    </form>
+                    <p class="fs-2 text-center mb-0">
+                        Set the product thumbnail image. Only *.png, *.jpg and *.jpeg image files are accepted.
+                    </p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex align-items-center justify-content-between mb-7">
+                        <h4 class="card-title">Status</h4>
+                        <div class="p-2 h-100 bg-success rounded-circle"></div>
+                    </div>
+                    <form action="#" class="form-horizontal">
+                        <div>
+                            <select class="form-select mr-sm-2  mb-2" id="IsActive">
+                                <option value="1">Published</option>
+                                <option value="0">Draft</option>
+
+                            </select>
+                            <p class="fs-2 mb-0">
+                                Set the product status.
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-7">Product Details</h4>
+                    <div class="mb-3">
+                        <label class="form-label">Categories</label>
+                        <select class="select2 form-control" id="CategoryProdId">
+                           @*  @foreach (var category in tblCategoryProducts)
+                            {
+                                <option value="@category.CategoryProdId">@category.CategoryProdName</option>
+                            } *@
+
+
+                        </select>
+                        <p class="fs-2 mb-0">
+                            Add product to a category.
+                        </p>
+                    </div>
+                    <button type="button" class="btn bg-primary-subtle text-primary ">
+                        <span class="fs-4 me-1">+</span>
+                        Create New Category
+                    </button>
+                    @*  <div class="mt-7">
+                    <label class="form-label">Tags</label>
+                    <select class="select2 form-control" multiple="multiple">
+                    <option value="">New</option>
+                    <option value="" selected>trending</option>
+                    <option value="">Headphones</option>
+                    <option value="" selected>Beauty</option>
+                    <option value="" selected>Fashion</option>
+                    <option value="">Footwear</option>
+                    </select>
+                    <p class="fs-2 mb-0">
+                    Add product to a category.
+                    </p>
+                    </div> *@
+                </div>
+            </div>
+            @* <div class="card">
+            <div class="card-body">
+            <h4 class="card-title mb-2">$2,420</h4>
+            <div class="d-flex align-items-center">
+            <p class="fs-4 fw-base mb-0">
+            Average Daily Sales
+            </p>
+            <p class="fs-2 text-success bg-success-subtle mb-0 px-2 py-1 rounded-1">
+            2.6%
+            </p>
+            </div>
+            <div class="mt-7">
+            <div id="sales"></div>
+            </div>
+            </div>
+            </div> *@
+            @*  <div class="card">
+            <div class="card-body">
+            <h4 class="card-title mb-7">Product Template</h4>
+            <form action="#" class="form-horizontal">
+            <div>
+            <label class="form-label text-nowrap">Select a product template</label>
+            <select class="form-select mr-sm-2  mb-2" id="inlineFormCustomSelect">
+            <option selected="">Default Template</option>
+            <option value="1">Fashion</option>
+            <option value="2">Office Stationary</option>
+            <option value="3">Electronics</option>
+            </select>
+            <p class="fs-2 mb-0">
+            Assign a template from your current theme to define how a single product is displayed.
+            </p>
+            </div>
+            </form>
+            </div>
+            </div> *@
+        </div>
+    </div>
 </div>
 
+
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
+
+
+
+    @*    <script src="~/assets/libs/quill/dist/quill.min.js"></script> *@
+    <script src="~/assets/js/forms/quill-init.js"></script>
+    @* <script src="~/assets/libs/dropzone/dist/min/dropzone.min.js"></script> *@
+    <script src="~/assets/libs/select2/dist/js/select2.full.min.js"></script>
+    <script src="~/assets/libs/select2/dist/js/select2.min.js"></script>
+    <script src="~/assets/js/forms/select2.init.js"></script>
+    <script src="~/assets/libs/jquery.repeater/jquery.repeater.min.js"></script>
+    <script src="~/assets/libs/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/assets/js/forms/repeater-init.js"></script>
+    <script src="~/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+    <script src="~/assets/js/apps/edit-product.js"></script>
+    <script>
+        Dropzone.autoDiscover = false;
+        var myDropzone = new Dropzone("#myDropzone", {
+            paramName: "file", // Tên tham số gửi đến server
+            maxFilesize: 2, // Kích thước tệp tối đa (MB)
+            maxFiles: 4,
+            addRemoveLinks: true, // Hiển thị nút xóa
+            dictRemoveFile: "Xóa",
+            acceptedFiles: ".png,.jpg,.jpeg,.gif", // Các định dạng tệp được chấp nhận
+            dictDefaultMessage: "Kéo thả tệp vào đây hoặc nhấp để tải lên",
+            init: function () {
+                this.on("maxfilesexceeded", function (file) {
+                    alert("Bạn đã vượt quá số lượng tệp cho phép!");
+                    this.removeFile(file); // Xóa tệp vượt quá giới hạn
+                });
+                this.on("success", function (file, response) {
+                    console.log("Tải lên thành công:", response);
+                });
+                this.on("error", function (file, errorMessage) {
+                    console.error("Lỗi khi tải lên:", errorMessage);
+                });
+            },
+        });
+
+
+
+        // Tạo instance của Dropzone và lưu vào biến
+        const dropzoneInstance = new Dropzone("#thumbDropZone", {
+            paramName: "file", // Tên tham số gửi đến server
+            maxFilesize: 2, // Kích thước tệp tối đa (MB)
+            maxFiles: 1, // Số lượng tệp tối đa
+            addRemoveLinks: true, // Hiển thị nút xóa
+            dictRemoveFile: "Xóa",
+            acceptedFiles: ".png,.jpg,.jpeg,.gif", // Các định dạng tệp được chấp nhận
+            dictDefaultMessage: "Kéo thả tệp vào đây hoặc nhấp để tải lên",
+            init: function () {
+                this.on("maxfilesexceeded", function (file) {
+                    alert("Bạn đã vượt quá số lượng tệp cho phép!");
+                    this.removeFile(file); // Xóa tệp vượt quá giới hạn
+                });
+                this.on("success", function (file, response) {
+                    console.log("Tải lên thành công:", response);
+                });
+                this.on("error", function (file, errorMessage) {
+                    console.error("Lỗi khi tải lên:", errorMessage);
+                });
+            },
+        });
+
+
+
+
+
+    </script>
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+        function UpdateProduct() {
+            var formData = new FormData(); // Create a new FormData object
+
+            // Append form data values to the FormData object
+            formData.append('ProdName', $("#ProdName").val());
+            formData.append('ProdPrice', $("#ProdPrice").val());
+            formData.append('Detail', $("#Detail").val());
+            formData.append('CategoryProdId', $("#CategoryProdId").val());
+            formData.append('IsActive', $("#IsActive").val());
+
+
+            // Append the editor content
+            var editorContent = quill.root.innerHTML;
+            formData.append('Description', editorContent); // Assuming you want to send the HTML content of the editor
+
+            // Append thumbnail (assuming it's a file from Dropzone)
+            if (dropzoneInstance.files.length > 0) {
+                formData.append('ProdThumb', dropzoneInstance.files[0].dataURL);
+            }
+
+            // Append other images (if any, assuming they are files from Dropzone)
+            let counter = 0; // Initialize a counter
+            myDropzone.files.forEach(function (file) {
+                let key = counter === 0 ? 'ProdImg' : `ProdImg${counter}`;
+                formData.append(key, file);
+                counter++;
+            });
+
+            // Send the AJAX request
+            $.ajax({
+                url: `/Admin/Products/Create`,
+                type: 'POST',
+                data: formData,
+                contentType: false, // Let the browser set the content type
+                processData: false, // Prevent jQuery from processing the data
+                success: function (response) {
+                    console.log(response)
+                    if (response.success) {
+
+                        Toast.fire({
+                            icon: "success",
+                            title: response.msg
+                        });
+                        // Optionally, you can redirect or update the UI here
+                        // window.location.href = '@Url.Action("Index", "Product")';
+                    } else {
+                        alert('Error: ' + response.message);
+                    }
+                },
+                error: function () {
+                    Toast.fire({
+                        icon: "error",
+                        title: "error"
+                    });
+                }
+            });
+        };
+
+
+
+
+    </script>
 }

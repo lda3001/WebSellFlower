@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Components.QuickGrid;
+﻿using Azure.Core;
+using Microsoft.AspNetCore.Components.QuickGrid;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.SqlServer.Server;
 using Newtonsoft.Json;
+using System.Text.RegularExpressions;
 using WebSellFlower.Models;
 using WebSellFlower.Request;
 using WebSellFlower.Requests;
@@ -41,11 +44,21 @@ namespace WebSellFlower.Controllers
         [Route("/cart")]
 		public async Task<IActionResult> CartDetail()
 		{
+            var proId = HttpContext.Request.Query["remove_item"];
+            
 
-            var cart = GetCart(); 
+			var cart = GetCart();
+			if (!string.IsNullOrEmpty(proId))
+			{
+				var item = cart.FirstOrDefault(c => c.ProdId == proId);
+				if (item != null)
+				{
+					cart.Remove(item);
+				}
+			}
 
-            // Nếu cần thêm thông tin sản phẩm từ database
-            var productIds = cart.Select(c => c.ProdId).ToList();
+			// Nếu cần thêm thông tin sản phẩm từ database
+			var productIds = cart.Select(c => c.ProdId).ToList();
             var products = await _context.TblProducts
                 .Where(p => productIds.Contains(p.ProdId))
                 .ToListAsync();
@@ -72,12 +85,63 @@ namespace WebSellFlower.Controllers
             return ViewComponent("Cart");
         }
 
-        [HttpPost, ActionName("Cart")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> UpdateCart(int id)
+        [HttpPost, ActionName("cartUpdate")]
+        public async Task<IActionResult> UpdateCart([FromForm] IFormCollection formData)
         {
-            return null;
-        }
+			var cart = GetCart();
+
+			
+			foreach (var key in formData.Keys)
+			{
+			
+				if (key.StartsWith("cart") && key.Contains("[qty]"))
+				{
+					
+					var match = Regex.Match(key, @"cart\[(\d+)\]\[qty\]");
+					if (!match.Success) continue;
+
+					int productId = int.Parse(match.Groups[1].Value);
+					int quantity = int.TryParse(formData[key], out var qty) ? qty : 0;
+
+				
+					var existingItem = cart.FirstOrDefault(c => c.ProdId == productId);
+					if (existingItem != null)
+					{
+						if (quantity == 0)
+						{
+							cart.Remove(existingItem);
+						}
+						else
+						{
+							
+							existingItem.Quantity = quantity;
+						}
+					}
+					else if (quantity > 0)
+					{
+						
+						var product = _context.TblProducts.FirstOrDefault(p => p.ProdId == productId);
+						if (product == null) continue;
+
+						cart.Add(new CartItem
+						{
+							ProdId = product.ProdId,
+							ProdName = product.ProdName,
+							ProdThumb = product.ProdThumb,
+							Quantity = quantity,
+							ProdPrice = product.ProdPrice,
+							Alias = product.Alias,
+						});
+					}
+				}
+			}
+
+			
+			SaveCart(cart);
+
+            return RedirectToAction("CartDetail", "Cart");
+
+		}
 
         [HttpPost]
         [Route("api/cart/add")]
