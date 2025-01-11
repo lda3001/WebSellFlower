@@ -6,14 +6,11 @@ namespace WebSellFlower.Models;
 
 public partial class WebsiteBanHoaContext : DbContext
 {
-	
+    public WebsiteBanHoaContext()
+    {
+    }
 
-	public WebsiteBanHoaContext()
-	{
-		
-	}
-
-	public WebsiteBanHoaContext(DbContextOptions<WebsiteBanHoaContext> options)
+    public WebsiteBanHoaContext(DbContextOptions<WebsiteBanHoaContext> options)
         : base(options)
     {
     }
@@ -49,17 +46,8 @@ public partial class WebsiteBanHoaContext : DbContext
     public virtual DbSet<TblSlider> TblSliders { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-		var configuration = new ConfigurationBuilder()
-			.AddJsonFile("appsettings.json")
-			.Build();
-
-		var connectionString = configuration.GetConnectionString("DefaultConnection");
-		optionsBuilder.UseSqlServer(connectionString);
-	}
-
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        
+        => optionsBuilder.UseSqlServer("data source= TUAN-ANH\\MSSQLSERVER01; initial catalog=WebsiteBanHoa; integrated security=True;\nTrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
