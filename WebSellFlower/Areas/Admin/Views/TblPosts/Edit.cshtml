@@ -223,8 +223,8 @@
                     <form action="#" class="form-horizontal">
                         <div>
                             <select class="form-select mr-sm-2  mb-2" id="IsActive">
-                                <option value="1">Published</option>
-                                <option value="0">Draft</option>
+                                <option value="True">Published</option>
+                                <option value="False">Draft</option>
 
                             </select>
                             <p class="fs-2 mb-0">
@@ -380,16 +380,16 @@
             var formData = new FormData(); // Create a new FormData object
 
             // Append form data values to the FormData object
-            formData.append('ProdName', $("#ProdName").val());
-            formData.append('ProdPrice', $("#ProdPrice").val());
-            formData.append('Detail', $("#Detail").val());
-            formData.append('CategoryProdId', $("#CategoryProdId").val());
+            formData.append('PostTitle', $("#PostTitle").val());
+            formData.append('PostContent', $("#PostContent").val());
+            formData.append('PostDetail', $("#PostDetail").val());
+           
             formData.append('IsActive', $("#IsActive").val());
 
 
             // Append the editor content
             var editorContent = quill.root.innerHTML;
-            formData.append('Description', editorContent); // Assuming you want to send the HTML content of the editor
+            formData.append('PostContenDetail', editorContent); // Assuming you want to send the HTML content of the editor
 
             // Append thumbnail (assuming it's a file from Dropzone)
             if (dropzoneInstance.files.length > 0) {
@@ -397,16 +397,12 @@
             }
 
             // Append other images (if any, assuming they are files from Dropzone)
-            let counter = 0; // Initialize a counter
-            myDropzone.files.forEach(function (file) {
-                let key = counter === 0 ? 'ProdImg' : `ProdImg${counter}`;
-                formData.append(key, file);
-                counter++;
-            });
+           
+            
 
             // Send the AJAX request
             $.ajax({
-                url: `/Admin/Products/Edit/${@Model.PostId}`,
+                url: `/Admin/TblPosts/Edit/${@Model.PostId}`,
                 // URL of the Edit action
                 type: 'POST',
                 data: formData,

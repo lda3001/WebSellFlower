@@ -28,6 +28,9 @@ if ((at = "vertical")) {
           }
           else if (currentUrl.includes('admin/product/edit')){
             return anchors[9];
+            }
+          else if (currentUrl.includes('admin/blog/edit')) {
+              return anchors[13];
           }
         }
 

@@ -15,8 +15,6 @@ public partial class WebsiteBanHoaContext : DbContext
     {
     }
 
-    public virtual DbSet<TblAdmin> TblAdmins { get; set; }
-
     public virtual DbSet<TblBlogComment> TblBlogComments { get; set; }
 
     public virtual DbSet<TblCategory> TblCategories { get; set; }
@@ -51,29 +49,6 @@ public partial class WebsiteBanHoaContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<TblAdmin>(entity =>
-        {
-            entity.HasKey(e => e.AdId);
-
-            entity.ToTable("tbl_Admin");
-
-            entity.Property(e => e.AdId).HasColumnName("ad_id");
-            entity.Property(e => e.AdEmail)
-                .HasMaxLength(50)
-                .HasColumnName("ad_email");
-            entity.Property(e => e.AdPassword)
-                .HasMaxLength(50)
-                .HasColumnName("ad_password");
-            entity.Property(e => e.AdPhone)
-                .HasMaxLength(50)
-                .HasColumnName("ad_phone");
-            entity.Property(e => e.AdRole).HasColumnName("ad_role");
-            entity.Property(e => e.AdStatus)
-                .HasMaxLength(10)
-                .IsFixedLength()
-                .HasColumnName("ad_status");
-        });
-
         modelBuilder.Entity<TblBlogComment>(entity =>
         {
             entity.HasKey(e => e.CommentId);
@@ -92,6 +67,7 @@ public partial class WebsiteBanHoaContext : DbContext
 
             entity.HasOne(d => d.Post).WithMany(p => p.TblBlogComments)
                 .HasForeignKey(d => d.PostId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_tbl_BlogComment_tbl_Post");
         });
 
@@ -169,17 +145,16 @@ public partial class WebsiteBanHoaContext : DbContext
                 .HasMaxLength(50)
                 .HasColumnName("cust_fullname");
             entity.Property(e => e.CustPassword)
-                .HasMaxLength(50)
+                .HasMaxLength(60)
                 .HasColumnName("cust_password");
             entity.Property(e => e.CustPhone)
                 .HasMaxLength(50)
                 .HasColumnName("cust_phone");
-            entity.Property(e => e.CustSex)
-                .HasMaxLength(50)
-                .HasColumnName("cust_sex");
+            entity.Property(e => e.CustSex).HasColumnName("cust_sex");
             entity.Property(e => e.CustStatus)
                 .HasMaxLength(50)
                 .HasColumnName("cust_status");
+            entity.Property(e => e.Role).HasColumnName("role");
         });
 
         modelBuilder.Entity<TblOrder>(entity =>
@@ -212,6 +187,7 @@ public partial class WebsiteBanHoaContext : DbContext
 
             entity.HasOne(d => d.OrderCust).WithMany(p => p.TblOrders)
                 .HasForeignKey(d => d.OrderCustId)
+                .OnDelete(DeleteBehavior.SetNull)
                 .HasConstraintName("FK_tbl_Order_tbl_Customer");
         });
 
@@ -235,6 +211,7 @@ public partial class WebsiteBanHoaContext : DbContext
 
             entity.HasOne(d => d.Order).WithMany(p => p.TblOrderDetails)
                 .HasForeignKey(d => d.OrderId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_tbl_order_detail_tbl_Order");
 
             entity.HasOne(d => d.Prod).WithMany(p => p.TblOrderDetails)
@@ -299,6 +276,7 @@ public partial class WebsiteBanHoaContext : DbContext
 
             entity.HasOne(d => d.CategoryPost).WithMany(p => p.TblPosts)
                 .HasForeignKey(d => d.CategoryPostId)
+                .OnDelete(DeleteBehavior.SetNull)
                 .HasConstraintName("FK_tbl_Post_tbl_category_post");
         });
 
@@ -324,6 +302,7 @@ public partial class WebsiteBanHoaContext : DbContext
 
             entity.HasOne(d => d.CategoryProd).WithMany(p => p.TblProducts)
                 .HasForeignKey(d => d.CategoryProdId)
+                .OnDelete(DeleteBehavior.SetNull)
                 .HasConstraintName("FK_tbl_Product_tbl_Category_product");
         });
 
@@ -342,6 +321,7 @@ public partial class WebsiteBanHoaContext : DbContext
 
             entity.HasOne(d => d.Prod).WithMany(p => p.TblProductReviews)
                 .HasForeignKey(d => d.ProdId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_tbl_ProductReviews_tbl_Product");
         });
 
@@ -363,6 +343,7 @@ public partial class WebsiteBanHoaContext : DbContext
 
             entity.HasOne(d => d.Page).WithMany(p => p.TblSliders)
                 .HasForeignKey(d => d.PageId)
+                .OnDelete(DeleteBehavior.SetNull)
                 .HasConstraintName("FK_tbl_Slider_tbl_Page_slider");
         });
 

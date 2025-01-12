@@ -44,6 +44,7 @@ namespace WebSellFlower.Areas.Admin.Controllers
         }
 
         // GET: Admin/TblCategories/Create
+
         public IActionResult Create()
         {
             return View();

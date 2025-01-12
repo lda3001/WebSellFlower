@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using WebSellFlower.Controllers;
 using WebSellFlower.Models;
 using WebSellFlower.Utilities;
 
@@ -87,41 +82,41 @@ namespace WebSellFlower.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([Bind("CategoryProdId,ProdName,ProdPrice,ProdDiscount,Detail,IsActive,ProdThumb,ProdImg,ProdImg1,ProdImg2,Description,ProdImg3")] TblProduct tblProduct)
         {
-            
-                TblProduct product = new TblProduct();
-                product.ProdName = tblProduct.ProdName;
-                product.ProdPrice = tblProduct.ProdPrice;
-                product.CategoryProdId = tblProduct.CategoryProdId;
-                product.IsActive = tblProduct.IsActive;
-                product.Quantity = tblProduct.Quantity;
-                product.Description = tblProduct.Description;
-                product.Detail = tblProduct.Detail;
-                if (tblProduct.ProdThumb != null)
-                {
-                    product.ProdThumb = tblProduct.ProdThumb;
-                }
-                if (tblProduct.ProdImg != null)
-                {
-                    product.ProdImg = tblProduct.ProdImg;
-                }
-                if (tblProduct.ProdImg1 != null)
-                {
-                    product.ProdImg1 = tblProduct.ProdImg1;
-                }
-                if (tblProduct.ProdImg2 != null)
-                {
-                    product.ProdImg2 = tblProduct.ProdImg2;
-                }
-                if (tblProduct.ProdImg3 != null)
-                {
-                    product.ProdImg3 = tblProduct.ProdImg3;
 
-                }
-                product.Alias = Function.TitleslugGenerationAlias(tblProduct.ProdName);
-                _context.Add(product);
-                await _context.SaveChangesAsync();
-               
-            
+            TblProduct product = new TblProduct();
+            product.ProdName = tblProduct.ProdName;
+            product.ProdPrice = tblProduct.ProdPrice;
+            product.CategoryProdId = tblProduct.CategoryProdId;
+            product.IsActive = tblProduct.IsActive;
+            product.Quantity = tblProduct.Quantity;
+            product.Description = tblProduct.Description;
+            product.Detail = tblProduct.Detail;
+            if (tblProduct.ProdThumb != null)
+            {
+                product.ProdThumb = tblProduct.ProdThumb;
+            }
+            if (tblProduct.ProdImg != null)
+            {
+                product.ProdImg = tblProduct.ProdImg;
+            }
+            if (tblProduct.ProdImg1 != null)
+            {
+                product.ProdImg1 = tblProduct.ProdImg1;
+            }
+            if (tblProduct.ProdImg2 != null)
+            {
+                product.ProdImg2 = tblProduct.ProdImg2;
+            }
+            if (tblProduct.ProdImg3 != null)
+            {
+                product.ProdImg3 = tblProduct.ProdImg3;
+
+            }
+            product.Alias = Function.TitleslugGenerationAlias(tblProduct.ProdName);
+            _context.Add(product);
+            await _context.SaveChangesAsync();
+
+
             ViewData["CategoryProdId"] = new SelectList(_context.TblCategoryProducts, "CategoryProdId", "CategoryProdId", tblProduct.CategoryProdId);
             return StatusCode(200, new { msg = "Tạo Sản Phẩm Thành Công", success = 200 });
         }
@@ -154,9 +149,9 @@ namespace WebSellFlower.Areas.Admin.Controllers
             if (product == null)
                 return NotFound();
 
-           
-                try
-                {
+
+            try
+            {
                 product.ProdName = tblProduct.ProdName;
                 product.ProdPrice = tblProduct.ProdPrice;
                 product.Detail = tblProduct.Detail;
@@ -164,11 +159,11 @@ namespace WebSellFlower.Areas.Admin.Controllers
                 product.CategoryProdId = tblProduct.CategoryProdId;
                 product.ProdDiscount = tblProduct.ProdDiscount;
                 product.IsActive = tblProduct.IsActive;
-                if(tblProduct.ProdThumb != null)
+                if (tblProduct.ProdThumb != null)
                 {
                     product.ProdThumb = tblProduct.ProdThumb;
                 }
-                if(tblProduct.ProdImg != null)
+                if (tblProduct.ProdImg != null)
                 {
                     product.ProdImg = tblProduct.ProdImg;
                 }
@@ -185,25 +180,25 @@ namespace WebSellFlower.Areas.Admin.Controllers
                     product.ProdImg3 = tblProduct.ProdImg3;
                 }
                 product.Alias = Function.TitleslugGenerationAlias(tblProduct.ProdName);
-                    _context.Update(product);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
+                _context.Update(product);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!TblProductExists(tblProduct.ProdId))
                 {
-                    if (!TblProductExists(tblProduct.ProdId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    return NotFound();
                 }
-                
-            
+                else
+                {
+                    throw;
+                }
+            }
+
+
             ViewData["CategoryProdId"] = new SelectList(_context.TblCategoryProducts, "CategoryProdId", "CategoryProdId", tblProduct.CategoryProdId);
- 
-            return StatusCode(200,new { msg = "Cập Nhật Sản Phẩm Thành Công" , success = 200});
+
+            return StatusCode(200, new { msg = "Cập Nhật Sản Phẩm Thành Công", success = 200 });
         }
 
         // GET: Admin/Products/Delete/5

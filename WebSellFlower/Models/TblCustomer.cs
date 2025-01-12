@@ -11,7 +11,7 @@ public partial class TblCustomer
 
     public string? CustPhone { get; set; }
 
-    public string? CustSex { get; set; }
+    public int? CustSex { get; set; }
 
     public DateOnly? CustDatetime { get; set; }
 
@@ -22,6 +22,8 @@ public partial class TblCustomer
     public string? CustStatus { get; set; }
 
     public int CustId { get; set; }
+
+    public int? Role { get; set; }
 
     public virtual ICollection<TblOrder> TblOrders { get; set; } = new List<TblOrder>();
 }

@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using WebSellFlower.Models;
+using WebSellFlower.Utilities;
 
 namespace WebSellFlower.Areas.Admin.Controllers
 {
@@ -46,7 +48,7 @@ namespace WebSellFlower.Areas.Admin.Controllers
 
             return View(tblPost);
         }
-
+        [Route("admin/add-blog.html")]
         // GET: Admin/TblPosts/Create
         public IActionResult Create()
         {
@@ -58,20 +60,32 @@ namespace WebSellFlower.Areas.Admin.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PostId,CategoryPostId,PostTitle,PostContent,PostThumb,PostFeatured,PostDate,IsActive,Alias,PostDetail,PostContenDetail")] TblPost tblPost)
-        {
-            if (ModelState.IsValid)
-            {   
-                _context.Add(tblPost);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+      
+        public async Task<IActionResult> Create([Bind("PostId,CategoryPostId,PostTitle,PostContent,PostThumb,PostFeatured,IsActive,Alias,PostDetail,PostContenDetail")] TblPost tblPost)
+        {   
+            TblPost post = new TblPost();
+            post.PostTitle = tblPost.PostTitle;
+            post.PostDetail = tblPost.PostDetail;
+            post.PostContent = tblPost.PostContent;
+            post.PostContenDetail = tblPost.PostContenDetail;
+            post.CategoryPostId = tblPost.CategoryPostId;
+            post.PostDate = DateTime.Now;
+            post.PostFeatured = tblPost.PostFeatured;
+            post.IsActive = tblPost.IsActive;
+            if (tblPost.PostThumb != null)
+            {
+                post.PostThumb = tblPost.PostThumb;
             }
+
+            post.Alias = Function.TitleslugGenerationAlias(tblPost.PostTitle);
+            _context.Add(post);
+            await _context.SaveChangesAsync();
             ViewData["CategoryPostId"] = new SelectList(_context.TblCategoryPosts, "CategoryPostId", "CategoryPostId", tblPost.CategoryPostId);
-            return View(tblPost);
+            return StatusCode(200, new { msg = "Tạo Sản Phẩm Thành Công", success = 200 });
         }
 
         // GET: Admin/TblPosts/Edit/5
+        [Route("admin/blog/edit/{id}")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -92,36 +106,43 @@ namespace WebSellFlower.Areas.Admin.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("PostId,CategoryPostId,PostTitle,PostContent,PostThumb,PostFeatured,PostDate,IsActive,Alias,PostDetail,PostContenDetail")] TblPost tblPost)
         {
-            if (id != tblPost.PostId)
-            {
+            var post = await _context.TblPosts.Include(i => i.CategoryPost)
+               .FirstOrDefaultAsync(m => m.PostId == id);
+            if (post == null)
                 return NotFound();
-            }
-
-            if (ModelState.IsValid)
+            try
             {
-                try
+               post.PostTitle = tblPost.PostTitle;
+               post.PostDetail = tblPost.PostDetail;
+               post.PostContent = tblPost.PostContent;
+               post.PostContenDetail = tblPost.PostContenDetail;
+               post.CategoryPostId = tblPost.CategoryPostId;
+                
+                post.IsActive = tblPost.IsActive;
+                if (tblPost.PostThumb != null)
                 {
-                    _context.Update(tblPost);
-                    await _context.SaveChangesAsync();
+                   post.PostThumb = tblPost.PostThumb;
                 }
-                catch (DbUpdateConcurrencyException)
+                
+               post.Alias = Function.TitleslugGenerationAlias(tblPost.PostTitle);
+                _context.Update(post);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!TblPostExists(tblPost.PostId))
                 {
-                    if (!TblPostExists(tblPost.PostId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    return NotFound();
                 }
-                return RedirectToAction(nameof(Index));
+                else
+                {
+                    throw;
+                }
             }
             ViewData["CategoryPostId"] = new SelectList(_context.TblCategoryPosts, "CategoryPostId", "CategoryPostId", tblPost.CategoryPostId);
-            return View(tblPost);
+            return StatusCode(200, new { msg = "Cập Nhật Sản Phẩm Thành Công", success = 200 });
         }
 
         // GET: Admin/TblPosts/Delete/5
