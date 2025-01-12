@@ -26,11 +26,23 @@ namespace WebSellFlower.Areas.Admin.Controllers
 		// GET: Admin/TblPosts
 		public async Task<IActionResult> Index()
         {
-            var websiteBanHoaContext = _context.TblPosts.Include(t => t.CategoryPost);
+            string paramValue = HttpContext.Request.Query["search"];
+
+            var websiteBanHoaContext = _context.TblPosts.Include(t => t.CategoryPost).AsQueryable();
+
+            if (!string.IsNullOrEmpty(paramValue))
+            {
+                websiteBanHoaContext = websiteBanHoaContext.Where(p => EF.Functions.Like(p.PostTitle, $"%{paramValue}%"));
+            }
+              var result = await websiteBanHoaContext.ToListAsync();
+            ViewBag.posts = result;
+            return View(result);
+
             return View(await websiteBanHoaContext.ToListAsync());
         }
 
         // GET: Admin/TblPosts/Details/5
+        [Route("admin/detail-blog.html")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -166,7 +178,7 @@ namespace WebSellFlower.Areas.Admin.Controllers
 
         // POST: Admin/TblPosts/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var tblPost = await _context.TblPosts.FindAsync(id);

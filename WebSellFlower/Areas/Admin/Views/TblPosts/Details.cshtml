@@ -5,73 +5,214 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
+<style>
+    blockquote {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        vertical-align: middle;
+        margin: 20px 0;
+        padding: 0 0 0 26px;
+        color: #4b4747;
+        font-size: 22px;
+        font-style: italic;
+        font-family: Lora, serif;
+        line-height: 1.634em;
+        text-align: left;
+        quotes: none;
+        box-sizing: border-box;
+        border-left: 3px solid rgba(243, 79, 63, .12);
+    }
 
-<div>
-    <h4>TblPost</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PostTitle)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PostTitle)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PostContent)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PostContent)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PostThumb)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PostThumb)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PostFeatured)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PostFeatured)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PostDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PostDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsActive)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsActive)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Alias)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Alias)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PostDetail)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PostDetail)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PostContenDetail)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PostContenDetail)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CategoryPost)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CategoryPost.CategoryPostId)
-        </dd>
-    </dl>
+   
+
+    .mkdf-image-gallery .mkdf-ig-masonry.mkdf-ig-three-columns .mkdf-ig-grid-sizer, .mkdf-image-gallery .mkdf-ig-masonry.mkdf-ig-three-columns .mkdf-ig-image {
+        width: 30%;
+    }
+
+    .mkdf-image-gallery .mkdf-ig-masonry .mkdf-image-gallery-masonry-fixed {
+        overflow: hidden;
+    }
+
+    .mkdf-tiny-space .mkdf-outer-space .mkdf-item-space {
+        padding: 0 5px;
+        margin: 0 0 10px;
+    }
+
+    .mkdf-image-gallery .mkdf-ig-image {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        vertical-align: middle;
+        box-sizing: border-box;
+    }
+
+    .mkdf-image-gallery .mkdf-ig-image-inner, .mkdf-image-gallery .mkdf-ig-slider {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        vertical-align: middle;
+    }
+    .mkdf-image-gallery .mkdf-ig-image a, .mkdf-image-gallery .mkdf-ig-image img {
+        position: relative;
+        display: block;
+    }
+
+    .wp-caption, img {
+        max-width: 100%;
+        height: auto;
+    }
+
+   
+
+</style>
+
+
+
+<div class="container-fluid">
+    <div class="card card-body py-3">
+        <div class="row align-items-center">
+            <div class="col-12">
+                <div class="d-sm-flex align-items-center justify-space-between">
+                    <h4 class="mb-4 mb-sm-0 card-title">Blog Detail</h4>
+                    <nav aria-label="breadcrumb" class="ms-auto">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item d-flex align-items-center">
+                                <a class="text-muted text-decoration-none d-flex" href="index.html">
+                                    <iconify-icon icon="solar:home-2-line-duotone" class="fs-6"></iconify-icon>
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item" aria-current="page">
+                                <span class="badge fw-medium fs-2 bg-primary-subtle text-primary">
+                                    Blog Detail
+                                </span>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card rounded-2 overflow-hidden">
+        <div class="position-relative">
+            <a href="javascript:void(0)">
+                <img src="@Model.PostThumb" class="card-img-top rounded-0 object-fit-cover"  height="440">
+            </a>
+            <span class="badge text-bg-light mb-9 me-9 position-absolute bottom-0 end-0">
+                2
+                min Read
+            </span>
+           @*  <img src="../assets/images/profile/user-5.jpg" alt="matdash-img" class="img-fluid rounded-circle position-absolute bottom-0 start-0 mb-n9 ms-9" width="40" height="40" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Esther Lindsey"> *@
+        </div>
+        <div class="card-body p-4">
+            <span class="badge text-bg-light mt-3">Lifestyle</span>
+            <h2 class="fs-9 fw-semibold my-4">@Model.PostTitle</h2>
+            <div class="d-flex align-items-center gap-4">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="ti ti-eye text-dark fs-5"></i>2252
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <i class="ti ti-message-2 text-dark fs-5"></i>3
+                </div>
+                <div class="d-flex align-items-center fs-2 ms-auto">
+                    <i class="ti ti-point text-dark"></i>Sat, Jan 14
+                </div>
+            </div>
+        </div>
+        <div class="card-body border-top p-4">
+            <h2 class="fs-8 fw-semibold mb-3"> @Model.PostContent</h2>
+            
+            <p class="mb-3">
+               @Html.Raw(Model.PostContenDetail)
+            </p>
+            <p class="text-dark mb-0">
+                <strong>This is strong text.</strong>
+            </p>
+            <p class="mb-0">
+                <em>This is italic text.</em>
+            </p>
+           
+            
+            
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="mb-4 fw-semibold">Post Comments</h4>
+            <form>
+                <textarea class="form-control mb-4" rows="5"></textarea>
+                <button class="btn btn-primary">Post Comment</button>
+            </form>
+            <div class="d-flex align-items-center gap-3 mb-4 mt-7 pt-8">
+                <h4 class="mb-0 fw-semibold">Comments</h4>
+                <span class="badge bg-primary-subtle text-primary fs-4 fw-semibold px-6 py-8 rounded">3</span>
+            </div>
+            <div class="position-relative">
+                <div class="p-4 rounded-2 text-bg-light mb-3">
+                    <div class="d-flex align-items-center gap-3">
+                        <img src="../assets/images/profile/user-2.jpg" alt="matdash-img" class="rounded-circle" width="33" height="33">
+                        <h6 class="fw-semibold mb-0 fs-4">Don Russell</h6>
+                        <span class="p-1 text-bg-muted rounded-circle d-inline-block"></span>
+                    </div>
+                    <p class="my-3">
+                        Es do ujurus nejson imju azgudpi toceztep ji cocicoci bosawrop korze ta.
+                        Casetlu udumej umocu wanaro webmos ijafa ud muli amja softoj ma pijum.
+                    </p>
+                    <div class="d-flex align-items-center gap-2">
+                        <a class="d-flex align-items-center justify-content-center text-bg-primary p-2 fs-4 rounded-circle" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Reply">
+                            <i class="ti ti-arrow-back-up"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="p-4 rounded-2 text-bg-light mb-3">
+                    <div class="d-flex align-items-center gap-3">
+                        <img src="../assets/images/profile/user-3.jpg" alt="matdash-img" class="rounded-circle" width="33" height="33">
+                        <h6 class="fw-semibold mb-0 fs-4">Cordelia Potter</h6>
+                        <span class="p-1 text-bg-muted rounded-circle d-inline-block"></span>
+                    </div>
+                    <p class="my-3">
+                        Huwso jewzehgu julriw niwgazep lewbob isujirmuz hemto pahop cewa zuhucze rinitba
+                        etdebluj.
+                        Obdevo bo fa siztes laobeir agoemugo rut sapaviw mulati do re dabelul wo tumnik wih mu.
+                    </p>
+                    <div class="d-flex align-items-center gap-2">
+                        <a class="d-flex align-items-center justify-content-center text-bg-primary p-2 fs-4 rounded-circle" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Reply">
+                            <i class="ti ti-arrow-back-up"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="p-4 rounded-2 text-bg-light mb-3 ms-7">
+                    <div class="d-flex align-items-center gap-3">
+                        <img src="../assets/images/profile/user-6.jpg" alt="matdash-img" class="rounded-circle" width="40" height="40">
+                        <h6 class="fw-semibold mb-0 fs-4">Irene Hanson</h6>
+                        <span class="p-1 text-bg-muted rounded-circle d-inline-block"></span>
+                    </div>
+                    <p class="my-3">
+                        Uborofgic be rof lom sedge vapozi ohoinu nutremcuc ro ko atmeg anrov git ve vuj ki teb
+                        or.
+                        Lohi hafa faddegon horoz ebema kew idful ducam nev rol iga wikkobsu sucdu gud.
+                    </p>
+                </div>
+                <div class="p-4 rounded-2 text-bg-light">
+                    <div class="d-flex align-items-center gap-3">
+                        <img src="../assets/images/profile/user-4.jpg" alt="matdash-img" class="rounded-circle" width="33" height="33">
+                        <h6 class="fw-semibold mb-0 fs-4">Seth Ortiz</h6>
+                        <span class="p-1 text-bg-muted rounded-circle d-inline-block"></span>
+                    </div>
+                    <p class="my-3">
+                        Icme rasejmat ciwo ifekemug owoca vicoz ukikitus famiftat nuk eroewu za upe.
+                        Pobrikvup kivofvac tuba ot veh ozoab sa gesi hahoniha hop burbip volo hufotobo di uted vojoamu.
+                    </p>
+                    <div class="d-flex align-items-center gap-2">
+                        <a class="d-flex align-items-center justify-content-center text-bg-primary p-2 fs-4 rounded-circle" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Reply">
+                            <i class="ti ti-arrow-back-up"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.PostId">Edit</a> |
