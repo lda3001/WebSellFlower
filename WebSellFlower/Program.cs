@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using WebSellFlower.Models;
 
@@ -22,6 +23,7 @@ builder.Services.AddDbContext<WebsiteBanHoaContext>(options =>
 {
 	options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options => { options.LoginPath = "/Auth/Login"; options.LogoutPath = "/Auth/Logout"; options.AccessDeniedPath = "/Auth/AccessDenied"; options.ExpireTimeSpan = TimeSpan.FromMinutes(60); }); builder.Services.AddAuthorization();
 
 var app = builder.Build();
 

@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr" data-bs-theme="light" data-color-theme="Blue_Theme" data-layout="vertical">
+
+
+<!-- Mirrored from bootstrapdemos.adminmart.com/matdash/dist/main/authentication-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 Jul 2024 15:53:57 GMT -->
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Favicon icon-->
+    <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
+
+    <!-- Core Css -->
+
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.15.10/sweetalert2.min.css" integrity="sha512-Of+yU7HlIFqXQcG8Usdd67ejABz27o7CRB1tJCvzGYhTddCi4TZLVhh9tGaJCwlrBiodWCzAx+igo9oaNbUk5A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <title>MatDash Bootstrap Admin</title>
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <img src="../assets/images/logos/favicon.png" alt="loader" class="lds-ripple img-fluid" />
+    </div>
+    <div id="main-wrapper">
+        @RenderBody()
+    </div>
+    <div class="dark-transparent sidebartoggler"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.15.10/sweetalert2.min.js" integrity="sha512-M60HsJC4M4A8pgBOj7oC/lvJXuOc9CraWXdD4PF+KNmKl8/Mnz6AH9FANgi4SJM6D9rqPvgQt4KRFR1rPN+EUw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- Import Js Files -->
+    <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/libs/simplebar/dist/simplebar.min.js"></script>
+    <script src="../assets/js/theme/app.init.js"></script>
+    <script src="../assets/js/theme/theme.js"></script>
+    <script src="../assets/js/theme/app.min.js"></script>
+
+    <!-- solar icons -->
+    <script src="../../../../cdn.jsdelivr.net/npm/iconify-icon%401.0.8/dist/iconify-icon.min.js"></script>
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+
+        @if (TempData["NotifyMessage"] != null)
+        {
+            <text>
+                Toast.fire({
+                    icon: '@TempData["NotifyType"]', // NotifyType (e.g., 'success', 'error', etc.)
+                    title: '@TempData["NotifyMessage"]'.replace(/"/g, '\\"') // Escape quotes in the message
+                });
+            </text>
+        }
+    </script>
+</body>
+
+
+<!-- Mirrored from bootstrapdemos.adminmart.com/matdash/dist/main/authentication-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 Jul 2024 15:53:57 GMT -->
+</html>

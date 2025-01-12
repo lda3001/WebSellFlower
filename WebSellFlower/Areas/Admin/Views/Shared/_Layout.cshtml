@@ -148,7 +148,7 @@
                                 <!-- ---------------------------------- -->
                                 <!-- Dashboard -->
                                 <!-- ---------------------------------- -->
-                                <li class="sidebar-item">
+                                @* <li class="sidebar-item">
                                     <a class="sidebar-link" href="#" id="get-url" aria-expanded="false">
                                         <iconify-icon icon="solar:atom-line-duotone"></iconify-icon>
                                         <span class="hide-menu">Dashboard 1</span>
@@ -160,12 +160,12 @@
                                         <iconify-icon icon="solar:chart-line-duotone"></iconify-icon>
                                         <span class="hide-menu">Dashboard 2</span>
                                     </a>
-                                </li>
+                                </li> *@
 
                                 <li class="sidebar-item">
-                                    <a class="sidebar-link" href="~/admin" aria-expanded="false">
+                                    <a class="sidebar-link" href="~/Admin" aria-expanded="false">
                                         <iconify-icon icon="solar:screencast-2-line-duotone"></iconify-icon>
-                                        <span class="hide-menu">Dashboard 3</span>
+                                        <span class="hide-menu">Dashboard</span>
                                     </a>
                                 </li>
 
@@ -217,7 +217,7 @@
                                                 }
                                             </style>
                                             <a class="sidebar-link" href="~/admin/product/edit" disabled>
-                                                <span class="icon-small"></span>Sữa Sản phẩm
+                                                <span class="icon-small"></span>Sửa Sản phẩm
                                             </a>
                                         </li>
                                     </ul>
@@ -243,7 +243,7 @@
                                         </li>
                                         <li class="sidebar-item">
                                             <a class="sidebar-link" href="~/admin/blog/edit" disabled>
-                                                <span class="icon-small"></span> Sữa Blog
+                                                <span class="icon-small"></span> Sửa Blog
                                             </a>
                                         </li>
                                     </ul>
@@ -1548,9 +1548,11 @@
                                                     <a href="page-account-settings.html" class="p-2 dropdown-item h6 rounded-1">
                                                         Account Settings
                                                     </a>
-                                                    <a href="authentication-login2.html" class="p-2 dropdown-item h6 rounded-1">
-                                                        Sign Out
-                                                    </a>
+                                                    <form asp-action="Logout" asp-controller="Account">
+                                                        <button type="submit" class="p-2 dropdown-item h6 rounded-1">
+                                                            Sign Out
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -2006,9 +2008,12 @@
                                                     <a href="page-account-settings.html" class="p-2 dropdown-item h6 rounded-1">
                                                         Account Settings
                                                     </a>
-                                                    <a href="authentication-login2.html" class="p-2 dropdown-item h6 rounded-1">
-                                                        Sign Out
-                                                    </a>
+                                                    <form asp-action="Logout" asp-controller="Account">
+                                                        <button type="submit" class="p-2 dropdown-item h6 rounded-1">
+                                                            Sign Out
+                                                        </button>
+                                                    </form>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
