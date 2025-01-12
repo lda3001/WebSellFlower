@@ -4,6 +4,25 @@
     ViewData["Title"] = "Edit";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+@section Styles {
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css" />
+
+    @* <link rel="stylesheet" href="~/assets/libs/quill/dist/quill.snow.css"> *@
+    @*  <link rel="stylesheet" href="~/assets/libs/dropzone/dist/min/dropzone.min.css"> *@
+    <link rel="stylesheet" href="~/assets/libs/select2/dist/css/select2.min.css">
+    <style>
+        .dropzone .dz-remove {
+            color: #ff4d4d;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+            .dropzone .dz-remove:hover {
+                text-decoration: underline;
+            }
+    </style>
+}
 
 <h1>Edit</h1>
 
