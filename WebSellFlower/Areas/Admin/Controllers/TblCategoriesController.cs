@@ -6,7 +6,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Protocol.Plugins;
 using WebSellFlower.Models;
+using WebSellFlower.Utilities;
 
 namespace WebSellFlower.Areas.Admin.Controllers
 {
@@ -19,55 +21,49 @@ namespace WebSellFlower.Areas.Admin.Controllers
         public TblCategoriesController(WebsiteBanHoaContext context)
         {
             _context = context;
+
         }
         [Route("admin/Menu-list.html")]
         // GET: Admin/TblCategories
         public async Task<IActionResult> Index()
+
         {
+            ViewBag.listparentmenu = _context.TblCategories.Where(i => i.Levels == 1).ToList();
             return View(await _context.TblCategories.ToListAsync());
         }
 
         // GET: Admin/TblCategories/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var tblCategory = await _context.TblCategories
-                .FirstOrDefaultAsync(m => m.Categoryid == id);
-            if (tblCategory == null)
-            {
-                return NotFound();
-            }
-
-            return View(tblCategory);
-        }
-
+        [Route("admin/add-menu.html")]
         // GET: Admin/TblCategories/Create
 
         public IActionResult Create()
-        {
+        {   
+           
             return View();
         }
-
-        // POST: Admin/TblCategories/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+		[Route("admin/add-menu")]
+		// POST: Admin/TblCategories/Create
+		// To protect from overposting attacks, enable the specific properties you want to bind to.
+		// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+		[HttpPost]
+        
         public async Task<IActionResult> Create([Bind("Categoryid,Title,Alias,Levels,Position,IsActive,ParentId")] TblCategory tblCategory)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(tblCategory);
+        {       
+                TblCategory menu = new TblCategory();
+                 menu.Levels = tblCategory.Levels;
+                 menu.Title= tblCategory.Title;
+                 menu.IsActive= tblCategory.IsActive;
+                 menu.Position=tblCategory.Position;
+                 menu.ParentId=tblCategory.ParentId;
+               
+           
+                _context.Add(menu);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(tblCategory);
-        }
 
+
+            return StatusCode(200, new { msg = "Tạo Menu Thành Công", success = 200 });
+        }
+        [Route("admin/exit-menu.html")]
         // GET: Admin/TblCategories/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {

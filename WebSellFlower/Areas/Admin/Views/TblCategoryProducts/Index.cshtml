@@ -1,11 +1,12 @@
-﻿@model IEnumerable<WebSellFlower.Models.TblCategory>
-
+﻿@model IEnumerable<WebSellFlower.Models.TblCategoryProduct>
 
 @{
     ViewData["Title"] = "Index";
-    List<TblCategory> listparentmenu = ViewBag.listparentmenu;
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+
+
+
 <div class="body-wrapper">
     <div class="container-fluid">
         <div class="card card-body py-3">
@@ -22,7 +23,7 @@
                                 </li>
                                 <li class="breadcrumb-item" aria-current="page">
                                     <span class="badge fw-medium fs-2 bg-primary-subtle text-primary">
-                                       Quan Ly Menu
+                                        Quan Ly Menu
                                     </span>
                                 </li>
                             </ol>
@@ -41,7 +42,7 @@
                             <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
                         </form>
                         <a href="javascript:void(0)" id="btn-add-menu" class="btn btn-primary d-flex align-items-center">
-                            <i class="ti ti-users text-white me-1 fs-5"></i> Add Menu
+                            <i class="ti ti-users text-white me-1 fs-5"></i> Add thể loại
                         </a>
                     </div>
                     <div class="table-responsive border rounded">
@@ -50,12 +51,8 @@
                                 <tr>
                                     <th scope="col">STT</th>
                                     <th scope="col">Tiêu đề</th>
-                                   
-                                    <th scope="col">Mức</th>
-                                    <th scope="col">Vị Trí</th>
-                                    <th scope="col">Menu cha</th>
                                     <th scope="col">Trạng thái</th>
-                                    <th scope="col">Actions</th>
+                                    <th scope="col">Chức năng</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -69,18 +66,16 @@
                                     <tr>
 
                                         <td>@(i++)</td>
-                                        <td>@Html.DisplayFor(m => item.Title)</td>
+                                        <td>@item.CategoryProdName</td>
+
                                        
-                                        <td>@Html.DisplayFor(m => item.Levels)</td>
-                                        <td>@Html.DisplayFor(m => item.Position)</td>
-                                        <td>@Html.DisplayFor(m => item.ParentId)</td>
-                                        @if ( item.IsActive == true)
+                                        @if (item.IsActive == true)
                                         {
                                             <td>
                                                 <div class="d-flex align-items-center">
-                                                <span class="text-bg-success p-1 rounded-circle"></span>
-                                                <p class="mb-0 ms-2"></p>
-                                            </div>
+                                                    <span class="text-bg-success p-1 rounded-circle"></span>
+                                                    <p class="mb-0 ms-2"></p>
+                                                </div>
                                             </td>
                                         }
                                         else
@@ -93,17 +88,18 @@
                                             </td>
                                         }
                                         <td>
-                                            
 
-                                            <a  href="@Url.Action("Edit", new { id = item.Categoryid })"><iconify-icon icon="heroicons-outline:pencil-square" class="fs-7"></iconify-icon></a> |
+
+                                            <a href="@Url.Action("Edit", new { id = item.CategoryProdId })"><iconify-icon icon="heroicons-outline:pencil-square" class="fs-7"></iconify-icon></a> |
+
                                             <a href="javascript:void(0)"
                                                data-bs-toggle="modal"
                                                data-bs-target="#bs-example-modal-xlg"
-                                               data-post-id="@item.Categoryid">
+                                               data-post-id="@item.CategoryProdId">
                                                 <iconify-icon icon="heroicons-outline:trash" class="fs-7"></iconify-icon>
                                             </a>
                                         </td>
-                                       
+
                                     </tr>
                                 }
                             </tbody>
@@ -152,41 +148,14 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3 menu-name">
-                                        <label for="menu-name" class="form-label">Menu Name</label>
+                                        <label for="menu-name" class="form-label">Tên thể loại</label>
                                         <input type="text" id="menu-name" class="form-control" placeholder="Enter menu name" required />
                                         <span class="validation-text text-danger"></span>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3 menu-level">
-                                        <label for="menu-level" class="form-label">Level</label>
-                                        <input type="number" id="menu-level" class="form-control" placeholder="Enter menu level" min="1" required />
-                                        <span class="validation-text text-danger"></span>
-                                    </div>
-                                </div>
+                                
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="mb-3 menu-parent">
-                                        <label for="menu-parent" class="form-label">Parent Menu</label>
-                                        <select id="menu-parent" class="form-select">
-                                            <option value="null">None</option>
-                                            @foreach (var parent in listparentmenu)
-                                            {
-                                                <option value="@parent.Categoryid">@parent.Title</option>
-                                            }
-                                            <!-- Populate this dynamically with menu parent names -->
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3 menu-position">
-                                        <label for="menu-position" class="form-label">Position</label>
-                                        <input type="number" id="menu-position" class="form-control" placeholder="Enter position" min="1" required />
-                                        <span class="validation-text text-danger"></span>
-                                    </div>
-                                </div>
-                            </div>
+                            
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="mb-3 menu-status">
@@ -211,7 +180,84 @@
         </div>
     </div>
 </div>
+<script>
+    document.getElementById('btn-add-menu').addEventListener('click', function () {
+        var addMenuModal = new bootstrap.Modal(document.getElementById('addMenuModal'));
+        addMenuModal.show();
+    });
 
+</script>
+@section Scripts {
+
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+        $("#btn-save-menu").click(function () {
+            var getParent = $(this).parents(".modal-content");
+
+            var $_name = getParent.find("#menu-name");
+            
+            var $_status = getParent.find("#menu-status");
+
+            var $_nameValue = $_name.val();
+           
+            var $_status = $_status.val();
+
+            var formData = new FormData(); // Create a new FormData object
+
+            // Append form data values to the FormData object
+            formData.append('CategoryProdName', $_nameValue);
+            
+            formData.append('IsActive', $_status);
+            $.ajax({
+                url: `/admin/add-cateproduct`, 
+                type: 'POST',
+                data: formData,
+                contentType: false, // Let the browser set the content type
+                processData: false, // Prevent jQuery from processing the data
+                success: function (response) {
+                    console.log(response)
+                    if (response.success) {
+
+                        Toast.fire({
+                            icon: "success",
+                            title: response.msg
+                        });
+                        setTimeout(function () {
+                            window.location.href = '';
+                        }, 1000);
+                        // Optionally, you can redirect or update the UI here
+                        // window.location.href = '@Url.Action("Index", "Product")';
+                    } else {
+
+                        Toast.fire({
+                            icon: "error",
+                            title: "lỗi rồi"
+                        });
+                    }
+                },
+
+                error: function () {
+                    Toast.fire({
+                        icon: "error",
+                        title: "error"
+                    });
+                }
+            });
+        })
+
+
+    </script>
+}
 <div class="modal fade" id="bs-example-modal-xlg" tabindex="-1" aria-labelledby="bs-example-modal-lg" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -250,103 +296,17 @@
                 const button = event.relatedTarget;
 
                 // Lấy PostId từ thuộc tính data-post-id
-                const categoryid = button.getAttribute('data-post-id');
+                const categoryproduct = button.getAttribute('data-post-id');
 
                 // Tìm form bên trong modal
                 const form = deleteModal.querySelector('form');
 
                 // Cập nhật URL hành động của form
                 if (form) {
-                    form.action = `/Admin/TblCategories/Delete/${categoryid}`;
+                    form.action = `/Admin/TblCategoryProducts/Delete/${categoryproduct}`;
                 }
             });
         }
     });
 
 </script>
-
-<script>
-    document.getElementById('btn-add-menu').addEventListener('click', function () {
-        var addMenuModal = new bootstrap.Modal(document.getElementById('addMenuModal'));
-        addMenuModal.show();
-});
-    
-</script>
-@section Scripts {
-        
-    <script>
-        const Toast = Swal.mixin({
-            toast: true,
-            position: "top-end",
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-                toast.onmouseenter = Swal.stopTimer;
-                toast.onmouseleave = Swal.resumeTimer;
-            }
-        });
-        $("#btn-save-menu").click(function () {
-        var getParent = $(this).parents(".modal-content");
-
-        var $_name = getParent.find("#menu-name");
-        var $_levels = getParent.find("#menu-level");
-        var $_parent = getParent.find("#menu-parent");
-        var $_position = getParent.find("#menu-position");
-        var $_status = getParent.find("#menu-status");
-       
-            var $_nameValue = $_name.val();
-            var $_levelsValue = $_levels.val();
-            var $_parentValue = $_parent.val();
-            var $_positionValue = $_position.val();
-            var $_status = $_status.val();
-
-            var formData = new FormData(); // Create a new FormData object
-
-            // Append form data values to the FormData object
-            formData.append('Title', $_nameValue);
-            formData.append('Levels', $_levelsValue);
-            formData.append('ParentId', $_parentValue);
-            formData.append('Position', $_positionValue);
-            formData.append('IsActive', $_status);
-            $.ajax({
-                url: `/admin/add-menu`,
-                // URL of the Edit action
-                type: 'POST',
-                data: formData,
-                contentType: false, // Let the browser set the content type
-                processData: false, // Prevent jQuery from processing the data
-                success: function (response) {
-                    console.log(response)
-                    if (response.success) {
-
-                        Toast.fire({
-                            icon: "success",
-                            title: response.msg
-                        });
-                        setTimeout(function () {
-                            window.location.href = '';
-                        }, 1000);
-                        // Optionally, you can redirect or update the UI here
-                        // window.location.href = '@Url.Action("Index", "Product")';
-                    } else {
-
-                        Toast.fire({
-                            icon: "error",
-                            title: "lỗi rồi"
-                        });
-                    }
-                },
-
-                error: function () {
-                    Toast.fire({
-                        icon: "error",
-                        title: "error"
-                    });
-                }
-            });
-    })
-
-
-     </script>
-}

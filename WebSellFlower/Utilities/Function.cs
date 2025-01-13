@@ -11,6 +11,10 @@ namespace WebSellFlower.Utilities
 		{
 			return SlugGenerator.SlugGenerator.GenerateSlug(title);
 		}
+        public static string TitleslugGenerationAliasCategori(string title)
+        {   
+            return "/product-category/"+ SlugGenerator.SlugGenerator.GenerateSlug(title);
+        }
         public string HashPassword(string password)
         {
             return BCrypt.Net.BCrypt.HashPassword(password);
