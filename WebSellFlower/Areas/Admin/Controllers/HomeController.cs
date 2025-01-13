@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
+using WebSellFlower.Models;
 
 namespace WebSellFlower.Areas.Admin.Controllers
 {
@@ -10,7 +12,8 @@ namespace WebSellFlower.Areas.Admin.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult Index()
         {
-            return View();
+			
+			return View();
         }
     }
 }

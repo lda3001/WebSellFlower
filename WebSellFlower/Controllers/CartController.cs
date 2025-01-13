@@ -50,12 +50,14 @@ namespace WebSellFlower.Controllers
 			var cart = GetCart();
 			if (!string.IsNullOrEmpty(proId))
 			{
-				var item = cart.FirstOrDefault(c => c.ProdId == proId);
+				var item = cart.FirstOrDefault(c => c.ProdId == Int32.Parse(proId));
 				if (item != null)
 				{
 					cart.Remove(item);
-				}
-			}
+                    SaveCart(cart);
+
+                }
+            }
 
 			// Nếu cần thêm thông tin sản phẩm từ database
 			var productIds = cart.Select(c => c.ProdId).ToList();
@@ -163,6 +165,7 @@ namespace WebSellFlower.Controllers
                     ProdThumb = product.ProdThumb,
                     Quantity = request.Quantity,
                     ProdPrice = product.ProdPrice,
+                    ProdDiscount = product.ProdDiscount,
                     Alias = product.Alias,
 
                 });
@@ -204,6 +207,6 @@ namespace WebSellFlower.Controllers
 
 	public class CartItem : TblProduct
 	{		
-		public double? TotalPrice => Quantity * ProdPrice;
+		public double? TotalPrice => Quantity * (ProdDiscount> 0 ? ProdDiscount : ProdPrice);
 	}
 }

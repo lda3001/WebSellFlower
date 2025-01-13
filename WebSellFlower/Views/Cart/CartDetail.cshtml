@@ -82,7 +82,7 @@
                                                 <td class="product-price" data-title="Price">
                                                     <span class="woocommerce-Price-amount amount">
                                                         <bdi>
-                                                            <span class="woocommerce-Price-currencySymbol">&#36;</span>@item.ProdPrice
+                                                            <span class="woocommerce-Price-currencySymbol">&#36;</span>@(item.ProdDiscount > 0 ? @item.ProdDiscount : @item.ProdPrice)
                                                         </bdi>
                                                     </span>
                                                 </td>
@@ -584,7 +584,7 @@
 
                                     <div class="wc-proceed-to-checkout">
 
-                                        <a href="https://fiorello.qodeinteractive.com/checkout/"
+                                        <a href="~/Checkout"
                                            class="checkout-button button alt wc-forward">
                                             Proceed to checkout
                                         </a>
@@ -606,7 +606,7 @@
                     <div class="mkdf-page-content-holder mkdf-grid-col-12">
                         <div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner"><div class="wpb_wrapper"></div></div></div><div class="woocommerce">
                             <div class="woocommerce-notices-wrapper"></div><p class="cart-empty woocommerce-info">Your cart is currently empty.</p>	<p class="return-to-shop">
-                                <a class="button wc-backward" href="https://fiorello.qodeinteractive.com/product-list/">
+                                <a class="button wc-backward" href="/">
                                     Return to shop
                                 </a>
                             </p>

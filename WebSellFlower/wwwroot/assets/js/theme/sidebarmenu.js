@@ -26,18 +26,21 @@ if ((at = "vertical")) {
           if (anchors[i].href === currentUrl) {
             return anchors[i];
           }
-          else if (currentUrl.includes('admin/product-list.html?search')) {
+         /* else if (currentUrl.includes('admin/product-list.html?search')) {
               return anchors[6];
           }
           else if (currentUrl.includes('admin/blog-list.html?search')) {
               return anchors[6];
-          }
+          }*/
           else if (currentUrl.includes('admin/detail-blog.html')) {
               return anchors[13];
           }
           else if (currentUrl.includes('admin/product/edit')){
             return anchors[9];
-            }
+          }
+          else if (currentUrl.includes('admin/product/detail')) {
+              return anchors[2];
+          }
           else if (currentUrl.includes('admin/blog/edit')) {
               return anchors[14];
           }

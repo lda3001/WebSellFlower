@@ -50,8 +50,9 @@ namespace WebSellFlower.Areas.Admin.Controllers
             return View(result);
         }
 
-        // GET: Admin/Products/Details/5
-        public async Task<IActionResult> Details(int? id)
+		// GET: Admin/Products/Details/5
+		[Route("admin/product/details/{id}")]
+		public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {

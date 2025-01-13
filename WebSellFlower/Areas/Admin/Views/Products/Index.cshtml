@@ -87,7 +87,10 @@
                                 <td>
                                     <a href="@Url.Action("Edit", new { id = product.ProdId })"><iconify-icon icon="heroicons-outline:pencil-square" class="fs-7"></iconify-icon></a> |
                                     <a href="@Url.Action("Details", new { id = product.ProdId })"><iconify-icon icon="heroicons-outline:eye" class="fs-7"></iconify-icon></a> |
-                                    <a href="@Url.Action("Delete", new { id = product.ProdId })">
+                                    <a href="javascript:void(0)"
+                                       data-bs-toggle="modal"
+                                       data-bs-target="#bs-example-modal-xlg"
+                                       data-product-id="@product.ProdId">
                                         <iconify-icon icon="heroicons-outline:trash" class="fs-7"></iconify-icon>
                                     </a>
                                 </td>
@@ -127,6 +130,57 @@
 </div>
 
 @section Scripts {
-    <script src="../assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="../assets/js/datatable/datatable-basic.init.js"></script>
+    <script src="~/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/assets/js/datatable/datatable-basic.init.js"></script>
 }
+
+
+<div class="modal fade" id="bs-example-modal-xlg" tabindex="-1" aria-labelledby="bs-example-modal-lg" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header d-flex align-items-center">
+                <div class="icon round-40 d-flex align-items-center justify-content-center bg-light-danger text-danger me-2 rounded-circle">
+                    <i class="ti ti-trash fs-6"></i>
+                </div>
+                <h5 class="modal-title fw-semibold" id="exampleModalLabel">Delete the task?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    If you delete the task it will be gone forever. Are you sure you <br> want to proceed?
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn bg-danger-subtle text-danger waves-effect text-start" data-bs-dismiss="modal">
+                    Close
+                </button>
+                <form method="post" action="">
+                    <button type="submit" class="btn btn-danger waves-effect text-start">
+                        Delete
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const deleteModal = document.getElementById('bs-example-modal-xlg');
+
+        if (deleteModal) {
+            deleteModal.addEventListener('show.bs.modal', (event) => {
+                const button = event.relatedTarget;
+
+                const ProductId = button.getAttribute('data-product-id');
+
+                const form = deleteModal.querySelector('form');
+
+                if (form) {
+                    form.action = `/Admin/Products/Delete/${postId}`;
+                }
+            });
+        }
+    });
+
+</script>

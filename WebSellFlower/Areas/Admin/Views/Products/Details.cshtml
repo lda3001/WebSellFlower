@@ -4,112 +4,426 @@
     ViewData["Title"] = "Details";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+@section Styles {
+    <link rel="stylesheet" href="~/assets/libs/owl.carousel/dist/assets/owl.carousel.min.css">
+}
 
-<h1>Details</h1>
+<div class="shop-detail">
+    <div class="card">
+        <div class="card-body p-4">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div id="sync1" class="owl-carousel owl-theme">
+                        <div class="item rounded overflow-hidden">
+                            <img src="@Model.ProdThumb" alt="matdash-img" class="img-fluid">
+                        </div>
+                        <div class="item rounded overflow-hidden">
+                            <img src="@Model.ProdImg" alt="matdash-img" class="img-fluid">
+                        </div>
+                        <div class="item rounded overflow-hidden">
+                            <img src="@Model.ProdImg" alt="matdash-img" class="img-fluid">
+                        </div>
+                        <div class="item rounded overflow-hidden">
+                            <img src="@Model.ProdImg" alt="matdash-img" class="img-fluid">
+                        </div>
+                        <div class="item rounded overflow-hidden">
+                            <img src="@Model.ProdImg" alt="matdash-img" class="img-fluid">
+                        </div>
+                        
+                    </div>
 
-<div>
-    <h4>TblProduct</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProdName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProdName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProdPrice)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProdPrice)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProdDiscount)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProdDiscount)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Detail)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Detail)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Alias)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Alias)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsBestSeller)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsBestSeller)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsActive)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsActive)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProdThumb)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProdThumb)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProdImg)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProdImg)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProdImg1)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProdImg1)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProdImg2)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProdImg2)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsNew)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsNew)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProdImg3)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProdImg3)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CategoryProd)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CategoryProd.CategoryProdId)
-        </dd>
-    </dl>
+                    <div id="sync2" class="owl-carousel owl-theme">
+                        <div class="item rounded overflow-hidden">
+                            <img src="@Model.ProdThumb" alt="matdash-img" class="img-fluid">
+                        </div>
+                        <div class="item rounded overflow-hidden">
+                            <img src="@Model.ProdImg" alt="matdash-img" class="img-fluid">
+                        </div>
+                        <div class="item rounded overflow-hidden">
+                            <img src="@Model.ProdImg" alt="matdash-img" class="img-fluid">
+                        </div>
+                        <div class="item rounded overflow-hidden">
+                            <img src="@Model.ProdImg" alt="matdash-img" class="img-fluid">
+                        </div>
+                        <div class="item rounded overflow-hidden">
+                            <img src="@Model.ProdImg" alt="matdash-img" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="shop-content">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <span class="badge text-bg-success fs-2 fw-semibold">In Stock</span>
+                            <span class="fs-2">@Model.CategoryProd.CategoryProdName</span>
+                        </div>
+                        <h4>@Model.ProdName</h4>
+                        <p class="mb-3">
+                           @Model.Description;
+                        </p>
+                        <h4 class="fw-semibold mb-3">
+                            <del class="fs-5 text-muted">$@Model.ProdPrice</del> $@Model.ProdDiscount
+                        </h4>
+                        <div class="d-flex align-items-center gap-8 pb-4 border-bottom">
+                            <ul class="list-unstyled d-flex align-items-center mb-0">
+                                <li>
+                                    <a class="me-1" href="javascript:void(0)">
+                                        <i class="ti ti-star text-warning fs-4"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="me-1" href="javascript:void(0)">
+                                        <i class="ti ti-star text-warning fs-4"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="me-1" href="javascript:void(0)">
+                                        <i class="ti ti-star text-warning fs-4"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="me-1" href="javascript:void(0)">
+                                        <i class="ti ti-star text-warning fs-4"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        <i class="ti ti-star text-warning fs-4"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <a href="javascript:void(0)">(236 reviews)</a>
+                        </div>
+                        <div class="d-flex align-items-center gap-8 py-7">
+                            <h6 class="mb-0 fs-4 fw-semibold">Colors:</h6>
+                            <a class="rounded-circle d-block text-bg-primary p-6" href="javascript:void(0)"></a>
+                        </div>
+                        <div class="d-flex align-items-center gap-7 pb-7 mb-7 border-bottom">
+                            <h6 class="mb-0 fs-4 fw-semibold">QTY:</h6>
+                            <div class="input-group input-group-sm rounded">
+                                <button class="btn minus min-width-40 py-0 border-end border-muted fs-5 border-end-0 text-muted" type="button" id="add1">
+                                    <i class="ti ti-minus"></i>
+                                </button>
+                                <input type="text" class="min-width-40 flex-grow-0 border border-muted text-muted fs-4 fw-semibold form-control text-center qty" placeholder="" aria-label="Example text with button addon" aria-describedby="add1" value="1">
+                                <button class="btn min-width-40 py-0 border border-muted fs-5 border-start-0 text-muted add" type="button" id="addo2">
+                                    <i class="ti ti-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="d-sm-flex align-items-center gap-6 pt-8 mb-7">
+                            <a href="javascript:void(0)" class="btn d-block btn-primary px-5 py-8 mb-6 mb-sm-0">Buy Now</a>
+                            <a href="javascript:void(0)" class="btn d-block btn-danger px-7 py-8">Add to Cart</a>
+                        </div>
+                        <p class="mb-0">Dispatched in 2-3 weeks</p>
+                        <a href="javascript:void(0)">Why the longer time for delivery?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body p-4">
+            <ul class="nav nav-pills user-profile-tab border-bottom" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link position-relative rounded-0 active d-flex align-items-center justify-content-center bg-transparent fs-3 py-6" id="pills-description-tab" data-bs-toggle="pill" data-bs-target="#pills-description" type="button" role="tab" aria-controls="pills-description" aria-selected="true">
+                        Description
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link position-relative rounded-0 d-flex align-items-center justify-content-center bg-transparent fs-3 py-6" id="pills-reviews-tab" data-bs-toggle="pill" data-bs-target="#pills-reviews" type="button" role="tab" aria-controls="pills-reviews" aria-selected="false">
+                        Reviews
+                    </button>
+                </li>
+            </ul>
+            <div class="tab-content pt-4" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-description" role="tabpanel" aria-labelledby="pills-description-tab" tabindex="0">
+                    @Html.Raw(Model.Detail)
+                </div>
+                <div class="tab-pane fade" id="pills-reviews" role="tabpanel" aria-labelledby="pills-reviews-tab" tabindex="0">
+                    <div class="row">
+                        <div class="col-lg-4 d-flex align-items-stretch">
+                            <div class="card shadow-none border w-100 mb-7 mb-lg-0">
+                                <div class="card-body text-center p-4 d-flex flex-column justify-content-center">
+                                    <h6 class="mb-3">Average Rating</h6>
+                                    <h2 class="text-primary mb-3 fw-semibold fs-9">4/5</h2>
+                                    <ul class="list-unstyled d-flex align-items-center justify-content-center mb-0">
+                                        <li>
+                                            <a class="me-1" href="javascript:void(0)">
+                                                <i class="ti ti-star text-warning fs-6"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="me-1" href="javascript:void(0)">
+                                                <i class="ti ti-star text-warning fs-6"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="me-1" href="javascript:void(0)">
+                                                <i class="ti ti-star text-warning fs-6"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="me-1" href="javascript:void(0)">
+                                                <i class="ti ti-star text-warning fs-6"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)">
+                                                <i class="ti ti-star text-warning fs-6"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 d-flex align-items-stretch">
+                            <div class="card shadow-none border w-100 mb-7 mb-lg-0">
+                                <div class="card-body p-4 d-flex flex-column justify-content-center">
+                                    <div class="d-flex align-items-center gap-9 mb-3">
+                                        <span class="flex-shrink-0 fs-2">1 Stars</span>
+                                        <div class="progress bg-primary-subtle w-100 h-4">
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%;"></div>
+                                        </div>
+                                        <h6 class="mb-0">(485)</h6>
+                                    </div>
+                                    <div class="d-flex align-items-center gap-9 mb-3">
+                                        <span class="flex-shrink-0 fs-2">2 Stars</span>
+                                        <div class="progress bg-primary-subtle w-100 h-4">
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;"></div>
+                                        </div>
+                                        <h6 class="mb-0">(215)</h6>
+                                    </div>
+                                    <div class="d-flex align-items-center gap-9 mb-3">
+                                        <span class="flex-shrink-0 fs-2">3 Stars</span>
+                                        <div class="progress bg-primary-subtle w-100 h-4">
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%;"></div>
+                                        </div>
+                                        <h6 class="mb-0">(110)</h6>
+                                    </div>
+                                    <div class="d-flex align-items-center gap-9 mb-3">
+                                        <span class="flex-shrink-0 fs-2">4 Stars</span>
+                                        <div class="progress bg-primary-subtle w-100 h-4">
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div>
+                                        </div>
+                                        <h6 class="mb-0">(620)</h6>
+                                    </div>
+                                    <div class="d-flex align-items-center gap-9">
+                                        <span class="flex-shrink-0 fs-2">5 Stars</span>
+                                        <div class="progress bg-primary-subtle w-100 h-4">
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100" style="width: 12%;"></div>
+                                        </div>
+                                        <h6 class="mb-0">(160)</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 d-flex align-items-stretch">
+                            <div class="card shadow-none border w-100 mb-7 mb-lg-0">
+                                <div class="card-body p-4 d-flex flex-column justify-content-center">
+                                    <button type="button" class="btn btn-outline-primary d-flex align-items-center gap-2 mx-auto">
+                                        <i class="ti ti-pencil fs-7"></i>Write an Review
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="related-products pt-7">
+        <h4 class="mb-3 fw-semibold">Related Products</h4>
+        <div class="row">
+            <div class="col-sm-6 col-xxl-3">
+                <div class="card overflow-hidden rounded-2">
+                    <div class="position-relative">
+                        <a href="javascript:void(0)" class="hover-img d-block overflow-hidden">
+                            <img src="../assets/images/products/s2.jpg" class="card-img-top rounded-0" alt="matdash-img">
+                        </a>
+                    </div>
+                    <div class="card-body pt-3 p-4">
+                        <h6 class="fw-semibold fs-4">Body Lotion</h6>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <h6 class="fw-semibold fs-4 mb-0">
+                                $89 <span class="ms-2 fw-normal text-muted fs-3">
+                                    <del>$99</del>
+                                </span>
+                            </h6>
+                            <ul class="list-unstyled d-flex align-items-center mb-0">
+                                <li>
+                                    <a class="me-1" href="javascript:void(0)">
+                                        <i class="ti ti-star text-warning"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="me-1" href="javascript:void(0)">
+                                        <i class="ti ti-star text-warning"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="me-1" href="javascript:void(0)">
+                                        <i class="ti ti-star text-warning"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="me-1" href="javascript:void(0)">
+                                        <i class="ti ti-star text-warning"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        <i class="ti ti-star text-warning"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xxl-3">
+                <div class="card overflow-hidden rounded-2">
+                    <div class="position-relative">
+                        <a href="javascript:void(0)" class="hover-img d-block overflow-hidden">
+                            <img src="../assets/images/products/s4.jpg" class="card-img-top rounded-0" alt="matdash-img">
+                        </a>
+                    </div>
+                    <div class="card-body pt-3 p-4">
+                        <h6 class="fw-semibold fs-4">Glossy Solution</h6>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <h6 class="fw-semibold fs-4 mb-0">
+                                $50 <span class="ms-2 fw-normal text-muted fs-3">
+                                    <del>$65</del>
+                                </span>
+                            </h6>
+                            <ul class="list-unstyled d-flex align-items-center mb-0">
+                                <li>
+                                    <a class="me-1" href="javascript:void(0)">
+                                        <i class="ti ti-star text-warning"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="me-1" href="javascript:void(0)">
+                                        <i class="ti ti-star text-warning"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="me-1" href="javascript:void(0)">
+                                        <i class="ti ti-star text-warning"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="me-1" href="javascript:void(0)">
+                                        <i class="ti ti-star text-warning"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        <i class="ti ti-star text-warning"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xxl-3">
+                <div class="card overflow-hidden rounded-2">
+                    <div class="position-relative">
+                        <a href="javascript:void(0)" class="hover-img d-block overflow-hidden">
+                            <img src="../assets/images/products/s5.jpg" class="card-img-top rounded-0" alt="matdash-img">
+                        </a>
+                    </div>
+                    <div class="card-body pt-3 p-4">
+                        <h6 class="fw-semibold fs-4">Derma-E</h6>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <h6 class="fw-semibold fs-4 mb-0">
+                                $650 <span class="ms-2 fw-normal text-muted fs-3">
+                                    <del>$900</del>
+                                </span>
+                            </h6>
+                            <ul class="list-unstyled d-flex align-items-center mb-0">
+                                <li>
+                                    <a class="me-1" href="javascript:void(0)">
+                                        <i class="ti ti-star text-warning"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="me-1" href="javascript:void(0)">
+                                        <i class="ti ti-star text-warning"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="me-1" href="javascript:void(0)">
+                                        <i class="ti ti-star text-warning"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="me-1" href="javascript:void(0)">
+                                        <i class="ti ti-star text-warning"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        <i class="ti ti-star text-warning"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xxl-3">
+                <div class="card overflow-hidden rounded-2">
+                    <div class="position-relative">
+                        <a href="javascript:void(0)" class="hover-img d-block overflow-hidden">
+                            <img src="../assets/images/products/s6.jpg" class="card-img-top rounded-0" alt="matdash-img">
+                        </a>
+                    </div>
+                    <div class="card-body pt-3 p-4">
+                        <h6 class="fw-semibold fs-4">SockSoho</h6>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <h6 class="fw-semibold fs-4 mb-0">
+                                $25 <span class="ms-2 fw-normal text-muted fs-3">
+                                    <del>$31</del>
+                                </span>
+                            </h6>
+                            <ul class="list-unstyled d-flex align-items-center mb-0">
+                                <li>
+                                    <a class="me-1" href="javascript:void(0)">
+                                        <i class="ti ti-star text-warning"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="me-1" href="javascript:void(0)">
+                                        <i class="ti ti-star text-warning"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="me-1" href="javascript:void(0)">
+                                        <i class="ti ti-star text-warning"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="me-1" href="javascript:void(0)">
+                                        <i class="ti ti-star text-warning"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        <i class="ti ti-star text-warning"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.ProdId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
+@section Scripts {
+    <script src="~/assets/libs/owl.carousel/dist/owl.carousel.min.js"></script>
+    <script src="~/assets/js/apps/productDetail.js"></script>
+
+
+}
