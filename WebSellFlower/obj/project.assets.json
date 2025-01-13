@@ -8308,23 +8308,37 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\DUCANHDEV\\.nuget\\packages\\": {},
+=======
+    "C:\\Users\\Tuan\\.nuget\\packages\\": {},
+>>>>>>> 6724f9c4b44fd3d5613a1290539f96f872d9af65
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\WebSellFlower\\WebSellFlower\\WebSellFlower.csproj",
+      "projectUniqueName": "C:\\Users\\Tuan\\Source\\Repos\\WebSellFlower\\WebSellFlower\\WebSellFlower.csproj",
       "projectName": "WebSellFlower",
+<<<<<<< HEAD
       "projectPath": "E:\\WebSellFlower\\WebSellFlower\\WebSellFlower.csproj",
       "packagesPath": "C:\\Users\\DUCANHDEV\\.nuget\\packages\\",
       "outputPath": "E:\\WebSellFlower\\WebSellFlower\\obj\\",
+=======
+      "projectPath": "C:\\Users\\Tuan\\Source\\Repos\\WebSellFlower\\WebSellFlower\\WebSellFlower.csproj",
+      "packagesPath": "C:\\Users\\Tuan\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Tuan\\Source\\Repos\\WebSellFlower\\WebSellFlower\\obj\\",
+>>>>>>> 6724f9c4b44fd3d5613a1290539f96f872d9af65
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
+<<<<<<< HEAD
         "C:\\Users\\DUCANHDEV\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+        "C:\\Users\\Tuan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> 6724f9c4b44fd3d5613a1290539f96f872d9af65
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -8349,7 +8363,11 @@
       "restoreAuditProperties": {
         "enableAudit": "true",
         "auditLevel": "low",
+<<<<<<< HEAD
         "auditMode": "all"
+=======
+        "auditMode": "direct"
+>>>>>>> 6724f9c4b44fd3d5613a1290539f96f872d9af65
       },
       "SdkAnalysisLevel": "9.0.100"
     },

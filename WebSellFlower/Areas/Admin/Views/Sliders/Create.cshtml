@@ -1,0 +1,322 @@
+﻿@model WebSellFlower.Models.TblSlider
+
+@{
+    List<TblSlider> tblSliders = ViewBag.listSlider;
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css" />
+
+    @* <link rel="stylesheet" href="~/assets/libs/quill/dist/quill.snow.css"> *@
+    @*  <link rel="stylesheet" href="~/assets/libs/dropzone/dist/min/dropzone.min.css"> *@
+    <link rel="stylesheet" href="~/assets/libs/select2/dist/css/select2.min.css">
+    <style>
+        .dropzone .dz-remove {
+            color: #ff4d4d;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+            .dropzone .dz-remove:hover {
+                text-decoration: underline;
+            }
+    </style>
+}
+
+<div class="card card-body py-3">
+    <div class="row align-items-center">
+        <div class="col-12">
+            <div class="d-sm-flex align-items-center justify-space-between">
+                <h4 class="mb-4 mb-sm-0 card-title">Edit Product</h4>
+                <nav aria-label="breadcrumb" class="ms-auto">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item d-flex align-items-center">
+                            <a class="text-muted text-decoration-none d-flex" href="index.html">
+                                <iconify-icon icon="solar:home-2-line-duotone" class="fs-6"></iconify-icon>
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item" aria-current="page">
+                            <span class="badge fw-medium fs-2 bg-primary-subtle text-primary">
+                                Edit Product
+                            </span>
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- start Basic Area Chart -->
+
+<div class="row">
+    <div class="col-lg-8 ">
+        
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-7">Media</h4>
+
+                <form action="#" class="dropzone dz-clickable mb-2" id="myDropzone">
+                    <div class="dz-default dz-message">
+                        <button class="dz-button" type="button">
+                            Drop files here
+                            to upload
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        @* <div class="card">
+        <div class="card-body">
+        <h4 class="card-title mb-7">Variation</h4>
+
+        <form action="#">
+        <label class="form-label">Add Product Variations</label>
+        <div class="email-repeater mb-3">
+        <div data-repeater-list="repeater-group">
+        <div data-repeater-item class="row mb-3">
+        <div class="col-md-4">
+        <select class="select2 form-control">
+        <option>Color</option>
+        <option selected>Size</option>
+        <option>Material</option>
+        <option>Style</option>
+        </select>
+        </div>
+        <div class="col-md-4 mt-3 mt-md-0">
+        <input type="text" class="form-control" placeholder="Variation" />
+        </div>
+        <div class="col-md-2 mt-3 mt-md-0">
+        <button data-repeater-delete="" class="btn bg-danger-subtle text-danger" type="button">
+        <i class="ti ti-x fs-5 d-flex"></i>
+        </button>
+        </div>
+        </div>
+        </div>
+        <button type="button" data-repeater-create="" class="btn bg-primary-subtle text-primary ">
+        <span class="fs-4 me-1">+</span>
+        Add another variation
+        </button>
+        </div>
+        </form>
+        </div>
+        </div> *@
+
+
+        <div class="form-actions">
+            <button class="btn btn-primary" id="saveButton" onclick="UpdateProduct()">
+                Save changes
+            </button>
+            <button type="button" class="btn bg-danger-subtle text-danger ms-6">
+                Cancel
+            </button>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="offcanvas-lg offcanvas-end overflow-auto" tabindex="-1" id="offcanvasRight"
+             aria-labelledby="offcanvasRightLabel">
+            
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex align-items-center justify-content-between mb-7">
+                        <h4 class="card-title">Status</h4>
+                        <div class="p-2 h-100 bg-success rounded-circle"></div>
+                    </div>
+                    <form action="#" class="form-horizontal">
+                        <div>
+                            <select class="form-select mr-sm-2  mb-2" id="IsActive">
+                                <option value="True">Published</option>
+                                <option value="False">Draft</option>
+
+                            </select>
+                            <p class="fs-2 mb-0">
+                                Set the product status.
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-7">Product Details</h4>
+                    <div class="mb-3">
+                        <label class="form-label">Categories</label>
+                        <select class="select2 form-control" id="CategoryProdId">
+                            @foreach (var slider in tblSliders)
+                            {
+                                <option value="@slider.SliderId">@slider.SliderImg</option>
+                            }
+
+
+                        </select>
+                        <p class="fs-2 mb-0">
+                            Add product to a category.
+                        </p>
+                    </div>
+                    <button type="button" class="btn bg-primary-subtle text-primary ">
+                        <span class="fs-4 me-1">+</span>
+                        Create New Category
+                    </button>
+                    @*  <div class="mt-7">
+                    <label class="form-label">Tags</label>
+                    <select class="select2 form-control" multiple="multiple">
+                    <option value="">New</option>
+                    <option value="" selected>trending</option>
+                    <option value="">Headphones</option>
+                    <option value="" selected>Beauty</option>
+                    <option value="" selected>Fashion</option>
+                    <option value="">Footwear</option>
+                    </select>
+                    <p class="fs-2 mb-0">
+                    Add product to a category.
+                    </p>
+                    </div> *@
+                </div>
+            </div>
+            @* <div class="card">
+            <div class="card-body">
+            <h4 class="card-title mb-2">$2,420</h4>
+            <div class="d-flex align-items-center">
+            <p class="fs-4 fw-base mb-0">
+            Average Daily Sales
+            </p>
+            <p class="fs-2 text-success bg-success-subtle mb-0 px-2 py-1 rounded-1">
+            2.6%
+            </p>
+            </div>
+            <div class="mt-7">
+            <div id="sales"></div>
+            </div>
+            </div>
+            </div> *@
+            @*  <div class="card">
+            <div class="card-body">
+            <h4 class="card-title mb-7">Product Template</h4>
+            <form action="#" class="form-horizontal">
+            <div>
+            <label class="form-label text-nowrap">Select a product template</label>
+            <select class="form-select mr-sm-2  mb-2" id="inlineFormCustomSelect">
+            <option selected="">Default Template</option>
+            <option value="1">Fashion</option>
+            <option value="2">Office Stationary</option>
+            <option value="3">Electronics</option>
+            </select>
+            <p class="fs-2 mb-0">
+            Assign a template from your current theme to define how a single product is displayed.
+            </p>
+            </div>
+            </form>
+            </div>
+            </div> *@
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+
+
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
+
+
+
+    @*    <script src="~/assets/libs/quill/dist/quill.min.js"></script> *@
+    <script src="~/assets/js/forms/quill-init.js"></script>
+    @* <script src="~/assets/libs/dropzone/dist/min/dropzone.min.js"></script> *@
+    <script src="~/assets/libs/select2/dist/js/select2.full.min.js"></script>
+    <script src="~/assets/libs/select2/dist/js/select2.min.js"></script>
+    <script src="~/assets/js/forms/select2.init.js"></script>
+    <script src="~/assets/libs/jquery.repeater/jquery.repeater.min.js"></script>
+    <script src="~/assets/libs/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/assets/js/forms/repeater-init.js"></script>
+    <script src="~/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+    <script src="~/assets/js/apps/edit-product.js"></script>
+    <script>
+        Dropzone.autoDiscover = false;
+        var myDropzone = new Dropzone("#myDropzone", {
+            paramName: "file", // Tên tham số gửi đến server
+            maxFilesize: 2, // Kích thước tệp tối đa (MB)
+            maxFiles: 1,
+            addRemoveLinks: true, // Hiển thị nút xóa
+            dictRemoveFile: "Xóa",
+            acceptedFiles: ".png,.jpg,.jpeg,.gif", // Các định dạng tệp được chấp nhận
+            dictDefaultMessage: "Kéo thả tệp vào đây hoặc nhấp để tải lên",
+            init: function () {
+                this.on("maxfilesexceeded", function (file) {
+                    alert("Bạn đã vượt quá số lượng tệp cho phép!");
+                    this.removeFile(file); // Xóa tệp vượt quá giới hạn
+                });
+                this.on("success", function (file, response) {
+                    console.log("Tải lên thành công:", response);
+                });
+                this.on("error", function (file, errorMessage) {
+                    console.error("Lỗi khi tải lên:", errorMessage);
+                });
+            },
+        });
+        
+
+    </script>
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+        function UpdateProduct() {
+            var formData = new FormData();
+
+            if (myDropzone.files.length > 0) {
+                formData.append('SlideImg', myDropzone.files[0].dataURL);
+            }
+
+
+
+            
+
+            $.ajax({
+                url: `/Admin/Sliders/Create`,
+                type: 'POST',
+                data: formData,
+                contentType: false, // Let the browser set the content type
+                processData: false, // Prevent jQuery from processing the data
+                success: function (response) {
+                    console.log(response)
+                    if (response.success) {
+
+                        Toast.fire({
+                            icon: "success",
+                            title: response.msg
+                        });
+
+                        setTimeout(function () {
+                            window.location.href = '/admin/slide.html';
+                        }, 3000);
+                    } else {
+                        alert('Error: ' + response.message);
+                    }
+                },
+                error: function () {
+                    Toast.fire({
+                        icon: "error",
+                        title: "error"
+                    });
+                }
+            });
+        };
+
+
+
+
+    </script>
+}

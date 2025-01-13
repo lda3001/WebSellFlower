@@ -2,7 +2,7 @@
   "version": 2,
   "dgSpecHash": "Uf8HmaPWcdQ=",
   "success": true,
-  "projectFilePath": "E:\\WebSellFlower\\WebSellFlower\\WebSellFlower.csproj",
+  "projectFilePath": "C:\\Users\\Tuan\\Source\\Repos\\WebSellFlower\\WebSellFlower\\WebSellFlower.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DUCANHDEV\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\DUCANHDEV\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

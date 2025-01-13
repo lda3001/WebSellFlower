@@ -1,13 +1,13 @@
 {
   "format": 1,
   "restore": {
-    "E:\\WebSellFlower\\WebSellFlower\\WebSellFlower.csproj": {}
+    "C:\\Users\\Tuan\\Source\\Repos\\WebSellFlower\\WebSellFlower\\WebSellFlower.csproj": {}
   },
   "projects": {
-    "E:\\WebSellFlower\\WebSellFlower\\WebSellFlower.csproj": {
+    "C:\\Users\\Tuan\\Source\\Repos\\WebSellFlower\\WebSellFlower\\WebSellFlower.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\WebSellFlower\\WebSellFlower\\WebSellFlower.csproj",
+        "projectUniqueName": "C:\\Users\\Tuan\\Source\\Repos\\WebSellFlower\\WebSellFlower\\WebSellFlower.csproj",
         "projectName": "WebSellFlower",
         "projectPath": "E:\\WebSellFlower\\WebSellFlower\\WebSellFlower.csproj",
         "packagesPath": "C:\\Users\\DUCANHDEV\\.nuget\\packages\\",
