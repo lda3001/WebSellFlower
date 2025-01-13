@@ -59,11 +59,11 @@ namespace WebSellFlower.Areas.Admin.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        
         public async Task<IActionResult> Create([Bind("SliderId,SliderImg,SliderOnPage,SliderDate,PageId")] TblSlider tblSlider)
         {
             TblSlider slider  = new TblSlider();
-            slider.SliderId = tblSlider.SliderId; 
+          
             slider.SliderOnPage = tblSlider.SliderOnPage;
             slider.SliderDate = tblSlider.SliderDate;
             slider.PageId = tblSlider.PageId;
@@ -71,8 +71,11 @@ namespace WebSellFlower.Areas.Admin.Controllers
             {
                 slider.SliderImg = tblSlider.SliderImg; 
             }
+            _context.Add(slider);
+            await _context.SaveChangesAsync();
+
             ViewData["PageId"] = new SelectList(_context.TblPageSliders, "PageId", "PageId", tblSlider.PageId);
-            return StatusCode(200, new { msg = "Tạo Sản Phẩm Thành Công", success = 200 });
+            return StatusCode(200, new { msg = "Tạo Slider Thành Công", success = 200 });
         }
 
         // GET: Admin/Sliders/Edit/5

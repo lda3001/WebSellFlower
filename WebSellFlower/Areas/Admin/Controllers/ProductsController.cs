@@ -85,42 +85,50 @@ namespace WebSellFlower.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([Bind("CategoryProdId,ProdName,ProdPrice,ProdDiscount,Detail,IsActive,ProdThumb,ProdImg,ProdImg1,ProdImg2,Description,ProdImg3")] TblProduct tblProduct)
         {
+            try
+            {
+                TblProduct product = new TblProduct();
+                product.ProdName = tblProduct.ProdName;
+                product.ProdPrice = tblProduct.ProdPrice;
+                product.CategoryProdId = tblProduct.CategoryProdId;
+                product.IsActive = tblProduct.IsActive;
+                product.Quantity = tblProduct.Quantity;
+                product.Description = tblProduct.Description;
+                product.Detail = tblProduct.Detail;
+                if (tblProduct.ProdThumb != null)
+                {
+                    product.ProdThumb = tblProduct.ProdThumb;
+                }
+                if (tblProduct.ProdImg != null)
+                {
+                    product.ProdImg = tblProduct.ProdImg;
+                }
+                if (tblProduct.ProdImg1 != null)
+                {
+                    product.ProdImg1 = tblProduct.ProdImg1;
+                }
+                if (tblProduct.ProdImg2 != null)
+                {
+                    product.ProdImg2 = tblProduct.ProdImg2;
+                }
+                if (tblProduct.ProdImg3 != null)
+                {
+                    product.ProdImg3 = tblProduct.ProdImg3;
 
-            TblProduct product = new TblProduct();
-            product.ProdName = tblProduct.ProdName;
-            product.ProdPrice = tblProduct.ProdPrice;
-            product.CategoryProdId = tblProduct.CategoryProdId;
-            product.IsActive = tblProduct.IsActive;
-            product.Quantity = tblProduct.Quantity;
-            product.Description = tblProduct.Description;
-            product.Detail = tblProduct.Detail;
-            if (tblProduct.ProdThumb != null)
-            {
-                product.ProdThumb = tblProduct.ProdThumb;
-            }
-            if (tblProduct.ProdImg != null)
-            {
-                product.ProdImg = tblProduct.ProdImg;
-            }
-            if (tblProduct.ProdImg1 != null)
-            {
-                product.ProdImg1 = tblProduct.ProdImg1;
-            }
-            if (tblProduct.ProdImg2 != null)
-            {
-                product.ProdImg2 = tblProduct.ProdImg2;
-            }
-            if (tblProduct.ProdImg3 != null)
-            {
-                product.ProdImg3 = tblProduct.ProdImg3;
-
-            }
-            product.Alias = Function.TitleslugGenerationAlias(tblProduct.ProdName);
-            _context.Add(product);
-            await _context.SaveChangesAsync();
+                }
+                product.Alias = Function.TitleslugGenerationAlias(tblProduct.ProdName);
+                _context.Add(product);
+                await _context.SaveChangesAsync();
 
 
-            ViewData["CategoryProdId"] = new SelectList(_context.TblCategoryProducts, "CategoryProdId", "CategoryProdId", tblProduct.CategoryProdId);
+                ViewData["CategoryProdId"] = new SelectList(_context.TblCategoryProducts, "CategoryProdId", "CategoryProdId", tblProduct.CategoryProdId);
+            }
+            catch 
+            {
+                Console.WriteLine("looi Tạo Sản Phẩm");
+                return StatusCode(400, new { msg = "Tạo Sản Phẩm Thất Bại", success = 400 });
+            }
+            
             return StatusCode(200, new { msg = "Tạo Sản Phẩm Thành Công", success = 200 });
         }
 

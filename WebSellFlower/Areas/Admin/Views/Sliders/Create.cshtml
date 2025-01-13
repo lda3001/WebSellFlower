@@ -251,7 +251,7 @@
                     this.removeFile(file); // Xóa tệp vượt quá giới hạn
                 });
                 this.on("success", function (file, response) {
-                    console.log("Tải lên thành công:", response);
+                    console.log("Tải lên thành công:");
                 });
                 this.on("error", function (file, errorMessage) {
                     console.error("Lỗi khi tải lên:", errorMessage);
@@ -275,9 +275,10 @@
         });
         function UpdateProduct() {
             var formData = new FormData();
-
+            formData.append('IsActive', $("#IsActive").val());
+            
             if (myDropzone.files.length > 0) {
-                formData.append('SlideImg', myDropzone.files[0].dataURL);
+                formData.append('SliderImg', myDropzone.files[0].dataURL);
             }
 
 
