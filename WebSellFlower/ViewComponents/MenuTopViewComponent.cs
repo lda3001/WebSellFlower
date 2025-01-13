@@ -25,6 +25,7 @@ namespace WebSellFlower.ViewComponents
         {
             var items = _context.TblCategories.Where(m => (bool)m.IsActive).
             OrderBy(m => m.Position).ToList();
+            ViewBag.cateproduct = _context.TblCategoryProducts.ToList();
             return await Task.FromResult<IViewComponentResult>(View(items));
         }
     }
